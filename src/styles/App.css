@@ -15,6 +15,7 @@
    grid-column: 1/4;
    background-image: url("../assets/landingPic1.png");
    background-repeat: no-repeat;
+   margin-top: 10px;
    background-size: 100% 100%;
 }
 

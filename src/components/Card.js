@@ -12,9 +12,9 @@ import {
 function Card() {
    return (
       <MDBCol style={{ maxWidth: "22rem" }}>
-         <MDBCard>
+         <MDBCard className="z-depth-4">
             <MDBCardImage
-               className="img-fluid"
+               className="img-fluid "
                src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
                waves
             />

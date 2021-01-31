@@ -7,13 +7,11 @@ import {
    MDBView,
    MDBMask,
    MDBContainer,
-   MDBCol,
-   MDBRow,
 } from "mdbreact";
 
 const slideShow = () => {
    return (
-      <MDBContainer fluid className="p-0">
+      <MDBContainer fluid className=" z-depth-4 p-0">
          <MDBCarousel
             activeItem={1}
             length={3}

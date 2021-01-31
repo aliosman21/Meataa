@@ -8,7 +8,7 @@ function App() {
          <div className="slideShowHolder">
             <Slider />
          </div>
-         <div className="landingPageBreak "></div>
+         <div className="landingPageBreak z-depth-4"></div>
          <div className="bottomCardSection ">
             <Cards />
             <Cards />

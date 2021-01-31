@@ -95,7 +95,7 @@ class Navbar extends Component {
                      </MDBNavItem>
                      <MDBNavItem className="pl-5 ">
                         <MDBNavLink to="#!" className=" text-right ">
-                           <p className="p-0 m-0 font-weight-bold"> شيء اخر </p>
+                           <p className="p-0 m-0 font-weight-bold"> اخري </p>
                         </MDBNavLink>
                      </MDBNavItem>
                   </MDBNavbarNav>
