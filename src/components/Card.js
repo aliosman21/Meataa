@@ -1,13 +1,5 @@
 import React from "react";
-import {
-   MDBBtn,
-   MDBCard,
-   MDBCardBody,
-   MDBCardImage,
-   MDBCardTitle,
-   MDBCardText,
-   MDBCol,
-} from "mdbreact";
+import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from "mdbreact";
 
 function Card() {
    return (

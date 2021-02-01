@@ -1,5 +1,4 @@
 import "../styles/App.css";
-import Pic1 from "../assets/LP1.jpg";
 import Slider from "../components/slideShow";
 import Cards from "../components/Card";
 function App() {

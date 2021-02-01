@@ -11,17 +11,40 @@ import {
    MDBDropdownToggle,
    MDBDropdownMenu,
    MDBDropdownItem,
-   MDBContainer,
    MDBIcon,
 } from "mdbreact";
+import Modal from "./Modal";
 import { BrowserRouter as Router } from "react-router-dom";
 
 class Navbar extends Component {
    state = {
-      loggedIn: true,
+      loggedIn: false,
       messages: 0,
       collapseID: "",
+      modalShow: false,
+      modalType: false,
    };
+   //modal choice = 0 --> Login Modal /// Non-Zero ---> Reg Modal
+   //Handlers-------------------------------------------------
+   /*    registerHandler = (e) => {
+      this.setState({ loggedIn: false });
+   }; */
+   logoutHandler = (e) => {
+      this.setState({ loggedIn: false });
+      console.log("Logout Handler " + this.state.loggedIn);
+   };
+   loginHandler = (e) => {
+      this.setState({ loggedIn: true });
+      console.log("Login Handler " + this.state.loggedIn);
+   };
+   modalHider = () => {
+      this.setState({ modalShow: false });
+   };
+   modalShower = (e, modalType) => {
+      this.setState({ modalShow: true });
+      this.setState({ modalType: modalType });
+   };
+   //Handlers-------------------------------------------------
 
    toggleCollapse = (collapseID) => () =>
       this.setState((prevState) => ({
@@ -42,7 +65,7 @@ class Navbar extends Component {
                   </MDBNavItem>
                   <MDBNavItem>
                      <MDBDropdown>
-                        <MDBDropdownToggle className="dopdown-toggle" nav>
+                        <MDBDropdownToggle className="dropdown-toggle" nav>
                            <img
                               src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg"
                               className="rounded-circle z-depth-0"
@@ -54,7 +77,11 @@ class Navbar extends Component {
                            <MDBDropdownItem href="#!" className="text-right">
                               <p className="p-0 m-0 font-weight-bold"> حسابي </p>
                            </MDBDropdownItem>
-                           <MDBDropdownItem href="#!" className="text-right">
+                           <MDBDropdownItem
+                              to=""
+                              onClick={(e) => this.logoutHandler(e)}
+                              href="#!"
+                              className="text-right">
                               <p className="p-0 m-0 font-weight-bold"> تسجيل الخروج </p>
                            </MDBDropdownItem>
                         </MDBDropdownMenu>
@@ -66,12 +93,18 @@ class Navbar extends Component {
             return (
                <MDBNavbarNav right>
                   <MDBNavItem className="pl-5">
-                     <MDBNavLink to="#!" className=" text-right ">
+                     <MDBNavLink
+                        to="#!"
+                        onClick={(e) => this.modalShower(e, 0)}
+                        className=" text-right ">
                         <p className="p-0 m-0 font-weight-bold"> تسجيل الدخول </p>
                      </MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem className="pl-5 ">
-                     <MDBNavLink to="#!" className=" text-right ">
+                     <MDBNavLink
+                        to="#!"
+                        onClick={(e) => this.modalShower(e, 1)}
+                        className=" text-right ">
                         <p className="p-0 m-0 font-weight-bold"> انضم الينا </p>
                      </MDBNavLink>
                   </MDBNavItem>
@@ -102,6 +135,13 @@ class Navbar extends Component {
                   {renderAuthButton()}
                </MDBCollapse>
             </MDBNavbar>
+            <Modal
+               modal={this.state.modalType}
+               show={this.state.modalShow}
+               // loggedin={this.state.loggedIn ? 1 : 0}
+               loginhandler={this.loginHandler}
+               onHide={() => this.modalHider()}
+            />
          </Router>
       );
    }
