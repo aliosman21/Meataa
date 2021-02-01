@@ -14,7 +14,6 @@ import {
    MDBIcon,
 } from "mdbreact";
 import Modal from "./Modal";
-import { BrowserRouter as Router } from "react-router-dom";
 
 class Navbar extends Component {
    state = {
@@ -29,6 +28,9 @@ class Navbar extends Component {
    /*    registerHandler = (e) => {
       this.setState({ loggedIn: false });
    }; */
+   componentDidMount() {
+      //check if localstorage has token set loggedIn with true
+   }
    logoutHandler = (e) => {
       this.setState({ loggedIn: false });
       console.log("Logout Handler " + this.state.loggedIn);
@@ -74,7 +76,7 @@ class Navbar extends Component {
                            />
                         </MDBDropdownToggle>
                         <MDBDropdownMenu className="dropdown-default" right>
-                           <MDBDropdownItem href="#!" className="text-right">
+                           <MDBDropdownItem href="./profile" className="text-right">
                               <p className="p-0 m-0 font-weight-bold"> حسابي </p>
                            </MDBDropdownItem>
                            <MDBDropdownItem
@@ -113,28 +115,28 @@ class Navbar extends Component {
          }
       };
       return (
-         <Router>
-            <MDBNavbar color="stylish-color-dark" dark expand="md" className="z-depth-4 sticky-top">
-               <MDBNavbarBrand>
+         <MDBNavbar color="stylish-color-dark" dark expand="md" className="z-depth-4 sticky-top">
+            <MDBNavbarBrand>
+               <MDBNavLink to="/">
                   <strong className="black-text">Logo</strong>
-               </MDBNavbarBrand>
-               <MDBNavbarToggler onClick={this.toggleCollapse("navbarCollapse3")} />
-               <MDBCollapse id="navbarCollapse3" isOpen={this.state.collapseID} navbar>
-                  <MDBNavbarNav left className="pl-5 ">
-                     <MDBNavItem className="pl-5">
-                        <MDBNavLink to="#!" className="text-right">
-                           <p className="p-0 m-0 font-weight-bold"> المجالات </p>
-                        </MDBNavLink>
-                     </MDBNavItem>
-                     <MDBNavItem className="pl-5 ">
-                        <MDBNavLink to="#!" className=" text-right ">
-                           <p className="p-0 m-0 font-weight-bold"> اخري </p>
-                        </MDBNavLink>
-                     </MDBNavItem>
-                  </MDBNavbarNav>
-                  {renderAuthButton()}
-               </MDBCollapse>
-            </MDBNavbar>
+               </MDBNavLink>
+            </MDBNavbarBrand>
+            <MDBNavbarToggler onClick={this.toggleCollapse("navbarCollapse3")} />
+            <MDBCollapse id="navbarCollapse3" isOpen={this.state.collapseID} navbar>
+               <MDBNavbarNav left className="pl-5 ">
+                  <MDBNavItem className="pl-5">
+                     <MDBNavLink to="#!" className="text-right">
+                        <p className="p-0 m-0 font-weight-bold"> المجالات </p>
+                     </MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem className="pl-5 ">
+                     <MDBNavLink to="#" className=" text-right ">
+                        <p className="p-0 m-0 font-weight-bold"> اخري </p>
+                     </MDBNavLink>
+                  </MDBNavItem>
+               </MDBNavbarNav>
+               {renderAuthButton()}
+            </MDBCollapse>
             <Modal
                modal={this.state.modalType}
                show={this.state.modalShow}
@@ -142,7 +144,7 @@ class Navbar extends Component {
                loginhandler={this.loginHandler}
                onHide={() => this.modalHider()}
             />
-         </Router>
+         </MDBNavbar>
       );
    }
 }

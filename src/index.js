@@ -4,14 +4,16 @@ import "./index.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
-import App from "./views/App";
-import Nav from "./components/NavBar";
+import Routes from "./Routes";
+import { BrowserRouter as Router } from "react-router-dom";
+
 //import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
    <div id="mainRenderingComponent">
-      <Nav />
-      <App />
+      <Router>
+         <Routes />
+      </Router>
    </div>,
    document.getElementById("root")
 );

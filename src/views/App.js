@@ -1,6 +1,7 @@
 import "../styles/App.css";
 import Slider from "../components/slideShow";
 import Cards from "../components/Card";
+
 function App() {
    return (
       <div className="main-content">
