@@ -11,7 +11,9 @@ class RegForm extends React.Component {
          pass: "",
       };
    }
-   handleClick() {
+   handleClick(e) {
+      //e.preventDefault();
+      //send to back end and wait for response
       console.log("this is:", this);
    }
    handleNameChange(e) {
@@ -24,7 +26,7 @@ class RegForm extends React.Component {
 
    render() {
       return (
-         <Form>
+         <Form onSubmit={(e) => this.handleClick(e)}>
             <Form.Label className="float-right">الاسم</Form.Label>
             <Form.Control
                type="text"
@@ -41,6 +43,7 @@ class RegForm extends React.Component {
                type="email"
                placeholder="ali@gmail.com"
                name="email"
+               required
                onChange={(e) => {
                   this.handleNameChange(e);
                }}
@@ -51,13 +54,14 @@ class RegForm extends React.Component {
                type="password"
                placeholder="foo"
                name="pass"
+               required
                onChange={(e) => {
                   this.handleNameChange(e);
                }}
             />
 
             <br></br>
-            <Button variant="success" type="submit" onClick={() => this.handleClick()}>
+            <Button variant="success" type="submit">
                <p className="m-0 p-0"> انضم لنا</p>
             </Button>
          </Form>
