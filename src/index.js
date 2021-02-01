@@ -4,7 +4,8 @@ import "./index.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
-import Routes from "./Routes";
+import Routes from "./Routes/Routes";
+import Nav from "./components/NavBar";
 import { BrowserRouter as Router } from "react-router-dom";
 
 //import "bootstrap/dist/css/bootstrap.min.css";

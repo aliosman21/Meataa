@@ -30,13 +30,18 @@ class Navbar extends Component {
    }; */
    componentDidMount() {
       //check if localstorage has token set loggedIn with true
+      if (localStorage.getItem("token") !== null) {
+         this.setState({ loggedIn: true });
+      }
    }
    logoutHandler = (e) => {
       this.setState({ loggedIn: false });
+      localStorage.removeItem("token");
       console.log("Logout Handler " + this.state.loggedIn);
    };
    loginHandler = (e) => {
       this.setState({ loggedIn: true });
+      localStorage.setItem("token", "123");
       console.log("Login Handler " + this.state.loggedIn);
    };
    modalHider = () => {
@@ -68,12 +73,7 @@ class Navbar extends Component {
                   <MDBNavItem>
                      <MDBDropdown>
                         <MDBDropdownToggle className="dropdown-toggle" nav>
-                           <img
-                              src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg"
-                              className="rounded-circle z-depth-0"
-                              style={{ height: "30px", padding: 0 }}
-                              alt="profilePic"
-                           />
+                           <MDBIcon icon="user" />
                         </MDBDropdownToggle>
                         <MDBDropdownMenu className="dropdown-default" right>
                            <MDBDropdownItem href="./profile" className="text-right">
@@ -82,7 +82,7 @@ class Navbar extends Component {
                            <MDBDropdownItem
                               to=""
                               onClick={(e) => this.logoutHandler(e)}
-                              href="#!"
+                              href="./"
                               className="text-right">
                               <p className="p-0 m-0 font-weight-bold"> تسجيل الخروج </p>
                            </MDBDropdownItem>
