@@ -1,6 +1,20 @@
-import React from "react";
-
+import React,{useContext} from "react";
+import { UserContext } from "../context/UserContext";
+import {login} from "../Utils/loginUtil"
 export function Navigation(){
+
+  const {user,setUser} = useContext(UserContext);
+
+  const loginHandler = async (e) =>{
+    //will call login Util
+    console.log(e);
+    //const user = await login();
+    //setUser(user);
+
+
+  } 
+
+
 
     return (
       <nav id="menu" className="navbar navbar-default navbar-fixed-top">
@@ -54,11 +68,28 @@ export function Navigation(){
                   تواصل معنا
                 </a>
               </li>
-              <li>
-                <a href="#!" className="page-scroll" >
+
+            {user? (<li>
+                <a href="#!" className="page-scroll dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                 {user.username}
+                </a>
+                <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a className="dropdown-item" href="#!"> <p className="text-right ">حسابي </p></a>
+                  <a className="dropdown-item"  href="#!"> <p className="text-right">تسجيل الخروج </p></a>
+                </div>
+              </li>):
+              <>
+            <li>
+                <a href="/Login" className="page-scroll" onClick={(e)=>loginHandler(e)} >
                   تسجيل الدخول
                 </a>
               </li>
+              <li>
+                <a href="#!" className="page-scroll">
+                  انضم لنا
+                </a>
+              </li> </>
+              }
             </ul>
 
           </div>
