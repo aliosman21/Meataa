@@ -31,9 +31,7 @@ class Modalvertical extends Component {
                   <p className="p-0 m-0">Modal heading</p>
                </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-               {this.props.modal ? <Regform /> : <LogForm loginhandler={this.loginCallBack} />}
-            </Modal.Body>
+            <Modal.Body>{this.props.modal ? <Regform /> : <LogForm />}</Modal.Body>
             <Modal.Footer></Modal.Footer>
          </Modal>
       );

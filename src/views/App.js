@@ -1,22 +1,39 @@
-import "../styles/App.css";
-import Slider from "../components/slideShow";
-import Cards from "../components/Card";
+//import "../styles/App.css";
+import React, { Component } from "react";
 
-function App() {
-   return (
-      <div className="main-content">
-         <div className="slideShowHolder">
-            <Slider />
+import Navigation from "../components/navigation";
+import Header from "../components/header";
+import Features from "../components/features";
+import About from "../components/about";
+import Gallery from "../components/gallery";
+import Team from "../components/Team";
+import Contact from "../components/contact";
+import JsonData from "../data/data.json";
+
+class App extends Component {
+   state = {
+      landingPageData: {},
+   };
+   getlandingPageData() {
+      this.setState({ landingPageData: JsonData });
+   }
+
+   componentDidMount() {
+      this.getlandingPageData();
+   }
+   render() {
+      return (
+         <div>
+            <Navigation />
+            <Header data={this.state.landingPageData.Header} />
+            <Features data={this.state.landingPageData.Features} />
+            <About data={this.state.landingPageData.About} />
+            <Gallery />
+            <Team data={this.state.landingPageData.Team} />
+            <Contact data={this.state.landingPageData.Contact} />
          </div>
-         <div className="landingPageBreak z-depth-4"></div>
-         <div className="bottomCardSection ">
-            <Cards />
-            <Cards />
-            <Cards />
-         </div>
-         <div className="footer"></div>
-      </div>
-   );
+      );
+   }
 }
 
 export default App;
