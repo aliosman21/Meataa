@@ -5,36 +5,22 @@ export default class Login extends Component {
    render() {
       return (
          <div className="custom-content">
-            <MDBContainer>
-               <MDBRow>
-                  <MDBCol md="6">
-                     <form>
-                        <p className="h5 text-center mb-4">Sign in</p>
-                        <div className="grey-text">
-                           <MDBInput
-                              label="Type your email"
-                              icon="envelope"
-                              group
-                              type="email"
-                              validate
-                              error="wrong"
-                              success="right"
-                           />
-                           <MDBInput
-                              label="Type your password"
-                              icon="lock"
-                              group
-                              type="password"
-                              validate
-                           />
-                        </div>
-                        <div className="text-center">
-                           <MDBBtn>Login</MDBBtn>
-                        </div>
-                     </form>
-                  </MDBCol>
-               </MDBRow>
-            </MDBContainer>
+            <div className="custom-container col-8">
+               <form>
+                  <p className="h5 text-center mb-4">تسجيل الدخول</p>
+                  <div className="grey-text">
+                     <input type="email" className="form-control" required />
+                     <p className="text-right">البريد الالكتروني</p>
+                  </div>
+                  <div className="grey-text">
+                     <input type="password" className="form-control" required />
+                     <p className="text-right">كلمه السر</p>
+                  </div>
+                  <div className="text-center custom-login-button">
+                     <button type="submit">تسجيل الدخول</button>
+                  </div>
+               </form>
+            </div>
          </div>
       );
    }
