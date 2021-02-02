@@ -4,6 +4,7 @@ import { UserContext } from "../context/UserContext";
 import App from "../views/App";
 import Profile from "../views/Profile";
 import Login from "../views/Login";
+import Navigation from "../components/navigation";
 
 function Routes() {
    const [user, setUser] = useState(null);
@@ -12,6 +13,7 @@ function Routes() {
       <>
          <Switch>
             <UserContext.Provider value={providerUser}>
+               <Route component={Navigation} />
                <Route exact path="/" component={App} />
                <Route exact path="/profile" component={Profile} />
                <Route exact path="/login" component={Login} />
