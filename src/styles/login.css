@@ -10,6 +10,7 @@
       ". loginForm ."
       ". . .";
    align-items: center;
+   background-color: #3a506b;
 }
 
 .custom-container {
@@ -22,21 +23,32 @@
    padding-right: 5%;
    border-radius: 50px;
    transition: 0.5s;
+   background-color: #1c2541;
 }
 .custom-container:hover {
    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 button:hover {
    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+   background-color: #1c2541;
 }
+
 button {
    border-radius: 20px;
    border-color: white;
    transition: 0.5s;
-}
-p {
-   font-size: 14px;
+   color: #bc6c25;
    font-weight: 1000;
+   font-size: 20px;
+}
+h2 {
+   padding-top: 2%;
+   color: #bc6c25;
+}
+.custom-login-p {
+   font-size: 17px;
+   font-weight: 1000;
+   color: #dda15e;
 }
 
 .form-control {

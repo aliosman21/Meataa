@@ -1,0 +1,12 @@
+.navbar-nav > li > a {
+   color: #bc6c25 !important;
+   font-size: 18px !important;
+   font-weight: bold !important;
+}
+#menu.navbar-default {
+   background-color: #fdfdff !important;
+}
+
+#menu.navbar-default .navbar-nav > li > a:after {
+   background: #1d3557 !important;
+}

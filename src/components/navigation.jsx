@@ -1,6 +1,7 @@
 import React,{useContext} from "react";
 import { UserContext } from "../context/UserContext";
 import {login} from "../Utils/loginUtil"
+import "../styles/navigation.css" 
 export function Navigation(){
 
   const {user,setUser} = useContext(UserContext);

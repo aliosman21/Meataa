@@ -80,6 +80,7 @@ export class Contact extends Component {
               <div className="contact-item">
                 <p>
                   <span>
+
                     <i className="fa fa-envelope-o"></i> البريد الالكتروني
                   </span>{" "}
                   {this.props.data ? this.props.data.email : "loading"}
