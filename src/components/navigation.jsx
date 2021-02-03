@@ -1,6 +1,7 @@
 import React,{useContext} from "react";
-import {Link,BrowserRouter as Router} from "react-router-dom";
+import {Link} from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import { HashLink as Hash } from 'react-router-hash-link';
 import {login} from "../Utils/loginUtil"
 import "../styles/navigation.css" 
 export function Navigation(){
@@ -57,41 +58,51 @@ export function Navigation(){
           >
             <ul className="nav navbar-nav navbar-right">
               <li>
-                <a href="#features" className="page-scroll">
+                <Hash to="/#features" className="page-scroll">
                   أصنع الفارق 
-                </a>
+                </Hash>
               </li>
               <li>
-                <a href="#about" className="page-scroll">
+                <Hash to="/#about" className="page-scroll">
                   من نحن
-                </a>
+                </Hash>
               </li>
 
               <li>
-                <a href="#portfolio" className="page-scroll">
+                <Hash to="/#portfolio" className="page-scroll">
                   الأعمال
-                </a>
+                </Hash>
               </li>
               <li>
-                <a href="#team" className="page-scroll">
+                <Hash to="/#team" className="page-scroll">
                   تعرف علينا
-                </a>
+                </Hash>
               </li>
               <li>
-                <a href="#contact" className="page-scroll">
+                <Hash to="/#contact" className="page-scroll">
                   تواصل معنا
-                </a>
+                </Hash>
               </li>
 
-            {user? (<li>
+            {user? (
+             <>
+               <li><Link   to="/"className="page-scroll"  >
+                  بحث
+                </Link></li>
+            <li>
                 <a href="#!" className="page-scroll dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
                  {user.username}
                 </a>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <Link className="dropdown-item" to="/profile"> <p className="text-right ">حسابي </p></Link>
-                  <a className="dropdown-item"  href="/" onClick={(e)=>loginHandler(e)}> <p className="text-right">تسجيل الخروج </p></a>
-                </div>
-              </li>):
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <Link className="dropdown-item" to="/profile"> <p className="text-right ">حسابي </p></Link>
+                      <a className="dropdown-item"  href="/" onClick={(e)=>loginHandler(e)}> <p className="text-right">تسجيل الخروج </p>
+                      </a>
+                    </div>
+              </li>
+            
+              </>
+
+              ):
               <>
             <li>
                 <Link   to="/"/*to="/login"*/ className="page-scroll" onClick={(e)=>loginHandler(e)} >

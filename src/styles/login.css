@@ -16,7 +16,7 @@
 .custom-container-login {
    grid-area: loginForm;
    width: 40%;
-   height: 40%;
+   height: 50%;
    justify-self: center;
    box-shadow: 1px 5px 5px 5px rgb(12, 12, 12, 0.6);
    padding-left: 5%;
