@@ -16,7 +16,9 @@ export default class Login extends Component {
                      <p className="text-right custom-login-p">كلمه السر</p>
                   </div>
                   <div className="text-center custom-login-button">
-                     <button type="submit">تسجيل الدخول</button>
+                     <button className="login-button" type="submit">
+                        تسجيل الدخول
+                     </button>
                   </div>
                </form>
             </div>

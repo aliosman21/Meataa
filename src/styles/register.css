@@ -25,11 +25,11 @@
    transition: 0.5s;
    background-color: #6d1a16;
 }
-.custom-container:hover {
+.custom-container-register:hover {
    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
-button {
+.register-button {
    border-radius: 20px;
    border-color: white;
    transition: 0.5s;

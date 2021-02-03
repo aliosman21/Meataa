@@ -17,6 +17,16 @@ export function Navigation(){
 
   } 
 
+  const logoutHandler = async (e) =>{
+   // e.preventDefault();
+    //will call login Util
+    console.log(e);
+
+    setUser(null);
+
+
+  } 
+
 
 
     return (
@@ -78,13 +88,13 @@ export function Navigation(){
                  {user.username}
                 </a>
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <Link className="dropdown-item" to="#!"> <p className="text-right ">حسابي </p></Link>
-                  <Link className="dropdown-item"  to="#!"> <p className="text-right">تسجيل الخروج </p></Link>
+                  <Link className="dropdown-item" to="/profile"> <p className="text-right ">حسابي </p></Link>
+                  <a className="dropdown-item"  href="/" onClick={(e)=>loginHandler(e)}> <p className="text-right">تسجيل الخروج </p></a>
                 </div>
               </li>):
               <>
             <li>
-                <Link    className="page-scroll" onClick={(e)=>loginHandler(e)} >
+                <Link   to="/"/*to="/login"*/ className="page-scroll" onClick={(e)=>loginHandler(e)} >
                   تسجيل الدخول
                 </Link>
               </li>

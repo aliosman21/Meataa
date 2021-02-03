@@ -31,7 +31,9 @@ export default class Login extends Component {
                      <p className="text-right custom-register-p">صورتك الشخصيه</p>
                   </div>
                   <div className="text-center custom-register-button">
-                     <button type="submit">أنضم الان</button>
+                     <button className="register-button" type="submit">
+                        أنضم الان
+                     </button>
                   </div>
                </form>
             </div>

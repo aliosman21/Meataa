@@ -25,15 +25,15 @@
    transition: 0.5s;
    background-color: #6d1a16;
 }
-.custom-container:hover {
+.custom-container-login:hover {
    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
-button:hover {
+.login-button:hover {
    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
    background-color: #6d1a16;
 }
 
-button {
+.login-button {
    border-radius: 20px;
    border-color: white;
    transition: 0.5s;
