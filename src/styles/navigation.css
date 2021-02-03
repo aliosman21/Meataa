@@ -1,12 +1,20 @@
 .navbar-nav > li > a {
-   color: #bc6c25 !important;
+   color: #b573ac !important;
    font-size: 18px !important;
    font-weight: bold !important;
 }
 #menu.navbar-default {
-   background-color: #fdfdff !important;
+   background-color: #f2f2f0 !important;
 }
 
 #menu.navbar-default .navbar-nav > li > a:after {
    background: #1d3557 !important;
+}
+
+.logo {
+   height: 70px;
+   padding-bottom: 20px;
+}
+.logo-anchor {
+   padding: 0;
 }

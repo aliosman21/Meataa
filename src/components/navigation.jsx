@@ -1,4 +1,5 @@
 import React,{useContext} from "react";
+import {Link,BrowserRouter as Router} from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import {login} from "../Utils/loginUtil"
 import "../styles/navigation.css" 
@@ -7,10 +8,11 @@ export function Navigation(){
   const {user,setUser} = useContext(UserContext);
 
   const loginHandler = async (e) =>{
+   // e.preventDefault();
     //will call login Util
     console.log(e);
-    //const user = await login();
-    //setUser(user);
+    const user = await login();
+    setUser(user);
 
 
   } 
@@ -18,6 +20,7 @@ export function Navigation(){
 
 
     return (
+
       <nav id="menu" className="navbar navbar-default navbar-fixed-top">
         <div className="container">
           <div className="navbar-header">
@@ -33,9 +36,9 @@ export function Navigation(){
               <span className="icon-bar"></span>{" "}
               <span className="icon-bar"></span>{" "}
             </button>
-            <a className="navbar-brand page-scroll" href="/">
-              لوجو
-            </a>{" "}
+            <Link className="navbar-brand page-scroll logo-anchor" to="/">
+                <img src="img/logo.png" alt="logo" className="logo"/>
+            </Link>{" "}
           </div>
 
           <div
@@ -75,20 +78,20 @@ export function Navigation(){
                  {user.username}
                 </a>
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a className="dropdown-item" href="#!"> <p className="text-right ">حسابي </p></a>
-                  <a className="dropdown-item"  href="#!"> <p className="text-right">تسجيل الخروج </p></a>
+                  <Link className="dropdown-item" to="#!"> <p className="text-right ">حسابي </p></Link>
+                  <Link className="dropdown-item"  to="#!"> <p className="text-right">تسجيل الخروج </p></Link>
                 </div>
               </li>):
               <>
             <li>
-                <a href="/Login" className="page-scroll" onClick={(e)=>loginHandler(e)} >
+                <Link    className="page-scroll" onClick={(e)=>loginHandler(e)} >
                   تسجيل الدخول
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#!" className="page-scroll">
+                <Link to="/Register" className="page-scroll">
                   انضم لنا
-                </a>
+                </Link>
               </li> </>
               }
             </ul>
@@ -96,6 +99,7 @@ export function Navigation(){
           </div>
         </div>
       </nav>
+ 
     );
   
 }

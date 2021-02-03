@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-
+import "../styles/footer.css"
 export class Contact extends Component {
   render() {
     return (
       <div>
-        <div id="contact">
+        <div id="contact" className="custom-contact">
           <div className="container">
             <div className="col-md-8">
               <div className="row">

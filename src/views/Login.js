@@ -3,8 +3,8 @@ import "../styles/login.css";
 export default class Login extends Component {
    render() {
       return (
-         <div className="custom-content">
-            <div className="custom-container col-8">
+         <div className="custom-content-login">
+            <div className="custom-container-login col-8">
                <form>
                   <h2 className="text-center mb-4">تسجيل الدخول</h2>
                   <div className="grey-text">
