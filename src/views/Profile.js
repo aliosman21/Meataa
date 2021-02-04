@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import "../styles/profile.css";
-import { Link, BrowserRouter as Router } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 export default function Profile() {
    const { user, setUser } = useContext(UserContext);

@@ -86,7 +86,7 @@ export function Navigation(){
 
             {user? (
              <>
-               <li><Link   to="/"className="page-scroll"  >
+               <li><Link   to="/search"className="page-scroll"  >
                   بحث
                 </Link></li>
             <li>

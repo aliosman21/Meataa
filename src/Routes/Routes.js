@@ -6,6 +6,7 @@ import Profile from "../views/Profile";
 import Login from "../views/Login";
 import Register from "../views/Register";
 import Navigation from "../components/navigation";
+import Search from "../views/Search";
 
 function Routes() {
    const [user, setUser] = useState(null);
@@ -19,6 +20,7 @@ function Routes() {
                <Route exact path="/profile" component={Profile} />
                <Route exact path="/login" component={Login} />
                <Route exact path="/Register" component={Register} />
+               <Route exact path="/Search" component={Search} />
             </UserContext.Provider>
          </Router>
       </>

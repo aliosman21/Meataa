@@ -1,0 +1,14 @@
+.custom-search-content {
+   display: grid;
+   height: 100%;
+   width: 100%;
+   min-width: 100%;
+   grid-template-columns: 10% 80% 10%;
+   grid-template-rows: 12% 80% 15%;
+   grid-template-areas:
+      ". . ."
+      ". profile ."
+      ". . .";
+   align-items: center;
+   background-color: #2a672e;
+}
