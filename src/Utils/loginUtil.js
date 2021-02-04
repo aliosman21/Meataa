@@ -4,5 +4,6 @@ export const login = async () => {
       id: 3,
       username: "ali",
       email: "ali97@gmail.com",
+      userType: 0,
    };
 };

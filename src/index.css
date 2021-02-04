@@ -6,7 +6,8 @@ h4,
 h5,
 h6,
 a,
-li {
+li,
+label {
    font-family: "Droid Arabic Kufi" !important;
 }
 

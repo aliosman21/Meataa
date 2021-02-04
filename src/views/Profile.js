@@ -8,7 +8,9 @@ export default function Profile() {
       //will call database and fill the data object 4 reviews at atime
 
       let data = {
-         name: "Ali",
+         name: "Ali Amr Osman",
+         ssn: "14875810",
+         mobile: "01281614441",
          pic: "afiasre",
          email: "ali@gmail.com",
          Reviews: {
@@ -32,8 +34,10 @@ export default function Profile() {
                <img src="/img/team/02.jpg" alt="Avatar" className="profileImg" />
             </div>
             <div className="profileText">
-               <h3>{data.name} :الاسم</h3>
-               <h3>{data.email} :البريد الالكتروني</h3>
+               <h3 className="profile-name">{data.name} :الاسم</h3>
+               <h3 className="profile-email">{data.email} :البريد الالكتروني</h3>
+               <h3 className="profile-ssn">{data.ssn} :رقم الضمان الاجتماعي</h3>
+               <h3 className="profile-mobile">{data.mobile} :رقم الهاتف</h3>
             </div>
          </div>
          <div className="custom-container-achievements col">

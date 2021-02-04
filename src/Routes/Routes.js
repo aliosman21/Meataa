@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import App from "../views/App";
 import Profile from "../views/Profile";

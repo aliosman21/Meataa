@@ -10,13 +10,16 @@
       ". loginForm ."
       ". . .";
    align-items: center;
-   background-color: #2a672e;
+   background-color: #f2f2f0;
 }
 
 .custom-container-login {
    grid-area: loginForm;
+   display: grid;
+   grid-template-rows: 100%;
+   grid-template-columns: 100%;
    width: 40%;
-   height: 50%;
+   height: 60%;
    justify-self: center;
    box-shadow: 1px 5px 5px 5px rgb(12, 12, 12, 0.6);
    padding-left: 5%;
@@ -24,7 +27,34 @@
    border-radius: 50px;
    transition: 0.5s;
    background-color: #6d1a16;
+   grid-template-areas: "form" !important;
 }
+.form-container {
+   grid-area: form;
+   display: grid;
+   grid-template-rows: 15% 50% 20% 15%;
+   grid-template-columns: 100%;
+   grid-template-areas:
+      "loginHeader"
+      "formInputs"
+      "radioButtons"
+      "customButton";
+}
+.form-inputs {
+   grid-area: formInputs;
+   padding-top: 10%;
+}
+.radio-button-login {
+   grid-area: radioButtons;
+   display: grid;
+   justify-items: center;
+   grid-template-columns: 33% 33% 33%;
+}
+.login-header {
+   grid-area: loginHeader;
+   margin: 0;
+}
+
 .custom-container-login:hover {
    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
@@ -34,6 +64,7 @@
 }
 
 .login-button {
+   grid-area: customButton;
    border-radius: 20px;
    border-color: white;
    transition: 0.5s;

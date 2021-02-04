@@ -10,13 +10,19 @@
       ". loginForm ."
       ". . .";
    align-items: center;
-   background-color: #2a672e;
+   background-color: #f2f2f0;
+}
+.custom-register-p {
+   color: #b573ac;
 }
 
 .custom-container-register {
    grid-area: loginForm;
-   width: 50%;
-   height: 65%;
+   display: grid;
+   width: 70%;
+   height: 80%;
+   grid-template-rows: 15% 5% 70% 10%;
+   grid-template-columns: 100%;
    justify-self: center;
    box-shadow: 1px 5px 5px 5px rgb(12, 12, 12, 0.6);
    padding-left: 5%;
@@ -24,11 +30,60 @@
    border-radius: 50px;
    transition: 0.5s;
    background-color: #6d1a16;
+   grid-template-areas:
+      "header"
+      "radioButtons"
+      "volInput"
+      ".";
+}
+.header-text {
+   grid-area: header;
 }
 .custom-container-register:hover {
    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
-
+.radioButtons {
+   grid-area: radioButtons;
+   display: grid;
+   grid-template-columns: 50% 50%;
+   justify-items: center;
+}
+.radioLabel {
+   font-size: 15px;
+   color: #b573ac;
+}
+.vol-inputs {
+   grid-area: volInput;
+   display: grid;
+   grid-template-columns: 70% 30%;
+   grid-template-rows: 15% 15% 15% 15% 15% 10% 15%;
+   grid-template-areas:
+      "."
+      "."
+      "."
+      "."
+      "."
+      "."
+      "interests";
+}
+.image-uploader {
+   justify-self: end;
+}
+.interests {
+   grid-area: interests;
+   display: grid;
+   grid-template-columns: 20% 20% 20% 20% 20%;
+   grid-template-rows: 50% 50%;
+}
+.interests > input {
+   justify-self: center;
+}
+.interests > label {
+   justify-self: center;
+   font-size: 15px;
+   font-weight: bold;
+   color: #b573ac;
+}
 .register-button {
    border-radius: 20px;
    border-color: white;
@@ -37,24 +92,11 @@
    font-weight: 1000;
    font-size: 20px;
 }
-h2 {
-   padding-top: 2%;
-   color: #b573ac;
+.register-button:hover {
+   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+   background-color: #6d1a16;
 }
-.custom-register-p {
-   font-size: 17px;
-   font-weight: 1000;
-   color: #b573ac;
-}
-
-.form-control {
-   border-radius: 40px;
-}
-.image-button {
-   border-radius: 50px;
-   color: #b573ac;
-}
-
+/* 
 @media only screen and (min-width: 150px) and (max-width: 380px) {
    .custom-container-register {
       height: 65% !important;
@@ -67,3 +109,4 @@ h2 {
       width: 100%;
    }
 }
+ */

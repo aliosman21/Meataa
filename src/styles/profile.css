@@ -10,7 +10,7 @@
       ". profile ."
       ". . .";
    align-items: center;
-   background-color: #2a672e;
+   background-color: #f2f2f0;
 }
 
 .custom-container-profile {
@@ -36,8 +36,10 @@
    padding-left: 15%;
    padding-right: 15%;
 }
-h3,
-h4 {
+.profile-name,
+.profile-email,
+.profile-ssn,
+.profile-mobile {
    text-align: end;
    font-size: 18px !important;
    color: #f2f2f0 !important;
