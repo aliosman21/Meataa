@@ -7,7 +7,7 @@
    grid-template-rows: 15% 80% 15%;
    grid-template-areas:
       ". . ."
-      ". loginForm ."
+      ". registerForm ."
       ". . .";
    align-items: center;
    background-color: #f2f2f0;
@@ -17,7 +17,7 @@
 }
 
 .custom-container-register {
-   grid-area: loginForm;
+   grid-area: registerForm;
    display: grid;
    width: 70%;
    height: 80%;
@@ -67,7 +67,7 @@
       "interests";
 }
 .image-uploader {
-   justify-self: end;
+   justify-self: start;
 }
 .interests {
    grid-area: interests;
@@ -96,13 +96,27 @@
    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
    background-color: #6d1a16;
 }
-/* 
-@media only screen and (min-width: 150px) and (max-width: 380px) {
+
+@media only screen and (min-width: 150px) and (max-width: 800px) {
    .custom-container-register {
-      height: 65% !important;
+      height: 100%;
       width: 100%;
    }
+   .custom-content-register {
+      display: grid;
+      height: 100%;
+      width: 100%;
+      min-width: 100%;
+      grid-template-columns: 100%;
+      grid-template-rows: 15% 85%;
+      grid-template-areas:
+         "."
+         " registerForm ";
+      align-items: center;
+      background-color: #f2f2f0;
+   }
 }
+/* 
 @media only screen and (min-width: 381px) and (max-width: 700px) {
    .custom-container-register {
       height: 65%;

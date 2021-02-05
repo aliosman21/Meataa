@@ -7,6 +7,7 @@ import Login from "../views/Login";
 import Register from "../views/Register";
 import Navigation from "../components/navigation";
 import Search from "../views/Search";
+import Event from "../views/EventPage";
 
 function Routes() {
    const [user, setUser] = useState(null);
@@ -21,6 +22,7 @@ function Routes() {
                <Route exact path="/login" component={Login} />
                <Route exact path="/Register" component={Register} />
                <Route exact path="/Search" component={Search} />
+               <Route exact path="/Event/:id" component={Event} />
             </UserContext.Provider>
          </Router>
       </>

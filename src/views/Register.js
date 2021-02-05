@@ -20,7 +20,7 @@ export default function Register() {
                         onClick={() => setUserReg(0)}
                      />
                      <label htmlFor="volunteer" className="radioLabel">
-                        volunteer
+                        متطوع
                      </label>
                   </div>
                   <div>
@@ -32,7 +32,7 @@ export default function Register() {
                         onClick={() => setUserReg(1)}
                      />
                      <label htmlFor="volunteer" className="radioLabel">
-                        organization
+                        مبادره
                      </label>
                   </div>
                </div>
@@ -65,11 +65,11 @@ export default function Register() {
                         <input type="checkbox" id="interest3" name="interest3" value="interest3" />
                         <input type="checkbox" id="interest4" name="interest4" value="interest4" />
                         <input type="checkbox" id="interest5" name="interest5" value="interest5" />
-                        <label htmlFor="interest1">interest1</label>
-                        <label htmlFor="interest2">interests2</label>
-                        <label htmlFor="interest3">interests3</label>
-                        <label htmlFor="interest4">interests4</label>
-                        <label htmlFor="interest5">interests5</label>
+                        <label htmlFor="interest1">رعايه أيتام</label>
+                        <label htmlFor="interest2">حمايه بيئه</label>
+                        <label htmlFor="interest3">تنظيم مؤتمرات</label>
+                        <label htmlFor="interest4">اخري</label>
+                        <label htmlFor="interest5">اخري</label>
                      </div>
                      <p className="text-center custom-register-p">الاهتمامات</p>
                   </div>

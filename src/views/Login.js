@@ -27,9 +27,9 @@ export default class Login extends Component {
                      />
                      <input type="radio" id="organization" name="userType" value="organization" />
                      <input type="radio" id="admin" name="userType" value="admin" />
-                     <label for="volunteer">volunteer</label>
-                     <label for="volunteer">organization</label>
-                     <label for="volunteer">admin</label>
+                     <label htmlFor="volunteer">volunteer</label>
+                     <label htmlFor="volunteer">organization</label>
+                     <label htmlFor="volunteer">admin</label>
                   </div>
                   <div className="text-center custom-login-button">
                      <button className="login-button" type="submit">
