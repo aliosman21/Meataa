@@ -4,20 +4,25 @@
    width: 100%;
    min-width: 100%;
    grid-template-columns: 5% 20% 2% 73%;
-   grid-template-rows: 12% 88%;
+   grid-template-rows: 12% 44% 44%;
    grid-template-areas:
       ". . . . "
-      ". profile . search";
+      ". profileCard . events"
+      ". searchQuery . .";
    background-color: #f2f2f0;
 }
 .main-search-container {
-   grid-area: search;
+   grid-area: events;
+}
+.searchQuery {
+   grid-area: searchQuery;
 }
 .custom-posts-table {
    overflow-x: auto;
 }
 .profile-card {
-   grid-area: profile;
+   grid-area: profileCard;
+   height: 100%;
 }
 .event-description {
    color: #b573ac;
@@ -28,7 +33,7 @@
    grid-template-rows: 50% 50%;
    grid-template-columns: 100%;
    width: 30%;
-   height: 90%;
+   height: 100% !important;
    box-shadow: 1px 5px 5px 5px rgb(12, 12, 12, 0.6);
 
    border-radius: 50px;
@@ -55,4 +60,19 @@ td {
 
 tr:nth-child(even) {
    background-color: #f2f2f2;
+}
+
+@media (max-width: 800px) {
+   .custom-search-content {
+      grid-template-rows: 20% 15% 5% 70%;
+      grid-template-columns: 5% 90% 5%;
+      grid-template-areas:
+         ". . . "
+         "searchQuery searchQuery searchQuery"
+         ". . ."
+         "events events events";
+   }
+   .profile-card {
+      visibility: hidden;
+   }
 }

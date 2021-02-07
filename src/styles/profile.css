@@ -16,7 +16,7 @@
 .custom-container-profile {
    grid-area: profile;
    display: grid;
-   grid-template-rows: 25% 75%;
+   grid-template-rows: 25% 65% 10%;
    grid-template-columns: 100%;
    width: 30%;
    height: 90%;
@@ -28,7 +28,8 @@
    background-color: #6d1a16;
    grid-template-areas:
       "profileImg"
-      "profileText";
+      "profileText"
+      "changeSettingsBtn";
 }
 .profileImgHolder {
    margin: auto;
@@ -101,6 +102,21 @@
    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
    background-color: #6d1a16;
 }
+.change-settings:hover {
+   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+   background-color: #6d1a16;
+}
+.change-settings {
+   grid-area: changeSettingsBtn;
+   border-radius: 20px;
+   border-color: white;
+   transition: 0.5s;
+   width: 50%;
+   margin-left: 25%;
+   color: #b573ac;
+   font-weight: 1000;
+   font-size: 20px;
+}
 .next {
    margin-left: auto;
 }
@@ -137,11 +153,28 @@
 }
 
 @media only screen and (min-width: 150px) and (max-width: 500px) {
+   .custom-content-profile {
+      height: 210%;
+      display: grid;
+      grid-template-rows: 10% 50% 50%;
+      grid-template-columns: 100%;
+      grid-template-areas:
+         "."
+         "first"
+         "second";
+   }
    .custom-container-achievements {
-      visibility: hidden;
+      grid-area: second;
+      height: 100%;
+      width: 100%;
    }
    .custom-container-profile {
+      grid-area: first;
       width: 100%;
+      height: 100%;
+   }
+   .profileText {
+      margin-top: 40%;
    }
 }
 /*

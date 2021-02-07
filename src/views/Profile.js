@@ -1,11 +1,16 @@
 import React, { useState, useContext } from "react";
 import "../styles/profile.css";
 import { UserContext } from "../context/UserContext";
+import Cookies from "js-cookie";
 export default function Profile() {
    const { user, setUser } = useContext(UserContext);
    const [pageId, setPageId] = useState(1);
    const getAchievementsFromDatabase = () => {
       //will call database and fill the data object 4 reviews at atime
+      // will need to pass the cookie to the profile page when the backend is done
+
+      let test = Cookies.getJSON("session");
+      console.log(test);
 
       let data = {
          name: "Ali Amr Osman",
@@ -27,7 +32,7 @@ export default function Profile() {
    const [data, setData] = useState(() => getAchievementsFromDatabase());
 
    console.log(pageId);
-   return user ? (
+   return Cookies.getJSON("session") ? (
       <div className="custom-content-profile">
          <div className="custom-container-profile col">
             <div className="profileImgHolder">
@@ -39,6 +44,7 @@ export default function Profile() {
                <h3 className="profile-ssn">{data.ssn} :رقم الضمان الاجتماعي</h3>
                <h3 className="profile-mobile">{data.mobile} :رقم الهاتف</h3>
             </div>
+            <button className="change-settings"> تغير البيانات </button>
          </div>
          <div className="custom-container-achievements col">
             <div className="all-achievements">

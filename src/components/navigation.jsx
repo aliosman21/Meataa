@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { HashLink as Hash } from 'react-router-hash-link';
 import {login} from "../Utils/loginUtil"
+import Cookies from 'js-cookie';
 import "../styles/navigation.css" 
 export function Navigation(){
 
@@ -11,7 +12,7 @@ export function Navigation(){
   const loginHandler = async (e) =>{
    // e.preventDefault();
     //will call login Util
-    console.log(e);
+    console.log(Cookies.getJSON('session'));
     const user = await login();
     setUser(user);
 
@@ -22,7 +23,7 @@ export function Navigation(){
    // e.preventDefault();
     //will call login Util
     console.log(e);
-
+    Cookies.remove('session');
     setUser(null);
 
 
@@ -84,18 +85,18 @@ export function Navigation(){
                 </Hash>
               </li>
 
-            {user? (
+            {Cookies.getJSON('session')?(
              <>
                <li><Link   to="/search"className="page-scroll"  >
                   بحث
                 </Link></li>
             <li>
                 <a href="#!" className="page-scroll dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                 {user.username}
+                 {Cookies.getJSON('session').username}
                 </a>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       <Link className="dropdown-item" to="/profile"> <p className="text-right ">حسابي </p></Link>
-                      <a className="dropdown-item"  href="/" onClick={(e)=>loginHandler(e)}> <p className="text-right">تسجيل الخروج </p>
+                      <a className="dropdown-item"  href="/" onClick={(e)=>logoutHandler(e)}> <p className="text-right">تسجيل الخروج </p>
                       </a>
                     </div>
               </li>

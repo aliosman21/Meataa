@@ -10,7 +10,12 @@ li,
 label,
 td,
 tr {
-   font-family: "Droid Arabic Kufi" !important;
+   font-family: "CustomFont" !important;
+}
+
+@font-face {
+   font-family: CustomFont;
+   src: url(/src/styles/fonts/DroidKuffi.ttf);
 }
 
 h4,
