@@ -55,7 +55,7 @@ export default function Profile() {
          </div>
          <div className="profile-card">
             <Link to="/profile" className="event-description">
-               <div className="custom-container-profile-search col">
+               <div className="custom-container-profile-search">
                   <div className="profileImgHolder">
                      <img src="/img/team/02.jpg" alt="Avatar" className="profileImg" />
                   </div>

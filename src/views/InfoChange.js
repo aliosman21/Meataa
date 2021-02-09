@@ -35,7 +35,7 @@ export default function InfoChange() {
                         />
                         <p className="text-center pass-para">كلمه السر</p>
                         <input
-                           type="password"
+                           type="text"
                            className="form-control phone-input txt-para-Info"
                            required
                         />
@@ -58,7 +58,7 @@ export default function InfoChange() {
                         <p className="text-center name-para txt-para-Info">الأسم بالكامل</p>
                         <input type="text" className="form-control ssn-input" required />
                         <p className="text-center ssn-para txt-para-Info">رقم هاتف</p>
-                        <input type="password" className="form-control phone-input" required />
+                        <input type="text" className="form-control phone-input" required />
                         <p className="text-center phone-para txt-para-Info">رقم هاتف اخر</p>
                         <input type="text" className="form-control email-input" required />
                         <p className="text-center email-para txt-para-Info">البريد الالكتروني</p>

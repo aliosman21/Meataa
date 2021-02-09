@@ -2,19 +2,20 @@
    display: grid;
    height: 100%;
    width: 100%;
-   min-width: 100%;
    grid-template-columns: 5% 20% 2% 73%;
    grid-template-rows: 12% 44% 44%;
    grid-template-areas:
       ". . . . "
       ". profileCard . events"
-      ". searchQuery . .";
+      ". searchQuery . events";
    background-color: #f2f2f0;
 }
 .main-search-container {
+   width: 100%;
    grid-area: events;
 }
 .searchQuery {
+   background-color: blue;
    grid-area: searchQuery;
 }
 .custom-posts-table {
@@ -64,15 +65,18 @@ tr:nth-child(even) {
 
 @media (max-width: 800px) {
    .custom-search-content {
-      grid-template-rows: 20% 15% 5% 70%;
-      grid-template-columns: 5% 90% 5%;
+      grid-template-rows: 20% 15% 5% 60%;
+      grid-template-columns: 100%;
       grid-template-areas:
-         ". . . "
-         "searchQuery searchQuery searchQuery"
-         ". . ."
-         "events events events";
+         "."
+         "searchQuery"
+         "."
+         "events";
    }
    .profile-card {
       visibility: hidden;
+   }
+   .custom-container-profile-search {
+      display: none;
    }
 }
