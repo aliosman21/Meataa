@@ -1,0 +1,121 @@
+.custom-content-changeInfo {
+   display: grid;
+   width: 100%;
+   height: 100%;
+   grid-template-columns: 10% 80% 10%;
+   grid-template-rows: 15% 85%;
+   grid-template-areas:
+      ". . ."
+      ". infoCard .";
+}
+
+.custom-container-changeInfo {
+   width: 100%;
+   height: 100%;
+   grid-area: infoCard;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.info-card {
+   width: 50%;
+   height: 90%;
+   background-color: #6d1a16;
+   border-radius: 50px;
+   text-align: center;
+   display: grid;
+   grid-template-columns: 75% 25%;
+   grid-template-rows: 8% 15% 15% 15% 15% 15% 10% 7%;
+   grid-template-areas:
+      "header header"
+      "nameInput namePara"
+      "ssnInput ssnPara"
+      "emailInput emailPara"
+      "passInput passPara"
+      "phoneInput phonePara"
+      "imgInput impPara"
+      "changeButton changeButton";
+}
+.info-card-header {
+   grid-area: header;
+}
+.name-input {
+   grid-area: nameInput;
+   align-self: center;
+   margin-left: 5px;
+}
+.name-para {
+   grid-area: namePara;
+   align-self: center;
+}
+
+.ssn-input {
+   grid-area: ssnInput;
+   align-self: center;
+   margin-left: 5px;
+}
+.ssn-para {
+   grid-area: ssnPara;
+   align-self: center;
+}
+
+.email-input {
+   grid-area: emailInput;
+   align-self: center;
+   margin-left: 5px;
+}
+.email-para {
+   grid-area: emailPara;
+   align-self: center;
+}
+
+.pass-input {
+   grid-area: passInput;
+   align-self: center;
+   margin-left: 5px;
+}
+.pass-para {
+   grid-area: passPara;
+   align-self: center;
+}
+.phone-input {
+   grid-area: phoneInput;
+   align-self: center;
+   margin-left: 5px;
+}
+.phone-para {
+   grid-area: phonePara;
+   align-self: center;
+}
+.txt-para-Info {
+   color: #b573ac;
+   font-weight: 1000;
+}
+.img-input {
+   grid-area: imgInput;
+   justify-self: center;
+   align-self: center;
+   margin-left: 5px;
+}
+.img-para {
+   align-self: center;
+   grid-area: impPara;
+}
+.change-settings {
+   grid-area: changeButton;
+}
+
+@media only screen and (min-width: 150px) and (max-width: 700px) {
+   .info-card {
+      width: 100%;
+      height: 100%;
+   }
+   .custom-content-changeInfo {
+      grid-template-columns: 100%;
+      grid-template-rows: 15% 85%;
+      grid-template-areas:
+         "."
+         "infoCard";
+   }
+}

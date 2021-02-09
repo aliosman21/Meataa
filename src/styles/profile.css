@@ -49,6 +49,7 @@
 .profileText {
    padding-top: 5%;
    padding-right: 3%;
+   grid-area: profileText;
 }
 .profileImg {
    grid-area: profileImg;

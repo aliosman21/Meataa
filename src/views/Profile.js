@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import "../styles/profile.css";
 import { UserContext } from "../context/UserContext";
 import Cookies from "js-cookie";
+import { useHistory } from "react-router-dom";
 export default function Profile() {
    const { user, setUser } = useContext(UserContext);
    const [pageId, setPageId] = useState(1);
@@ -28,6 +29,8 @@ export default function Profile() {
       //setPageId(1); to change pages in request to DB
       return data;
    };
+   const history = useHistory();
+   const ChangeInfo = () => history.push("/setInfo");
 
    const [data, setData] = useState(() => getAchievementsFromDatabase());
 
@@ -43,8 +46,11 @@ export default function Profile() {
                <h3 className="profile-email">{data.email} :البريد الالكتروني</h3>
                <h3 className="profile-ssn">{data.ssn} :رقم الضمان الاجتماعي</h3>
                <h3 className="profile-mobile">{data.mobile} :رقم الهاتف</h3>
+               <button className="change-settings" onClick={ChangeInfo}>
+                  {" "}
+                  تغير البيانات{" "}
+               </button>
             </div>
-            <button className="change-settings"> تغير البيانات </button>
          </div>
          <div className="custom-container-achievements col">
             <div className="all-achievements">
