@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getTags } from "../Utils/getTagsUtil";
 import axios from "axios";
+import serverURL from "../Utils/global";
 import "../styles/register.css";
-import { set } from "js-cookie";
 
 export default function Register() {
    const [userReg, setUserReg] = useState(0);
@@ -47,13 +47,14 @@ export default function Register() {
       };
       //console.log(newVolunteer);
       axios
-         .post("http://127.0.0.2/volunteer/store", newVolunteer)
+         .post(serverURL + "/volunteer/store", newVolunteer)
          .then(function (response) {
             alert("registered Successfully");
-            window.open("/");
+            window.location.href = "/";
             console.log(response);
          })
          .catch(function (error) {
+            alert("Failed");
             console.log(error);
          });
    };
@@ -70,13 +71,14 @@ export default function Register() {
       };
       //console.log(newVolunteer);
       axios
-         .post("http://127.0.0.2/organization/store", newOrganization)
+         .post(serverURL + "/organization/store", newOrganization)
          .then(function (response) {
             alert("registered Successfully");
             window.open("/");
             console.log(response);
          })
          .catch(function (error) {
+            alert("Failed");
             console.log(error);
          });
    };
