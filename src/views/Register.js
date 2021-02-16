@@ -1,8 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import imageToBase64 from "image-to-base64";
+import { getTags } from "../Utils/getTagsUtil";
 import "../styles/register.css";
 
 export default function Register() {
    const [userReg, setUserReg] = useState(0);
+   const [tags, setTags] = useState([]);
+   const [usedTags] = useState([]);
+
+   let fullName = React.createRef();
+   let SSN = React.createRef();
+   let email = React.createRef();
+   let password = React.createRef();
+   let mobile = React.createRef();
+   let mobile2 = React.createRef();
+   let userImage = React.createRef();
+
+   const changeTags = (userTag) => {
+      if (usedTags.includes(userTag.target.id)) {
+         const index = usedTags.indexOf(userTag.target.id);
+         usedTags.splice(index, 1);
+      } else {
+         usedTags.push(userTag.target.id);
+      }
+      //console.log(usedTags);
+   };
+
+   const registerVolunteer = () => {
+      imageToBase64(userImage.current.value) // Path to the image
+         .then((response) => {
+            console.log("Image " + response); // "cGF0aC90by9maWxlLmpwZw=="
+         })
+         .catch((error) => {
+            console.log(error); // Logs an error if there was one
+         });
+      console.log(fullName.current.value);
+      console.log(password.current.value);
+      console.log(email.current.value);
+      console.log(SSN.current.value);
+      console.log(mobile.current.value);
+      // console.log(userImage.current.value);
+      console.log(usedTags);
+   };
+
+   const registerOrganization = () => {
+      console.log("DONZO");
+   };
+   useEffect(() => {
+      getTags().then((taglist) => {
+         setTags(taglist);
+      });
+   }, []);
 
    return (
       <div className="custom-content-register">
@@ -40,19 +88,35 @@ export default function Register() {
             {!userReg ? (
                <>
                   <div className="vol-inputs">
-                     <input type="text" className="form-control text-inputs-reg" required />
+                     <input
+                        type="text"
+                        ref={fullName}
+                        className="form-control text-inputs-reg"
+                        required
+                     />
                      <p className="text-center custom-register-p">الأسم بالكامل</p>
-                     <input type="text" className="form-control text-inputs-reg" required />
+                     <input
+                        type="text"
+                        ref={SSN}
+                        className="form-control text-inputs-reg"
+                        required
+                     />
                      <p className="text-center custom-register-p">الرقم القومي</p>
-                     <input type="text" className="form-control text-inputs-reg" required />
+                     <input
+                        type="text"
+                        ref={email}
+                        className="form-control text-inputs-reg"
+                        required
+                     />
                      <p className="text-center custom-register-p">البريد الالكتروني</p>
-                     <input type="password" className="form-control" required />
+                     <input type="password" ref={password} className="form-control" required />
                      <p className="text-center custom-register-p">كلمه السر</p>
-                     <input type="password" className="form-control" required />
+                     <input type="text" ref={mobile} className="form-control" required />
                      <p className="text-center custom-register-p">رقم الهاتف</p>
                      <input
                         type="file"
                         id="img"
+                        ref={userImage}
                         name="img"
                         accept="image/*"
                         className="image-button image-uploader"
@@ -60,21 +124,22 @@ export default function Register() {
                      />
                      <p className="text-center custom-register-p">صورتك الشخصيه</p>
                      <div className="interests">
-                        <input type="checkbox" id="interest1" name="interest1" value="interest1" />
-                        <input type="checkbox" id="interest2" name="interest2" value="interest2" />
-                        <input type="checkbox" id="interest3" name="interest3" value="interest3" />
-                        <input type="checkbox" id="interest4" name="interest4" value="interest4" />
-                        <input type="checkbox" id="interest5" name="interest5" value="interest5" />
-                        <label htmlFor="interest1">رعايه أيتام</label>
-                        <label htmlFor="interest2">حمايه بيئه</label>
-                        <label htmlFor="interest3">تنظيم مؤتمرات</label>
-                        <label htmlFor="interest4">اخري</label>
-                        <label htmlFor="interest5">اخري</label>
+                        {tags.map((tag) => (
+                           <input
+                              key={tag.id}
+                              id={tag.id}
+                              type="checkbox"
+                              onChange={changeTags}></input>
+                        ))}
+
+                        {tags.map((tag) => (
+                           <label key={tag.id}>{tag.name}</label>
+                        ))}
                      </div>
                      <p className="text-center custom-register-p">الاهتمامات</p>
                   </div>
                   <div className="text-center custom-register-button">
-                     <button className="register-button" type="submit">
+                     <button className="register-button" type="submit" onClick={registerVolunteer}>
                         أنضم الان
                      </button>
                   </div>
@@ -82,41 +147,56 @@ export default function Register() {
             ) : (
                <>
                   <div className="vol-inputs">
-                     <input type="text" className="form-control text-inputs-reg" required />
+                     <input
+                        type="text"
+                        ref={fullName}
+                        className="form-control text-inputs-reg"
+                        required
+                     />
                      <p className="text-center custom-register-p">اسم الجهه</p>
-                     <input type="text" className="form-control text-inputs-reg" required />
+                     <input
+                        type="text"
+                        ref={mobile}
+                        className="form-control text-inputs-reg"
+                        required
+                     />
                      <p className="text-center custom-register-p">رقم هاتف</p>
-                     <input type="password" className="form-control" />
+                     <input type="text" ref={mobile2} className="form-control" />
                      <p className="text-center custom-register-p"> رقم هاتف اخر</p>
-                     <input type="text" className="form-control text-inputs-reg" />
+                     <input type="text" ref={email} className="form-control text-inputs-reg" />
                      <p className="text-center custom-register-p">البريد الالكتروني</p>
-                     <input type="password" className="form-control" required />
+                     <input type="password" ref={password} className="form-control" required />
                      <p className="text-center custom-register-p">كلمه السر</p>
                      <input
                         type="file"
                         id="img"
                         name="img"
                         accept="image/*"
+                        ref={userImage}
                         className="image-button image-uploader"
                         required
                      />
                      <p className="text-center custom-register-p">صوره الجهه</p>
                      <div className="interests">
-                        <input type="checkbox" id="interest1" name="interest1" value="interest1" />
-                        <input type="checkbox" id="interest2" name="interest2" value="interest2" />
-                        <input type="checkbox" id="interest3" name="interest3" value="interest3" />
-                        <input type="checkbox" id="interest4" name="interest4" value="interest4" />
-                        <input type="checkbox" id="interest5" name="interest5" value="interest5" />
-                        <label htmlFor="interest1">interest1</label>
-                        <label htmlFor="interest2">interests2</label>
-                        <label htmlFor="interest3">interests3</label>
-                        <label htmlFor="interest4">interests4</label>
-                        <label htmlFor="interest5">interests5</label>
+                        {tags.map((tag) => (
+                           <input
+                              key={tag.id}
+                              id={tag.id}
+                              type="checkbox"
+                              onChange={changeTags}></input>
+                        ))}
+
+                        {tags.map((tag) => (
+                           <label key={tag.id}>{tag.name}</label>
+                        ))}
                      </div>
                      <p className="text-center custom-register-p">الاهتمامات</p>
                   </div>
                   <div className="text-center custom-register-button">
-                     <button className="register-button" type="submit">
+                     <button
+                        className="register-button"
+                        type="submit"
+                        onClick={registerOrganization}>
                         أنضم الان
                      </button>
                   </div>

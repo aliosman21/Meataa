@@ -10,7 +10,7 @@ export function Navigation(){
 
 
   const {user,setUser} = useContext(UserContext);
-
+/* 
   const loginHandler = async (e) =>{
    // e.preventDefault();
     //will call login Util
@@ -19,7 +19,7 @@ export function Navigation(){
     setUser(user);
 
 
-  } 
+  }  */
 
   const logoutHandler = async (e) =>{
    // e.preventDefault();
@@ -111,7 +111,7 @@ export function Navigation(){
               ):
               <>
             <li>
-                <Link   to="/"/*to="/login"*/ className="page-scroll" onClick={(e)=>loginHandler(e)} >
+                <Link to="/login" className="page-scroll">
                   تسجيل الدخول
                 </Link>
               </li>

@@ -1,10 +1,28 @@
 import React, { Component } from "react";
+import axios from "axios";
 import "../styles/login.css";
 export default class Login extends Component {
+   /*   loginHandler(e) {
+      e.preventDefault();
+      const userData = {
+         email: "demouser@gmail.com",
+         password: "1a2b3c4d5e", //This should be encoded
+      };
+
+      axios.post("https://example.com/createUser", userData).then((res) => {
+         responseData = res.data;
+         if (responseData.status == "success") {
+            const user = responseData.user;
+         } else {
+            alert("Something went wrong while creating account");
+         }
+      });
+   }
+ */
    render() {
       return (
          <div className="custom-content-login">
-            <div className="custom-container-login col-8">
+            <div className="custom-container-login">
                <div className="form-container">
                   <h2 className="text-center mb-4 login-header">تسجيل الدخول</h2>
                   <div className="form-inputs">
@@ -17,22 +35,13 @@ export default class Login extends Component {
                         <p className="text-right custom-login-p">كلمه السر</p>
                      </div>
                   </div>
-                  <div className="radio-button-login">
-                     <input
-                        type="radio"
-                        defaultChecked
-                        id="volunteer"
-                        name="userType"
-                        value="volunteer"
-                     />
-                     <input type="radio" id="organization" name="userType" value="organization" />
-                     <input type="radio" id="admin" name="userType" value="admin" />
-                     <label htmlFor="volunteer">volunteer</label>
-                     <label htmlFor="volunteer">organization</label>
-                     <label htmlFor="volunteer">admin</label>
-                  </div>
                   <div className="text-center custom-login-button">
-                     <button className="login-button" type="submit">
+                     <button
+                        className="login-button"
+                        type="submit"
+                        /* onClick={(e) => loginHandler(e)} */
+                     >
+                        {" "}
                         تسجيل الدخول
                      </button>
                   </div>

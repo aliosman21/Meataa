@@ -19,7 +19,7 @@
    grid-template-rows: 100%;
    grid-template-columns: 100%;
    width: 40%;
-   height: 60%;
+   height: 45%;
    justify-self: center;
    box-shadow: 1px 5px 5px 5px rgb(12, 12, 12, 0.6);
    padding-left: 5%;
@@ -86,15 +86,9 @@ h2 {
    border-radius: 40px;
 }
 
-@media only screen and (min-width: 150px) and (max-width: 380px) {
+@media only screen and (max-width: 700px) {
    .custom-container-login {
-      height: 50% !important;
-      width: 100%;
-   }
-}
-@media only screen and (min-width: 381px) and (max-width: 700px) {
-   .custom-container-login {
-      height: 50%;
+      height: 60%;
       width: 100%;
    }
 }
