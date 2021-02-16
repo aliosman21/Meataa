@@ -53,6 +53,7 @@
    color: #b573ac;
 }
 .vol-inputs {
+   height: 100%;
    grid-area: volInput;
    display: grid;
    grid-template-columns: 70% 30%;
