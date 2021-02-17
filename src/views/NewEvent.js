@@ -71,7 +71,7 @@ export default function Profile() {
                <input
                   type="text"
                   ref={title}
-                  className="form-control custom-input-title"
+                  className="form-control custom-input-title text-right"
                   required
                />
                <p className="text-center custom-title-p">أسم المحتوي</p>
