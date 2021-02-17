@@ -15,7 +15,7 @@ export default function Profile() {
          name: profileData.name,
          ssn: profileData.NID,
          mobile: profileData.mobile,
-         pic: serverURL + "/" + profileData.img,
+         pic: serverURL + profileData.img,
          email: profileData.email,
          Reviews: {
             1: { img: "sora", review: "rev1" },
@@ -24,6 +24,7 @@ export default function Profile() {
             4: { img: "sora", review: "rev4" },
          },
       };
+      console.log(data.pic);
       //setPageId(1); to change pages in request to DB
       return data;
    };
@@ -41,7 +42,7 @@ export default function Profile() {
       <div className="custom-content-profile">
          <div className="custom-container-profile col">
             <div className="profileImgHolder">
-               <img src={data.img} alt="Avatar" className="profileImg" />
+               <img src={data.pic} alt="Avatar" className="profileImg" />
             </div>
             <div className="profileText">
                <h3 className="profile-name">{data.name} :الاسم</h3>

@@ -82,7 +82,7 @@ export function Navigation(){
                 </a>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       <Link className="dropdown-item" to="/profile"> <p className="text-right ">حسابي </p></Link>
-                      {Cookies.getJSON('session').userType === 1?(
+                      {Cookies.getJSON('session').type === "Organization"?(
                         <Link className="dropdown-item" to="/newEvent"> <p className="text-right ">عمل جديد</p></Link>
                       ):(<></>)}
                       <a className="dropdown-item"  href="/" onClick={(e)=>logoutHandler(e)}> <p className="text-right">تسجيل الخروج </p>

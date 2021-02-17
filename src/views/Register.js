@@ -74,7 +74,7 @@ export default function Register() {
          .post(serverURL + "/organization/store", newOrganization)
          .then(function (response) {
             alert("registered Successfully");
-            window.open("/");
+            //window.open("/");
             console.log(response);
          })
          .catch(function (error) {
@@ -214,6 +214,7 @@ export default function Register() {
                            id="img"
                            name="img"
                            accept="image/*"
+                           onChange={getBase64}
                            className="image-button image-uploader"
                            required
                         />

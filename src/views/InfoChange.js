@@ -7,7 +7,7 @@ export default function InfoChange() {
          {Cookies.getJSON("session") ? (
             <>
                <div className="custom-container-changeInfo">
-                  {Cookies.getJSON("session").userType === 0 ? (
+                  {Cookies.getJSON("session").type === "Volunteer" ? (
                      <div className="info-card">
                         <h2 className="info-card-header">تحديث البيانات</h2>
                         <input

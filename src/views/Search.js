@@ -5,13 +5,28 @@ import Cookies from "js-cookie";
 import { getTags } from "../Utils/getTagsUtil";
 import "../styles/search.css";
 
-export default function Profile() {
+export default function Search() {
    const [tags, setTags] = useState([]);
+   const [usedTags] = useState([]);
    useEffect(() => {
       getTags().then((tagList) => {
          setTags(tagList);
       });
    }, []);
+
+   const changeTags = (userTag) => {
+      if (usedTags.includes(userTag.target.id) && usedTags) {
+         const index = usedTags.indexOf(userTag.target.id);
+
+         usedTags.splice(index, 1);
+      } else {
+         usedTags.push(userTag.target.id);
+      }
+   };
+
+   const queryEvents = () => {
+      console.log(usedTags);
+   };
    const getDataFromCookie = () => {
       //will call database and fill the data object 4 reviews at atime
       // will need to pass the cookie to the profile page when the backend is done
@@ -21,16 +36,8 @@ export default function Profile() {
 
       let data = {
          name: profileData.name,
-         ssn: profileData.NID,
-         mobile: profileData.mobile,
          pic: serverURL + "/" + profileData.img,
          email: profileData.email,
-         Reviews: {
-            1: { img: "sora", review: "rev1" },
-            2: { img: "sora", review: "rev2" },
-            3: { img: "sora", review: "rev3" },
-            4: { img: "sora", review: "rev4" },
-         },
       };
       //setPageId(1); to change pages in request to DB
       return data;
@@ -87,7 +94,7 @@ export default function Profile() {
             <Link to="/profile" className="event-description">
                <div className="custom-container-profile-search">
                   <div className="profileImgHolder">
-                     <img src="/img/team/02.jpg" alt="Avatar" className="profileImg" />
+                     <img src={profileData.pic} alt="Avatar" className="profileImg" />
                   </div>
                   <div className="profileText">
                      <h5 className="profile-name">{profileData.name} :الاسم</h5>
@@ -100,15 +107,19 @@ export default function Profile() {
             <div className="upper-grid-search">
                {tags.map((tag) => (
                   <>
-                     <p className="tagLabel" key={tag.id}>
+                     <p className="tagLabel" key={`name ${tag.id} `}>
                         {tag.name}
                      </p>
-                     <input key={tag.id} id={tag.id} type="checkbox"></input>
+                     <input
+                        key={`input ${tag.id} `}
+                        id={tag.id}
+                        onChange={changeTags}
+                        type="checkbox"></input>
                   </>
                ))}
             </div>
             <div className="lower-grid-search">
-               <button className="search-button" type="button">
+               <button className="search-button" type="button" onClick={queryEvents}>
                   بحث
                </button>
             </div>

@@ -10,6 +10,13 @@
       ". newEvent ."
       ". . .";
 }
+.end-date-input {
+   width: 50%;
+   height: 50%;
+   border-radius: 20px;
+   justify-self: center;
+   align-self: center;
+}
 .new-event-details {
    grid-area: newEvent;
    display: grid;
@@ -17,17 +24,30 @@
    background-color: #6d1a16;
    border: 2px solid;
    box-shadow: 5px 5px 5px 5px rgb(0, 0, 0, 0.6);
-   grid-template-rows: 10% 70% 20%;
+   grid-template-rows: 10% 10% 60% 20%;
    grid-template-columns: 100%;
    text-align: center;
    grid-template-areas:
       "."
+      "title"
       "details"
       "footer";
 }
+.new-event-title {
+   grid-area: title;
+   display: flex;
+   margin: 2%;
+   justify-content: space-between;
+}
+.custom-input-title {
+   width: 85%;
+}
+.custom-title-p {
+   color: #b573ac;
+}
 .event-description-fornew {
    width: 98%;
-   height: 99%;
+   height: 100%;
    resize: none;
    font-size: 20px;
    text-align: right;
@@ -53,7 +73,7 @@
    grid-template-columns: 40% 60%;
    grid-template-rows: 50% 50%;
    grid-template-areas:
-      "subBtn imgAddBtn "
+      ". imgAddBtn "
       "subBtn tags";
 }
 .img-btns {
@@ -71,12 +91,12 @@
    border-color: white;
    transition: 0.5s;
    width: 50%;
-   height: 25%;
+   height: 50%;
    color: #b573ac;
    font-weight: 1000;
    font-size: 20px;
-   margin-left: 10%;
-   align-self: end;
+   align-self: center;
+   justify-self: center;
 }
 .submit-event-button:hover {
    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
@@ -110,6 +130,7 @@
 }
 .newEvent-para {
    font-size: 18;
+   margin-left: 20px;
    color: #b573ac;
 }
 @media only screen and (min-width: 150px) and (max-width: 700px) {
@@ -127,16 +148,18 @@
       height: 80%;
    }
    .new-event-details {
-      grid-template-rows: 15% 65% 5% 15%;
+      grid-template-rows: 15% 15% 50% 5% 15%;
       grid-template-columns: 100%;
       text-align: center;
       grid-template-areas:
          "."
+         "title"
          "details"
          "."
          "footer";
    }
+   .end-date-input {
+      visibility: hidden;
+      display: none;
+   }
 }
-/*grid-template-rows: 50% 50%;
-   grid-template-columns: 20% 20% 20% 20% 15%;
-   */
