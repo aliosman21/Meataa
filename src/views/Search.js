@@ -97,8 +97,8 @@ export default function Search() {
                      <img src={profileData.pic} alt="Avatar" className="profileImg" />
                   </div>
                   <div className="profileText">
-                     <h5 className="profile-name">{profileData.name} :الاسم</h5>
-                     <h5 className="profile-name">{profileData.email} :البريد الالكتروني</h5>
+                     <h1 className="profile-name">{profileData.name} :الاسم</h1>
+                     <h1 className="profile-name">{profileData.email} :البريد الالكتروني</h1>
                   </div>
                </div>
             </Link>

@@ -12,31 +12,27 @@ export default function InfoChange() {
                         <h2 className="info-card-header">تحديث البيانات</h2>
                         <input
                            type="text"
-                           className="form-control name-input txt-para-Info"
+                           className="form-control name-input text-right"
                            required
                         />
-                        <p className="text-center name-para">الأسم بالكامل</p>
+                        <p className="text-center txt-para-Info name-para">الأسم بالكامل</p>
+                        <input type="text" className="form-control ssn-input text-right" required />
+                        <p className="text-center txt-para-Info ssn-para">الرقم القومي</p>
                         <input
                            type="text"
-                           className="form-control ssn-input txt-para-Info"
+                           className="form-control email-input text-right"
                            required
                         />
-                        <p className="text-center ssn-para">الرقم القومي</p>
-                        <input
-                           type="text"
-                           className="form-control email-input txt-para-Info"
-                           required
-                        />
-                        <p className="text-center email-para">البريد الالكتروني</p>
+                        <p className="text-center txt-para-Info email-para">البريد الالكتروني</p>
                         <input
                            type="password"
-                           className="form-control pass-input txt-para-Info"
+                           className="form-control pass-input text-right"
                            required
                         />
-                        <p className="text-center pass-para">كلمه السر</p>
+                        <p className="text-center txt-para-Info pass-para">كلمه السر</p>
                         <input
                            type="text"
-                           className="form-control phone-input txt-para-Info"
+                           className="form-control phone-input text-right"
                            required
                         />
                         <p className="text-center phone-para txt-para-Info">رقم الهاتف</p>
@@ -54,15 +50,31 @@ export default function InfoChange() {
                   ) : (
                      <div className="info-card">
                         <h2 className="info-card-header">تحديث البيانات</h2>
-                        <input type="text" className="form-control name-input" required />
+                        <input
+                           type="text"
+                           className="form-control name-input text-right"
+                           required
+                        />
                         <p className="text-center name-para txt-para-Info">الأسم بالكامل</p>
-                        <input type="text" className="form-control ssn-input" required />
+                        <input type="text" className="form-control ssn-input text-right" required />
                         <p className="text-center ssn-para txt-para-Info">رقم هاتف</p>
-                        <input type="text" className="form-control phone-input" required />
+                        <input
+                           type="text"
+                           className="form-control phone-input text-right"
+                           required
+                        />
                         <p className="text-center phone-para txt-para-Info">رقم هاتف اخر</p>
-                        <input type="text" className="form-control email-input" required />
+                        <input
+                           type="text"
+                           className="form-control email-input text-right"
+                           required
+                        />
                         <p className="text-center email-para txt-para-Info">البريد الالكتروني</p>
-                        <input type="password" className="form-control pass-input" required />
+                        <input
+                           type="password"
+                           className="form-control pass-input text-right"
+                           required
+                        />
                         <p className="text-center pass-para txt-para-Info">كلمه السر</p>
                         <input
                            type="file"

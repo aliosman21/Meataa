@@ -38,6 +38,7 @@ export default class Login extends Component {
                tags: res.data[1].tags,
                jobs: res.data[1].jobs,
                name: res.data[1].name,
+               mobile2: res.data[1].mobile2,
                mobile: res.data[1].mobile,
                type: res.data[1].type,
                achievments: res.data[1].achievments,

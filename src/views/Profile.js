@@ -17,6 +17,7 @@ export default function Profile() {
          mobile: profileData.mobile,
          pic: serverURL + profileData.img,
          email: profileData.email,
+         mobile2: profileData.mobile2,
          Reviews: {
             1: { img: "sora", review: "rev1" },
             2: { img: "sora", review: "rev2" },
@@ -47,7 +48,12 @@ export default function Profile() {
             <div className="profileText">
                <h3 className="profile-name">{data.name} :الاسم</h3>
                <h3 className="profile-email">{data.email} :البريد الالكتروني</h3>
-               <h3 className="profile-ssn">{data.ssn} :رقم الضمان الاجتماعي</h3>
+               {Cookies.getJSON("session").type === "Organization" ? (
+                  <h3 className="profile-ssn">{data.mobile2} :رقم هاتف اخر</h3>
+               ) : (
+                  <h3 className="profile-ssn">{data.ssn}:الرقم القومي</h3>
+               )}
+
                <h3 className="profile-mobile">{data.mobile} :رقم الهاتف</h3>
                <button className="change-settings" onClick={ChangeInfo}>
                   {" "}

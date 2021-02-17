@@ -62,11 +62,14 @@
    grid-area: searchQuery;
 }
 .custom-posts-table {
+   margin-right: 5%;
    overflow-x: auto;
+   overflow-y: auto;
 }
 .profile-card {
    grid-area: profileCard;
    height: 100%;
+   width: 80%;
 }
 .event-description {
    color: #b573ac;

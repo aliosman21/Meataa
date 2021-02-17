@@ -128,27 +128,37 @@ export default function Register() {
                         <input
                            type="text"
                            ref={fullName}
-                           className="form-control text-inputs-reg"
+                           className="form-control text-inputs-reg text-right"
                            required
                         />
                         <p className="text-center custom-register-p">الأسم بالكامل</p>
                         <input
                            type="text"
                            ref={SSN}
-                           className="form-control text-inputs-reg"
+                           className="form-control text-inputs-reg text-right"
                            required
                         />
                         <p className="text-center custom-register-p">الرقم القومي</p>
                         <input
                            type="text"
                            ref={email}
-                           className="form-control text-inputs-reg"
+                           className="form-control text-inputs-reg text-right"
                            required
                         />
                         <p className="text-center custom-register-p">البريد الالكتروني</p>
-                        <input type="password" ref={password} className="form-control" required />
+                        <input
+                           type="password"
+                           ref={password}
+                           className="form-control text-right"
+                           required
+                        />
                         <p className="text-center custom-register-p">كلمه السر</p>
-                        <input type="text" ref={mobile} className="form-control" required />
+                        <input
+                           type="text"
+                           ref={mobile}
+                           className="form-control text-right"
+                           required
+                        />
                         <p className="text-center custom-register-p">رقم الهاتف</p>
                         <input
                            type="file"
@@ -192,22 +202,31 @@ export default function Register() {
                         <input
                            type="text"
                            ref={fullName}
-                           className="form-control text-inputs-reg"
+                           className="form-control text-inputs-reg text-right"
                            required
                         />
                         <p className="text-center custom-register-p">اسم الجهه</p>
                         <input
                            type="text"
                            ref={mobile}
-                           className="form-control text-inputs-reg"
+                           className="form-control text-inputs-reg text-right"
                            required
                         />
                         <p className="text-center custom-register-p">رقم هاتف</p>
-                        <input type="text" ref={mobile2} className="form-control" />
+                        <input type="text" ref={mobile2} className="form-control text-right" />
                         <p className="text-center custom-register-p"> رقم هاتف اخر</p>
-                        <input type="text" ref={email} className="form-control text-inputs-reg" />
+                        <input
+                           type="text"
+                           ref={email}
+                           className="form-control text-inputs-reg text-right"
+                        />
                         <p className="text-center custom-register-p">البريد الالكتروني</p>
-                        <input type="password" ref={password} className="form-control" required />
+                        <input
+                           type="password"
+                           ref={password}
+                           className="form-control text-right"
+                           required
+                        />
                         <p className="text-center custom-register-p">كلمه السر</p>
                         <input
                            type="file"

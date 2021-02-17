@@ -1,6 +1,5 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import { HashLink as Hash } from 'react-router-hash-link';
 import Cookies from 'js-cookie';
 import "../styles/navigation.css" 
 export function Navigation(){
@@ -44,51 +43,25 @@ export function Navigation(){
             id="bs-example-navbar-collapse-1"
           >
             <ul className="nav navbar-nav navbar-right">
-              <li>
-                <Hash to="/#features" className="page-scroll">
-                  أصنع الفارق 
-                </Hash>
-              </li>
-              <li>
-                <Hash to="/#about" className="page-scroll">
-                  من نحن
-                </Hash>
-              </li>
-
-              <li>
-                <Hash to="/#portfolio" className="page-scroll">
-                  الأعمال
-                </Hash>
-              </li>
-              <li>
-                <Hash to="/#team" className="page-scroll">
-                  تعرف علينا
-                </Hash>
-              </li>
-              <li>
-                <Hash to="/#contact" className="page-scroll">
-                  تواصل معنا
-                </Hash>
-              </li>
 
             {Cookies.getJSON('session')?(
              <>
-               <li><Link   to="/search"className="page-scroll"  >
+               <li><Link   to="/search" className="page-scroll text-right"  >
                   بحث
                 </Link></li>
-            <li>
-                <a href="#!" className="page-scroll dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                 {Cookies.getJSON('session').name}
-                </a>
-                    <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <Link className="dropdown-item" to="/profile"> <p className="text-right ">حسابي </p></Link>
+
                       {Cookies.getJSON('session').type === "Organization"?(
+                        <li>
                         <Link className="dropdown-item" to="/newEvent"> <p className="text-right ">عمل جديد</p></Link>
+                        </li>
                       ):(<></>)}
-                      <a className="dropdown-item"  href="/" onClick={(e)=>logoutHandler(e)}> <p className="text-right">تسجيل الخروج </p>
-                      </a>
-                    </div>
-              </li>
+                      <li>
+                      <Link className="dropdown-item" to="/profile"> <p className="text-right ">{Cookies.getJSON('session').name}</p></Link>
+                      </li>
+                      <li>
+                      <Link className="dropdown-item"  to="/" onClick={(e)=>logoutHandler(e)}> <p className="text-right">تسجيل الخروج </p>
+                      </Link>
+                      </li>
             
               </>
 
