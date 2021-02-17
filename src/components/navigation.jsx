@@ -6,18 +6,6 @@ import "../styles/navigation.css"
 export function Navigation(){
 
 
-
-/* 
-  const loginHandler = async (e) =>{
-   // e.preventDefault();
-    //will call login Util
-    console.log(Cookies.getJSON('session'));
-    const user = await login();
-    setUser(user);
-
-
-  }  */
-
   const logoutHandler = async (e) =>{
    // e.preventDefault();
     //will call login Util
@@ -90,7 +78,7 @@ export function Navigation(){
                 </Link></li>
             <li>
                 <a href="#!" className="page-scroll dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                 {Cookies.getJSON('session').username}
+                 {Cookies.getJSON('session').name}
                 </a>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       <Link className="dropdown-item" to="/profile"> <p className="text-right ">حسابي </p></Link>

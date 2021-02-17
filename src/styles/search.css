@@ -14,8 +14,51 @@
    width: 100%;
    grid-area: events;
 }
+.tagLabel {
+   font-size: 15px;
+   font-weight: bold;
+   color: #b573ac;
+}
+
+.search-button {
+   border-radius: 20px;
+   border-color: white;
+   width: 50%;
+   height: 70%;
+   transition: 0.5s;
+   color: #b573ac;
+   font-weight: 1000;
+   font-size: 20px;
+}
+.search-button:hover {
+   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+   background-color: #6d1a16;
+}
+.upper-grid-search {
+   display: grid;
+   justify-content: center;
+   align-content: center;
+   grid-template-rows: 10% 10% 10% 10% 10%;
+   grid-template-columns: 25% 25%;
+   grid-area: upperGrid;
+}
+.lower-grid-search {
+   display: grid;
+   grid-template-columns: 100%;
+   grid-template-rows: 100%;
+   align-items: center;
+   justify-items: center;
+   grid-area: lowerGrid;
+}
 .searchQuery {
-   background-color: blue;
+   display: grid;
+   grid-template-rows: 80% 20%;
+   grid-template-columns: 100%;
+   background-color: #f2f2f0;
+   z-index: 0;
+   grid-template-areas:
+      "upperGrid"
+      "lowerGrid";
    grid-area: searchQuery;
 }
 .custom-posts-table {
@@ -39,7 +82,7 @@
 
    border-radius: 50px;
    transition: 0.5s;
-   z-index: 1;
+   z-index: 2;
    background-color: #6d1a16;
    grid-template-areas:
       "profileImg"
@@ -78,5 +121,21 @@ tr:nth-child(even) {
    }
    .custom-container-profile-search {
       display: none;
+   }
+   .searchQuery {
+      display: grid;
+      grid-template-rows: 50% 50%;
+      grid-template-columns: 100%;
+      grid-template-areas:
+         "upperGrid"
+         "lowerGrid";
+      grid-area: searchQuery;
+   }
+   .upper-grid-search {
+      display: grid;
+      justify-items: center;
+      grid-template-rows: 50% 50%;
+      grid-template-columns: 20% 20% 20% 20% 20%;
+      grid-area: upperGrid;
    }
 }

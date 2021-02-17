@@ -30,6 +30,7 @@
    grid-template-areas: "form" !important;
 }
 .form-container {
+   height: 100%;
    grid-area: form;
    display: grid;
    grid-template-rows: 15% 50% 20% 15%;
@@ -65,6 +66,7 @@
 
 .login-button {
    grid-area: customButton;
+   margin-top: 30px;
    border-radius: 20px;
    border-color: white;
    transition: 0.5s;

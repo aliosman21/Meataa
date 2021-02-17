@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import "../styles/profile.css";
+import serverURL from "../Utils/global";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 export default function Profile() {
-   const [pageId /* setPageId */] = useState(1);
-   const getAchievementsFromDatabase = () => {
+   const getDataFromCookie = () => {
       //will call database and fill the data object 4 reviews at atime
       // will need to pass the cookie to the profile page when the backend is done
 
-      let test = Cookies.getJSON("session");
-      console.log(test);
+      let profileData = Cookies.getJSON("session");
+      console.log(profileData);
 
       let data = {
-         name: "Ali Amr Osman",
-         ssn: "14875810",
-         mobile: "01281614441",
-         pic: "afiasre",
-         email: "ali@gmail.com",
+         name: profileData.name,
+         ssn: profileData.NID,
+         mobile: profileData.mobile,
+         pic: serverURL + "/" + profileData.img,
+         email: profileData.email,
          Reviews: {
             1: { img: "sora", review: "rev1" },
             2: { img: "sora", review: "rev2" },
@@ -27,17 +27,21 @@ export default function Profile() {
       //setPageId(1); to change pages in request to DB
       return data;
    };
+
+   const getAllAchievments = () => {
+      console.log("Will go to achievements page");
+   };
+
    const history = useHistory();
    const ChangeInfo = () => history.push("/setInfo");
 
-   const [data /* setData */] = useState(() => getAchievementsFromDatabase());
+   const [data] = useState(() => getDataFromCookie());
 
-   console.log(pageId);
    return Cookies.getJSON("session") ? (
       <div className="custom-content-profile">
          <div className="custom-container-profile col">
             <div className="profileImgHolder">
-               <img src="/img/team/02.jpg" alt="Avatar" className="profileImg" />
+               <img src={data.img} alt="Avatar" className="profileImg" />
             </div>
             <div className="profileText">
                <h3 className="profile-name">{data.name} :الاسم</h3>
@@ -69,12 +73,10 @@ export default function Profile() {
                   <p className="reviews-text">{data.Reviews[4].review}</p>
                </div>
             </div>
-            {pageId !== 1 ? (
-               <button className="paging prev"> السابق </button>
-            ) : (
-               <div className="prev"></div>
-            )}
-            <button className="paging next"> التالي </button>
+            <button className="paging next" onClick={getAllAchievments}>
+               {" "}
+               الكامل{" "}
+            </button>
          </div>
       </div>
    ) : (
