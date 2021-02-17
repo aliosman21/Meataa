@@ -1,11 +1,9 @@
-import React, { useState, useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import React from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import "../styles/search.css";
 
 export default function Profile() {
-   const { user, setUser } = useContext(UserContext);
    //function returns tr>3td
    return Cookies.getJSON("session") ? (
       <div className="custom-search-content">

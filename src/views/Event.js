@@ -1,6 +1,5 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import "../styles/eventPage.css";
-import { UserContext } from "../context/UserContext";
 import Cookies from "js-cookie";
 export default function Event(props) {
    /*   const [pageId, setPageId] = useState(

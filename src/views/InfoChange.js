@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Cookies from "js-cookie";
 import "../styles/setInfo.css";
 export default function InfoChange() {
@@ -7,7 +7,7 @@ export default function InfoChange() {
          {Cookies.getJSON("session") ? (
             <>
                <div className="custom-container-changeInfo">
-                  {Cookies.getJSON("session").userType == 0 ? (
+                  {Cookies.getJSON("session").userType === 0 ? (
                      <div className="info-card">
                         <h2 className="info-card-header">تحديث البيانات</h2>
                         <input

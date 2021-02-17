@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import "../styles/newEvent.css";
 
 export default function Profile() {
-   return Cookies.getJSON("session").userType == 1 ? (
+   return Cookies.getJSON("session").userType === 1 ? (
       <div className="custom-new-event-container">
          <div className="new-event-details">
             <h1 className="new-event-header">اشرح المحتوي</h1>

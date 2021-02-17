@@ -1,11 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "../styles/profile.css";
-import { UserContext } from "../context/UserContext";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 export default function Profile() {
-   const { user, setUser } = useContext(UserContext);
-   const [pageId, setPageId] = useState(1);
+   const [pageId /* setPageId */] = useState(1);
    const getAchievementsFromDatabase = () => {
       //will call database and fill the data object 4 reviews at atime
       // will need to pass the cookie to the profile page when the backend is done
@@ -32,7 +30,7 @@ export default function Profile() {
    const history = useHistory();
    const ChangeInfo = () => history.push("/setInfo");
 
-   const [data, setData] = useState(() => getAchievementsFromDatabase());
+   const [data /* setData */] = useState(() => getAchievementsFromDatabase());
 
    console.log(pageId);
    return Cookies.getJSON("session") ? (

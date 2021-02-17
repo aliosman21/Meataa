@@ -1,15 +1,12 @@
-import React,{useContext} from "react";
+import React from "react";
 import {Link} from "react-router-dom";
-import { UserContext } from "../context/UserContext";
 import { HashLink as Hash } from 'react-router-hash-link';
-import {login} from "../Utils/loginUtil"
 import Cookies from 'js-cookie';
 import "../styles/navigation.css" 
 export function Navigation(){
 
 
 
-  const {user,setUser} = useContext(UserContext);
 /* 
   const loginHandler = async (e) =>{
    // e.preventDefault();
@@ -26,7 +23,6 @@ export function Navigation(){
     //will call login Util
     console.log(e);
     Cookies.remove('session');
-    setUser(null);
 
 
   } 
@@ -98,7 +94,7 @@ export function Navigation(){
                 </a>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       <Link className="dropdown-item" to="/profile"> <p className="text-right ">حسابي </p></Link>
-                      {Cookies.getJSON('session').userType == 1?(
+                      {Cookies.getJSON('session').userType === 1?(
                         <Link className="dropdown-item" to="/newEvent"> <p className="text-right ">عمل جديد</p></Link>
                       ):(<></>)}
                       <a className="dropdown-item"  href="/" onClick={(e)=>logoutHandler(e)}> <p className="text-right">تسجيل الخروج </p>
