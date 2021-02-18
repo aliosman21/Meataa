@@ -44,7 +44,6 @@ export default function Search() {
             console.log(response.data.data);
             console.log(events);
          })
-
          .catch(console.log);
       console.log(bodyParameters);
       //console.log(token);
@@ -93,7 +92,11 @@ export default function Search() {
                            </td>
                            <td>{event.organization}</td>
                            <td className="search-img-row">
-                              <img className="search-row-img" src={serverURL + "/" + event.img} />
+                              <img
+                                 className="search-row-img"
+                                 alt="event"
+                                 src={serverURL + "/" + event.img}
+                              />
                            </td>
                         </tr>
                      ))}

@@ -8,8 +8,9 @@
       ". . ."
       ". eventDesc .";
 }
-.eventDesc {
+.eventDescCard {
    grid-area: eventDesc;
    width: 100%;
-   height: 100%;
+   background-color: blue;
+   height: 95%;
 }

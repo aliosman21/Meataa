@@ -29,20 +29,20 @@ export default class Login extends Component {
 
       axios.post(serverURL + "/login", loginData).then((res) => {
          if (res.status === 200) {
-            console.log(res);
             Cookies.set("session", {
                token: res.data[0].original.token,
                email: res.data[1].email,
                img: res.data[1].img,
                NID: res.data[1].NID,
                tags: res.data[1].tags,
-               jobs: res.data[1].jobs,
                name: res.data[1].name,
                mobile2: res.data[1].mobile2,
                mobile: res.data[1].mobile,
                type: res.data[1].type,
-               achievments: res.data[1].achievments,
             });
+            console.log(res);
+            console.log("Cookie is");
+            console.log(Cookies.getJSON("session"));
             window.location.href = "/";
          } else {
             alert("Something went wrong while logging in");
