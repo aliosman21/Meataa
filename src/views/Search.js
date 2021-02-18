@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import serverURL from "../Utils/global";
+import axios from "axios";
 import Cookies from "js-cookie";
 import { getTags } from "../Utils/getTagsUtil";
 import "../styles/search.css";
 
 export default function Search() {
    const [tags, setTags] = useState([]);
+   const [events, setEvents] = useState([]);
    const [usedTags] = useState([]);
    useEffect(() => {
       getTags().then((tagList) => {
@@ -25,7 +27,27 @@ export default function Search() {
    };
 
    const queryEvents = () => {
-      console.log(usedTags);
+      //console.log(usedTags);
+      const token = Cookies.getJSON("session").token;
+      const config = {
+         headers: { Authorization: `bearer ${token}` },
+      };
+
+      const bodyParameters = {
+         tags: usedTags,
+      };
+      axios
+         .post(serverURL + "/jobs/jobsbytags", bodyParameters, config)
+         .then(function (response) {
+            //alert("Success");
+            setEvents(response.data.data);
+            console.log(response.data.data);
+            console.log(events);
+         })
+
+         .catch(console.log);
+      console.log(bodyParameters);
+      //console.log(token);
    };
    const getDataFromCookie = () => {
       //will call database and fill the data object 4 reviews at atime
@@ -57,35 +79,24 @@ export default function Search() {
                      </tr>
                   </thead>
                   <tbody>
-                     <tr>
-                        <td>
-                           <Link
-                              to={{
-                                 pathname: `/Event`,
-                                 query: { event: 1 },
-                              }}
-                              className="event-description">
-                              التعريف
-                           </Link>
-                        </td>
-                        <td>عمل1</td>
-                        <td>جهه 1</td>
-                     </tr>
-                     <tr>
-                        <td>
-                           <Link
-                              to={{
-                                 pathname: `/Event`,
-                                 query: { event: 2 },
-                              }}
-                              className="event-description">
-                              {" "}
-                              التعريف
-                           </Link>
-                        </td>
-                        <td>عمل2</td>
-                        <td>جهه 2</td>
-                     </tr>
+                     {events.map((event) => (
+                        <tr key={event.id}>
+                           <td>
+                              <Link
+                                 to={{
+                                    pathname: `/Event`,
+                                    query: { event: event.id },
+                                 }}
+                                 className="event-description">
+                                 {event.name}
+                              </Link>
+                           </td>
+                           <td>{event.organization}</td>
+                           <td className="search-img-row">
+                              <img className="search-row-img" src={serverURL + "/" + event.img} />
+                           </td>
+                        </tr>
+                     ))}
                   </tbody>
                </table>
             </div>
@@ -106,16 +117,10 @@ export default function Search() {
          <div className="searchQuery">
             <div className="upper-grid-search">
                {tags.map((tag) => (
-                  <>
-                     <p className="tagLabel" key={`name ${tag.id} `}>
-                        {tag.name}
-                     </p>
-                     <input
-                        key={`input ${tag.id} `}
-                        id={tag.id}
-                        onChange={changeTags}
-                        type="checkbox"></input>
-                  </>
+                  <div key={tag.id} className="search-tags">
+                     <p className="tagLabel">{tag.name}</p>
+                     <input id={tag.id} onChange={changeTags} type="checkbox"></input>
+                  </div>
                ))}
             </div>
             <div className="lower-grid-search">

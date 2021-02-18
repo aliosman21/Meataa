@@ -71,7 +71,8 @@ export default function Profile() {
                <input
                   type="text"
                   ref={title}
-                  className="form-control custom-input-title text-right"
+                  dir="rtl"
+                  className="form-control custom-input-title"
                   required
                />
                <p className="text-center custom-title-p">أسم المحتوي</p>
@@ -79,6 +80,7 @@ export default function Profile() {
             <div className="new-event-details-body">
                <textarea
                   className="event-description-fornew"
+                  dir="rtl"
                   ref={description}
                   placeholder="اكتب شرح وافي للمحتوي"></textarea>
             </div>

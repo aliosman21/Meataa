@@ -19,6 +19,14 @@
    font-weight: bold;
    color: #b573ac;
 }
+.search-row-img {
+   width: 10%;
+}
+.search-img-row {
+   margin: 0;
+   width: 60%;
+   display: table-cell !important;
+}
 
 .search-button {
    border-radius: 20px;
@@ -38,8 +46,10 @@
    display: grid;
    justify-content: center;
    align-content: center;
-   grid-template-rows: 10% 10% 10% 10% 10%;
-   grid-template-columns: 25% 25%;
+   grid-template-rows: 20% 20% 20% 20% 20%;
+   grid-template-columns: 50% 50%;
+   justify-items: center;
+   align-items: center;
    grid-area: upperGrid;
 }
 .lower-grid-search {
