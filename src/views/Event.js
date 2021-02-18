@@ -5,9 +5,17 @@ import "../styles/eventPage.css";
 import Cookies from "js-cookie";
 export default function Event(props) {
    const [eventDetails, seteventDetails] = useState([]);
+   //console.log(props);
+
    Cookies.getJSON("event")
       ? console.log("set")
       : Cookies.set("event", { event: props.location.query.event });
+
+   useEffect(() => {
+      return () => {
+         Cookies.remove("event");
+      };
+   }, []);
 
    useEffect(() => {
       const token = Cookies.getJSON("session").token;
@@ -18,6 +26,8 @@ export default function Event(props) {
       axios
          .get(serverURL + `/jobs/show/${Cookies.getJSON("event").event}`, config)
          .then(function (response) {
+            console.log("id is");
+            console.log(Cookies.getJSON("event").event);
             seteventDetails(response.data.data);
             console.log(response.data.data);
          })

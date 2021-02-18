@@ -1,3 +1,5 @@
 .custom-contact {
    background: #2d6187 !important;
+   position: relative;
+   z-index: 1 !important;
 }

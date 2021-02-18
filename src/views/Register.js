@@ -5,6 +5,7 @@ import serverURL from "../Utils/global";
 import Contact from "../components/contact";
 import Banner from "../components/banner";
 import JsonData from "../data/data.json";
+import SVG from "../components/svg";
 import "../styles/register.css";
 
 export default function Register() {
@@ -94,6 +95,7 @@ export default function Register() {
    return (
       <>
          <Banner data={{ header: "تسجيل حساب جديد" }} />
+         <SVG />
          <div className="custom-content-register">
             <div className="custom-container-register col-8">
                <h2 className="text-center mb-4 header-text">أنضم لنا</h2>

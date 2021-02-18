@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import serverURL from "../Utils/global";
+import Contact from "../components/contact";
+import Banner from "../components/banner";
+import JsonData from "../data/data.json";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { getTags } from "../Utils/getTagsUtil";
@@ -48,91 +51,69 @@ export default function Search() {
       console.log(bodyParameters);
       //console.log(token);
    };
-   const getDataFromCookie = () => {
-      //will call database and fill the data object 4 reviews at atime
-      // will need to pass the cookie to the profile page when the backend is done
 
-      let profileData = Cookies.getJSON("session");
-      console.log(profileData);
-
-      let data = {
-         name: profileData.name,
-         pic: serverURL + "/" + profileData.img,
-         email: profileData.email,
-      };
-      //setPageId(1); to change pages in request to DB
-      return data;
-   };
-   const [profileData] = useState(() => getDataFromCookie());
+   /*  {
+       tags.map((tag) => (
+          <div key={tag.id} className="search-tags">
+             <p className="tagLabel">{tag.name}</p>
+             <input id={tag.id} onChange={changeTags} type="checkbox"></input>
+          </div>
+       ));
+    } */
    //function returns tr>3td
    return Cookies.getJSON("session") ? (
-      <div className="custom-search-content">
-         <div className="main-search-container">
-            <div className="custom-posts-table">
-               <table>
-                  <thead>
-                     <tr>
-                        <th>العمل</th>
-                        <th>الاسم</th>
-                        <th>الجهه</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     {events.map((event) => (
-                        <tr key={event.id}>
-                           <td>
-                              <Link
-                                 to={{
-                                    pathname: `/Event`,
-                                    query: { event: event.id },
-                                 }}
-                                 className="event-description">
-                                 {event.name}
-                              </Link>
-                           </td>
-                           <td>{event.organization}</td>
-                           <td className="search-img-row">
-                              <img
-                                 className="search-row-img"
-                                 alt="event"
-                                 src={serverURL + "/" + event.img}
-                              />
-                           </td>
-                        </tr>
-                     ))}
-                  </tbody>
-               </table>
-            </div>
-         </div>
-         <div className="profile-card">
-            <Link to="/profile" className="event-description">
-               <div className="custom-container-profile-search">
-                  <div className="profileImgHolder">
-                     <img src={profileData.pic} alt="Avatar" className="profileImg" />
-                  </div>
-                  <div className="profileText">
-                     <h1 className="profile-name">{profileData.name} :الاسم</h1>
-                     <h1 className="profile-name">{profileData.email} :البريد الالكتروني</h1>
-                  </div>
+      <>
+         <Banner data={{ header: "الفعاليات الجديده" }} />
+         <div className="custom-search-content">
+            <div className="searchTagsList">
+               <div className="tagsHolder">
+                  {tags.map((tag) => (
+                     <div key={tag.id} className="search-tags">
+                        <p className="tagLabel">{tag.name}</p>
+                        <input id={tag.id} onChange={changeTags} type="checkbox"></input>
+                     </div>
+                  ))}
                </div>
-            </Link>
-         </div>
-         <div className="searchQuery">
-            <div className="upper-grid-search">
-               {tags.map((tag) => (
-                  <div key={tag.id} className="search-tags">
-                     <p className="tagLabel">{tag.name}</p>
-                     <input id={tag.id} onChange={changeTags} type="checkbox"></input>
-                  </div>
-               ))}
-            </div>
-            <div className="lower-grid-search">
                <button className="search-button" type="button" onClick={queryEvents}>
                   بحث
                </button>
             </div>
+            <div className="eventsList">
+               {events.map((event) => (
+                  <div key={event.id} className="single-event">
+                     <div className="eventDescription">
+                        <p className="single-event-p single-event-name">{event.name} </p>
+                        <p className="single-event-p single-event-desc">
+                           description will go in here
+                        </p>
+                        <div className="orgAndDate">
+                           <p className="single-event-p single-event-org">{event.organization}</p>
+                           <p className="single-event-p single-event-date">2020-3-15</p>
+                        </div>
+                        <img
+                           src={serverURL + "/" + event.img}
+                           alt="event"
+                           className="single-event-img"></img>
+                        <Link
+                           className="details-button"
+                           to={{ pathname: `/Event`, query: { event: event.id } }}>
+                           معرفه المزيد
+                        </Link>
+                     </div>
+                  </div>
+               ))}
+            </div>
+            <div className="nextPrevBtns">
+               <button className="search-button prev" type="button">
+                  الاخير
+               </button>
+               <button className="search-button next" type="button">
+                  التالي
+               </button>
+            </div>
          </div>
-      </div>
+         <Contact data={JsonData} />
+      </>
    ) : (
       //404 page
       <div></div>
