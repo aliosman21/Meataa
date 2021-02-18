@@ -10,11 +10,22 @@
 #menu.navbar-default .navbar-nav > li > a:after {
    background: #1d3557 !important;
 }
+.custom-nav {
+   height: 15% !important;
+}
 
 .logo {
-   height: 70px;
+   height: 85px;
+   width: 180px;
    padding-bottom: 20px;
 }
 .logo-anchor {
    padding: 0;
+}
+@media (max-width: 800px) {
+   .logo {
+      height: 65px;
+      width: 60px;
+      padding-bottom: 20px;
+   }
 }
