@@ -74,18 +74,12 @@
 .single-event-desc {
    grid-area: eventDesc;
 }
-.details-button:hover {
-   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
-   color: #b573ac;
-   background-color: #6d1a16;
-}
+
 .details-button {
    grid-area: moreDetailsButton;
    border-radius: 20px;
    text-align: center;
-   width: 30%;
    justify-self: start;
-   height: 100%;
    border-color: white;
    transition: 0.5s;
    color: #b573ac;
@@ -103,6 +97,9 @@
       "tagButton";
 }
 
+.customSearchTagBtn {
+   height: 40%;
+}
 .tagLabel {
    font-size: 20px !important;
    font-weight: bold;
@@ -111,8 +108,8 @@
 .tagsHolder {
    grid-area: tags;
    display: flex;
-   justify-content: space-around;
-   align-content: space-around;
+   justify-content: center;
+   align-items: center;
 }
 
 .search-button {

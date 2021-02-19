@@ -14,7 +14,6 @@ import "../styles/register.css";
 import { act } from "react-dom/test-utils";
 
 export default function Register() {
-   const [userReg, setUserReg] = useState(0);
    const [volunteer, setVolunteer] = useState(true);
    const [tags, setTags] = useState([]);
    const [tag1, setTag1] = useState([false, false, false, false, false]);
@@ -97,30 +96,6 @@ export default function Register() {
       e.preventDefault();
       setTag1((prevState) => prevState.map((item, idx) => (idx === id ? !item : item)));
    };
-
-   /*    const registerOrganization = () => {
-      const newOrganization = {
-         name: fullName,
-         email: email,
-         password: password,
-         mobile: mobile,
-         mobile2: mobile1,
-         img: img,
-         tags: usedTags,
-      };
-      //console.log(newVolunteer);
-      axios
-         .post(serverURL + "/organization/store", newOrganization)
-         .then(function (response) {
-            alert("registered Successfully");
-            //window.open("/");
-            console.log(response);
-         })
-         .catch(function (error) {
-            alert("Failed");
-            console.log(error);
-         });
-   }; */
    useEffect(() => {
       getTags().then((tagList) => {
          setTags(tagList);

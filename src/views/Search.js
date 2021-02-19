@@ -2,31 +2,29 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import serverURL from "../Utils/global";
 import Contact from "../components/contact";
+import { Button } from "semantic-ui-react";
 import Banner from "../components/banner";
 import JsonData from "../data/data.json";
 import axios from "axios";
+import EventDetails from "../components/EventDetails";
 import Cookies from "js-cookie";
 import { getTags } from "../Utils/getTagsUtil";
 import "../styles/search.css";
 
 export default function Search() {
    const [tags, setTags] = useState([]);
+   const [tag1, setTag1] = useState([false, false, false, false, false]);
    const [events, setEvents] = useState([]);
-   const [usedTags] = useState([]);
+   const [usedTags, setUsedTags] = useState([]);
    useEffect(() => {
       getTags().then((tagList) => {
          setTags(tagList);
       });
    }, []);
 
-   const changeTags = (userTag) => {
-      if (usedTags.includes(userTag.target.id) && usedTags) {
-         const index = usedTags.indexOf(userTag.target.id);
-
-         usedTags.splice(index, 1);
-      } else {
-         usedTags.push(userTag.target.id);
-      }
+   const switchActivity = (e, id) => {
+      e.preventDefault();
+      setTag1((prevState) => prevState.map((item, idx) => (idx === id ? !item : item)));
    };
 
    const queryEvents = () => {
@@ -35,6 +33,13 @@ export default function Search() {
       const config = {
          headers: { Authorization: `bearer ${token}` },
       };
+      let i = 0;
+      for (let tag in tag1) {
+         if (tag1[tag] === true && !usedTags.includes(tags[i]["id"])) {
+            usedTags.push(tags[i]["id"]);
+         }
+         i++;
+      }
 
       const bodyParameters = {
          tags: usedTags,
@@ -44,23 +49,15 @@ export default function Search() {
          .then(function (response) {
             //alert("Success");
             setEvents(response.data.data);
-            console.log(response.data.data);
-            console.log(events);
+            // console.log(response.data.data);
+            // console.log(events);
          })
          .catch(console.log);
-      console.log(bodyParameters);
+      setUsedTags([]);
+      //console.log(bodyParameters);
       //console.log(token);
    };
 
-   /*  {
-       tags.map((tag) => (
-          <div key={tag.id} className="search-tags">
-             <p className="tagLabel">{tag.name}</p>
-             <input id={tag.id} onChange={changeTags} type="checkbox"></input>
-          </div>
-       ));
-    } */
-   //function returns tr>3td
    return Cookies.getJSON("session") ? (
       <>
          <Banner data={{ header: "الفعاليات الجديده" }} />
@@ -68,10 +65,15 @@ export default function Search() {
             <div className="searchTagsList">
                <div className="tagsHolder">
                   {tags.map((tag) => (
-                     <div key={tag.id} className="search-tags">
-                        <p className="tagLabel">{tag.name}</p>
-                        <input id={tag.id} onChange={changeTags} type="checkbox"></input>
-                     </div>
+                     <Button
+                        key={tag.id}
+                        className="customSearchTagBtn"
+                        size="mini"
+                        toggle
+                        active={tag1[tag.id - 1]}
+                        onClick={(e) => switchActivity(e, tag.id - 1)}>
+                        {tag.name}
+                     </Button>
                   ))}
                </div>
                <button className="search-button" type="button" onClick={queryEvents}>
@@ -94,11 +96,9 @@ export default function Search() {
                            src={serverURL + "/" + event.img}
                            alt="event"
                            className="single-event-img"></img>
-                        <Link
-                           className="details-button"
-                           to={{ pathname: `/Event`, query: { event: event.id } }}>
-                           معرفه المزيد
-                        </Link>
+                        <div className="details-button">
+                           <EventDetails props={{ event: event }} />
+                        </div>
                      </div>
                   </div>
                ))}
