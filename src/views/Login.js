@@ -4,6 +4,9 @@ import serverURL from "../Utils/global";
 import Cookies from "js-cookie";
 import Banner from "../components/banner";
 import "../styles/login.css";
+import SVG from "../components/svg";
+import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
+
 export default class Login extends Component {
    constructor(props) {
       super(props);
@@ -55,8 +58,58 @@ export default class Login extends Component {
       return (
          <>
             <Banner data={{ header: "تسجيل الدخول" }} />
+            <SVG />
             <div className="custom-content-login">
-               <div className="custom-container-login">
+               <MDBContainer>
+                  <MDBRow>
+                     <MDBCol md="3"></MDBCol>
+                     <MDBCol md="6" className="loginFormHolder">
+                        <form>
+                           <p className="h5 text-center mb-4 headerText">سجل دخولك</p>
+                           <div className="grey-text">
+                              <MDBInput
+                                 className="textDirection"
+                                 label="البريد الالكتروني"
+                                 icon="envelope"
+                                 name="email"
+                                 size="lg"
+                                 group
+                                 type="email"
+                                 validate
+                                 onChange={(e) => {
+                                    this.handleFieldChange(e);
+                                 }}
+                                 error="wrong"
+                                 success="right"
+                              />
+                              <MDBInput
+                                 label="كلمه السر"
+                                 icon="lock"
+                                 group
+                                 name="password"
+                                 size="lg"
+                                 className="textDirection"
+                                 onChange={(e) => {
+                                    this.handleFieldChange(e);
+                                 }}
+                                 type="password"
+                                 validate
+                              />
+                           </div>
+                           <div className="text-center">
+                              <MDBBtn
+                                 type="button"
+                                 className="loginBtn"
+                                 onClick={(e) => this.loginHandler(e)}>
+                                 سجل الدخول
+                              </MDBBtn>
+                           </div>
+                        </form>
+                     </MDBCol>
+                  </MDBRow>
+               </MDBContainer>
+
+               {/* <div className="custom-container-login">
                   <form>
                      <div className="form-container">
                         <h2 className="text-center mb-4 login-header">تسجيل الدخول</h2>
@@ -96,7 +149,7 @@ export default class Login extends Component {
                         </div>
                      </div>
                   </form>
-               </div>
+               </div> */}
             </div>
          </>
       );

@@ -3,94 +3,26 @@
    height: 100%;
    width: 100%;
    min-width: 100%;
-   grid-template-columns: 10% 80% 10%;
-   grid-template-rows: 15% 80% 15%;
-   grid-template-areas:
-      ". . ."
-      ". loginForm ."
-      ". . .";
+   z-index: 2;
+
    align-items: center;
    background-color: #f2f2f0;
 }
 
-.custom-container-login {
-   grid-area: loginForm;
-   display: grid;
-   grid-template-rows: 100%;
-   grid-template-columns: 100%;
-   width: 40%;
-   height: 45%;
-   justify-self: center;
+.loginFormHolder {
    box-shadow: 1px 5px 5px 5px rgb(12, 12, 12, 0.6);
-   padding-left: 5%;
-   padding-right: 5%;
    border-radius: 50px;
    transition: 0.5s;
-   background-color: #6d1a16;
-   grid-template-areas: "form" !important;
 }
-.form-container {
-   height: 100%;
-   grid-area: form;
-   display: grid;
-   grid-template-rows: 15% 50% 20% 15%;
-   grid-template-columns: 100%;
-   grid-template-areas:
-      "loginHeader"
-      "formInputs"
-      "radioButtons"
-      "customButton";
-}
-.form-inputs {
-   grid-area: formInputs;
-   padding-top: 10%;
-}
-.radio-button-login {
-   grid-area: radioButtons;
-   display: grid;
-   justify-items: center;
-   grid-template-columns: 33% 33% 33%;
-}
-.login-header {
-   grid-area: loginHeader;
-   margin: 0;
-}
-
-.custom-container-login:hover {
+.loginFormHolder:hover {
    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
-.login-button:hover {
-   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
-   background-color: #6d1a16;
-}
 
-.login-button {
-   grid-area: customButton;
-   margin-top: 30px;
-   border-radius: 20px;
-   border-color: white;
-   transition: 0.5s;
-   color: #b573ac;
-   font-weight: 1000;
-   font-size: 20px;
+.textDirection {
+   direction: rtl !important;
+   font-size: 18px !important;
 }
-h2 {
-   padding-top: 2%;
-   color: #b573ac;
-}
-.custom-login-p {
-   font-size: 17px;
-   font-weight: 1000;
-   color: #b573ac;
-}
-
-.form-control {
-   border-radius: 40px;
-}
-
-@media only screen and (max-width: 700px) {
-   .custom-container-login {
-      height: 60%;
-      width: 100%;
-   }
+.loginBtn {
+   font-size: 25px;
+   border-radius: 50px;
 }
