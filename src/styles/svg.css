@@ -60,3 +60,9 @@ svg {
       opacity: 0.15;
    }
 }
+@media only screen and (min-width: 150px) and (max-width: 800px) {
+   svg {
+      visibility: hidden;
+      display: none;
+   }
+}

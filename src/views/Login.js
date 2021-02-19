@@ -3,7 +3,9 @@ import axios from "axios";
 import serverURL from "../Utils/global";
 import Cookies from "js-cookie";
 import Banner from "../components/banner";
+import JsonData from "../data/data.json";
 import "../styles/login.css";
+import Contact from "../components/contact";
 import SVG from "../components/svg";
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
@@ -151,6 +153,7 @@ export default class Login extends Component {
                   </form>
                </div> */}
             </div>
+            <Contact data={JsonData} />
          </>
       );
    }

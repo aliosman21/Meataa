@@ -132,7 +132,7 @@ export default function Register() {
          <Banner data={{ header: "تسجيل حساب جديد" }} />
          <SVG />
          <div className="custom-content-register">
-            <div className="custom-container-register col-8">
+            <div className="custom-container-register">
                <MDBContainer>
                   <MDBRow>
                      <MDBCol md="12" className="d-flex justify-content-center">

@@ -12,11 +12,11 @@ export class SVG extends Component {
                xmlnsXlink="http://www.w3.org/1999/xlink"
                x="0px"
                y="0px"
-               viewBox="0 0 1320 1080"
+               viewBox="0 0 1520 1080"
                xmlSpace="preserve">
                <g id="home">
                   <defs>
-                     <rect id="masque" y="0.4" width="1820" height="1080" />
+                     <rect id="masque" y="0.4" width="1820" height="1180" />
                   </defs>
                   <clipPath id="cache">
                      <use xlinkHref="#masque" style={{ overflow: "visible" }} />
