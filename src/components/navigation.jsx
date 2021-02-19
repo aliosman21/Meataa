@@ -1,11 +1,18 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
+MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBContainer, MDBIcon } from "mdbreact";
 import Cookies from 'js-cookie';
-import "../styles/navigation.css" 
-export function Navigation(){
 
+class NavbarPage extends Component {
+   constructor(props) {
+    super(props);
+     this.state = {
+  collapseID: ""
+  };
+    this.logoutHandler = this.logoutHandler.bind(this);
+  }
 
-  const logoutHandler = async (e) =>{
+ logoutHandler = async (e) =>{
    // e.preventDefault();
     //will call login Util
     console.log(e);
@@ -14,78 +21,66 @@ export function Navigation(){
 
   } 
 
+toggleCollapse = collapseID => () =>
+  this.setState(prevState => ({
+  collapseID: prevState.collapseID !== collapseID ? collapseID : ""
+}));
+
+render() {
+  return (
+      <MDBNavbar color="info-color" dark expand="md" style ={{marginBottom:"0"}} >
+        <MDBNavbarBrand href="/"> 
+         <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt="" />
+        </MDBNavbarBrand>
+        <MDBNavbarToggler onClick={this.toggleCollapse("navbarCollapse3")} />
+        <MDBCollapse id="navbarCollapse3" isOpen={this.state.collapseID} navbar>
+          <MDBNavbarNav right>
+             {Cookies.getJSON('session')?
+             
+             (<>
+
+               {Cookies.getJSON('session').type === "Organization"?(
+              <MDBNavItem style ={{fontSize:"18px"}}>
+              <MDBNavLink className="waves-effect waves-light" to="/newEvent">
+                <MDBIcon icon="plus" className="mr-1" />عمل جديد</MDBNavLink>
+            </MDBNavItem>
+              ):(<></>)}
+              <MDBNavItem style ={{fontSize:"18px"}}>
+              <MDBNavLink className="waves-effect waves-light" to="/search">
+                <MDBIcon icon="search" className="mr-1" />بحث</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem style ={{fontSize:"18px"}}>
+              <MDBNavLink className="waves-effect waves-light" to="/profile">
+                <MDBIcon icon="sign-in-alt" className="mr-1" />{Cookies.getJSON('session').name}</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem style ={{fontSize:"18px"}}>  
+              <MDBNavLink className="waves-effect waves-light" to="/" onClick={this.logoutHandler}>
+                <MDBIcon icon="sign-out-alt" className="mr-1" />تسجيل الخروج</MDBNavLink>
+            </MDBNavItem>
 
 
-    return (
 
-      <nav id="menu" className="navbar navbar-default navbar-fixed-top">
-        <div className="container">
-          <div className="navbar-header">
-            <button
-              type="button"
-              className="navbar-toggle collapsed"
-              data-toggle="collapse"
-              data-target="#bs-example-navbar-collapse-1"
-            >
-              {" "}
-              <span className="sr-only">Toggle navigation</span>{" "}
-              <span className="icon-bar"></span>{" "}
-              <span className="icon-bar"></span>{" "}
-              <span className="icon-bar"></span>{" "}
-            </button>
-            <Link className="navbar-brand page-scroll logo-anchor" to="/">
-                <img src="img/logo.png" alt="logo" className="logo"/>
-            </Link>{" "}
-          </div>
+             
+             </>)
+             
+             :(<>
+               <MDBNavItem style ={{fontSize:"18px"}}>
+              <MDBNavLink className="waves-effect waves-light" to="/login">
+                <MDBIcon icon="sign-in-alt" className="mr-1" />تسجيل الدخول</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem style ={{fontSize:"18px"}}>  
+              <MDBNavLink className="waves-effect waves-light" to="/register">
+                <MDBIcon icon="user-plus" className="mr-1" />انضم لنا</MDBNavLink>
+            </MDBNavItem>
+             
+             </>)}
+          </MDBNavbarNav>
+        </MDBCollapse>
+      </MDBNavbar>
+      
 
-          <div
-            className="collapse navbar-collapse"
-            id="bs-example-navbar-collapse-1"
-          >
-            <ul className="nav navbar-nav navbar-right">
-
-            {Cookies.getJSON('session')?(
-             <>
-               <li><Link   to="/search" className="page-scroll text-right"  >
-                  بحث
-                </Link></li>
-
-                      {Cookies.getJSON('session').type === "Organization"?(
-                        <li>
-                        <Link className="dropdown-item" to="/newEvent"> <p className="text-right ">عمل جديد</p></Link>
-                        </li>
-                      ):(<></>)}
-                      <li>
-                      <Link className="dropdown-item" to="/profile"> <p className="text-right ">{Cookies.getJSON('session').name}</p></Link>
-                      </li>
-                      <li>
-                      <Link className="dropdown-item"  to="/" onClick={(e)=>logoutHandler(e)}> <p className="text-right">تسجيل الخروج </p>
-                      </Link>
-                      </li>
-            
-              </>
-
-              ):
-              <>
-            <li>
-                <Link to="/login" className="page-scroll">
-                  تسجيل الدخول
-                </Link>
-              </li>
-              <li>
-                <Link to="/Register" className="page-scroll">
-                  انضم لنا
-                </Link>
-              </li> </>
-              }
-            </ul>
-
-          </div>
-        </div>
-      </nav>
- 
     );
-  
+  }
 }
 
-export default Navigation;
+export default NavbarPage;

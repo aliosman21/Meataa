@@ -12,27 +12,47 @@
 .custom-register-p {
    color: #b573ac;
 }
+.textDirection {
+   direction: rtl;
+   font-size: 18px;
+}
 
+.mdbInputs {
+   font-size: 20px !important;
+}
+.headerText {
+   font-size: 25px;
+   font-weight: bold;
+}
+
+.registerBtn {
+   font-size: 25px;
+   border-radius: 50px;
+}
 .custom-container-register {
    z-index: 1;
    grid-area: registerForm;
    display: grid;
-   width: 70%;
+   width: 50%;
    height: 80%;
-   grid-template-rows: 15% 5% 70% 10%;
+   grid-template-rows: 100%;
    grid-template-columns: 100%;
    justify-self: center;
    box-shadow: 1px 5px 5px 5px rgb(12, 12, 12, 0.6);
-   padding-left: 5%;
-   padding-right: 5%;
+   padding-left: 3%;
+   padding-right: 3%;
    border-radius: 50px;
    transition: 0.5s;
-   background-color: #6d1a16;
-   grid-template-areas:
-      "header"
-      "radioButtons"
-      "volInput"
-      ".";
+   grid-template-areas: "form";
+   background-color: #f2f2f0;
+}
+.formHolder {
+   grid-area: form;
+   display: grid;
+   grid-template-columns: 100%;
+   grid-template-rows: 50% 50%;
+   width: 100%;
+   height: 100%;
 }
 .header-text {
    grid-area: header;
@@ -40,49 +60,11 @@
 .custom-container-register:hover {
    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
-.radioButtons {
-   grid-area: radioButtons;
-   display: grid;
-   grid-template-columns: 50% 50%;
-   justify-items: center;
-}
-.radioLabel {
-   font-size: 15px;
-   color: #b573ac;
-}
-.vol-inputs {
-   height: 100%;
-   grid-area: volInput;
-   display: grid;
-   grid-template-columns: 70% 30%;
-   grid-template-rows: 15% 15% 15% 15% 15% 10% 15%;
-   grid-template-areas:
-      "."
-      "."
-      "."
-      "."
-      "."
-      "."
-      "interests";
-}
+
 .image-uploader {
    justify-self: start;
 }
-.interests {
-   grid-area: interests;
-   display: grid;
-   grid-template-columns: 20% 20% 20% 20% 20%;
-   grid-template-rows: 50% 50%;
-}
-.interests > input {
-   justify-self: center;
-}
-.interests > label {
-   justify-self: center;
-   font-size: 15px;
-   font-weight: bold;
-   color: #b573ac;
-}
+
 .register-button {
    border-radius: 20px;
    border-color: white;

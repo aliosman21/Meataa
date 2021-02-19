@@ -23,10 +23,8 @@ class App extends Component {
       return (
          <div>
             <Header data={this.state.landingPageData.Header} />
-            <Features data={this.state.landingPageData.Features} />
             <About data={this.state.landingPageData.About} />
             <Gallery />
-            <Team data={this.state.landingPageData.Team} />
             <Contact data={this.state.landingPageData.Contact} />
          </div>
       );

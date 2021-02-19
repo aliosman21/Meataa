@@ -18,7 +18,7 @@ function Routes() {
       <>
          <Router>
             <UserContext.Provider value={providerUser}>
-               {/*  <Route component={Navigation} /> */}
+               <Route component={Navigation} />
                <Route exact path="/" component={App} />
                <Route exact path="/profile" component={Profile} />
                <Route exact path="/login" component={Login} />

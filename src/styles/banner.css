@@ -2,7 +2,6 @@
    background: #2c389c;
    background: linear-gradient(to right, #2c389c 0%, #2c389c 28%, #2c389c 69%, #2c389c 100%);
    width: 100%;
-   margin-top: 4%;
    height: 25%;
 }
 
@@ -12,10 +11,4 @@
    margin-right: 2%;
    padding-top: 3%;
    font-weight: bold;
-}
-
-@media only screen and (min-width: 150px) and (max-width: 800px) {
-   #topBanner {
-      margin-top: 23%;
-   }
 }
