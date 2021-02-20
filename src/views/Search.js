@@ -13,11 +13,13 @@ import "../styles/search.css";
 
 export default function Search() {
    const [tags, setTags] = useState([]);
-   const [tag1, setTag1] = useState([false, false, false, false, false]);
+   const [tag1, setTag1] = useState([]);
    const [events, setEvents] = useState([]);
    const [usedTags, setUsedTags] = useState([]);
    useEffect(() => {
       getTags().then((tagList) => {
+         tag1.length = tagList.length; // set array size
+         tag1.fill(false);
          setTags(tagList);
       });
    }, []);

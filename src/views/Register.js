@@ -16,7 +16,7 @@ import { act } from "react-dom/test-utils";
 export default function Register() {
    const [volunteer, setVolunteer] = useState(true);
    const [tags, setTags] = useState([]);
-   const [tag1, setTag1] = useState([false, false, false, false, false]);
+   const [tag1, setTag1] = useState([]);
    const [usedTags] = useState([]);
    const [img, setImg] = useState("");
    const [fullName, setFullName] = useState("");
@@ -24,7 +24,7 @@ export default function Register() {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const [mobile, setMobile] = useState("");
-   const [mobile1, setmobile1] = useState("");
+   const [mobile1, setMobile1] = useState("");
 
    const getBase64 = async (e) => {
       const reader = new FileReader();
@@ -53,9 +53,9 @@ export default function Register() {
       setMobile(event.target.value);
    };
    const onChangeMobile1 = (event) => {
-      setmobile1(event.target.value);
+      setMobile1(event.target.value);
    };
-   const registerVolunteer = async (e) => {
+   const registerNewUser = async (e) => {
       let i = 0;
       for (let tag in tag1) {
          if (tag1[tag] === true) {
@@ -79,17 +79,21 @@ export default function Register() {
       volunteer
          ? (requestURL = serverURL + "/volunteer/store")
          : (requestURL = serverURL + "/organization/store");
-      axios
-         .post(requestURL, newEntity)
-         .then(function (response) {
-            alert("registered Successfully");
-            window.location.href = "/";
-            console.log(response);
-         })
-         .catch(function (error) {
-            alert("Failed");
-            console.log(error);
-         });
+      if (fullName && email && password && mobile && NID && img && usedTags) {
+         axios
+            .post(requestURL, newEntity)
+            .then(function (response) {
+               alert("registered Successfully");
+               window.location.href = "/";
+               console.log(response);
+            })
+            .catch(function (error) {
+               alert("Failed");
+               console.log(error);
+            });
+      } else {
+         alert("ادخل بيانات صحيحه");
+      }
    };
 
    const switchActivity = (e, id) => {
@@ -98,6 +102,8 @@ export default function Register() {
    };
    useEffect(() => {
       getTags().then((tagList) => {
+         tag1.length = tagList.length; // set array size
+         tag1.fill(false);
          setTags(tagList);
       });
    }, []);
@@ -220,7 +226,7 @@ export default function Register() {
                                  color="primary"
                                  className="registerBtn"
                                  type="submit"
-                                 onClick={registerVolunteer}>
+                                 onClick={registerNewUser}>
                                  انضم لنا
                               </MDBBtn>
                            </div>
