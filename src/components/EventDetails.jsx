@@ -6,7 +6,7 @@ import serverURL from "../Utils/global";
 const EventDetails = (props) => {
   const [open, setOpen] = React.useState(false)
 
-  console.log(props.props);
+  //console.log(props.props);
   return (
     <Modal
 

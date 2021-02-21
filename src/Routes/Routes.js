@@ -7,7 +7,8 @@ import Login from "../views/Login";
 import Register from "../views/Register";
 import Navigation from "../components/navigation";
 import Search from "../views/Search";
-import Event from "../views/Event";
+import MyEvents from "../views/MyEvents";
+
 import ChangeInfo from "../views/InfoChange";
 import NewEvent from "../views/NewEvent";
 
@@ -24,7 +25,7 @@ function Routes() {
                <Route exact path="/login" component={Login} />
                <Route exact path="/Register" component={Register} />
                <Route exact path="/Search" component={Search} />
-               <Route exact path="/Event" component={Event} />
+               <Route exact path="/MyEvents" component={MyEvents} />
                <Route exact path="/setInfo" component={ChangeInfo} />
                <Route exact path="/newEvent" component={NewEvent} />
             </UserContext.Provider>

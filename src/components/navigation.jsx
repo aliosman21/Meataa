@@ -39,11 +39,16 @@ render() {
              
              (<>
 
-               {Cookies.getJSON('session').type === "Organization"?(
+               {Cookies.getJSON('session').type === "Organization"?(<>
               <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/newEvent">
                 <MDBIcon icon="plus" className="mr-1" />عمل جديد</MDBNavLink>
             </MDBNavItem>
+            <MDBNavItem style ={{fontSize:"18px"}}>
+              <MDBNavLink className="waves-effect waves-light" to="/MyEvents">
+                <MDBIcon icon="hands-helping" className="mr-1" />مبادراتي</MDBNavLink>
+            </MDBNavItem>
+            </>
               ):(<></>)}
               <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/search">

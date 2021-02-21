@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import "../styles/profile.css";
+import Banner from "../components/banner";
 import serverURL from "../Utils/global";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
+import ReactCardFlip from "react-card-flip";
+import { Button } from "semantic-ui-react";
+import SVG from "../components/svg";
 export default function Profile() {
+   const [isFlipped, setIsFlipped] = useState(false);
    const getDataFromCookie = () => {
       //will call database and fill the data object 4 reviews at atime
       // will need to pass the cookie to the profile page when the backend is done
@@ -25,9 +30,14 @@ export default function Profile() {
             4: { img: "sora", review: "rev4" },
          },
       };
-      console.log(data.pic);
+      //console.log(data.pic);
       //setPageId(1); to change pages in request to DB
       return data;
+   };
+
+   const handleFlip = (e) => {
+      e.preventDefault();
+      setIsFlipped(!isFlipped);
    };
 
    const getAllAchievments = () => {
@@ -40,52 +50,44 @@ export default function Profile() {
    const [data] = useState(() => getDataFromCookie());
 
    return Cookies.getJSON("session") ? (
-      <div className="custom-content-profile">
-         <div className="custom-container-profile col">
-            <div className="profileImgHolder">
-               <img src={data.pic} alt="Avatar" className="profileImg" />
-            </div>
-            <div className="profileText">
-               <h3 className="profile-name">{data.name} :الاسم</h3>
-               <h3 className="profile-email">{data.email} :البريد الالكتروني</h3>
-               {Cookies.getJSON("session").type === "Organization" ? (
-                  <h3 className="profile-ssn">{data.mobile2} :رقم هاتف اخر</h3>
-               ) : (
-                  <h3 className="profile-ssn">{data.ssn}:الرقم القومي</h3>
-               )}
+      <>
+         <Banner data={{ header: "الحساب الشخصي" }} />
+         <SVG />
+         <div className="custom-content-profile">
+            <div></div>
+            <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+               <div className="FrontCard">
+                  <div className="information">
+                     <p className="profileFont">الاسم: {data.name}</p>
+                     <p className="profileFont">{data.email} :البريد الالكتروني</p>
+                     <p className="profileFont">رقم الهاتف:{data.mobile}</p>
+                     {Cookies.getJSON("session").type == "Volunteer" ? (
+                        <p className="profileFont">الرقم القومي:{data.ssn}</p>
+                     ) : (
+                        <p className="profileFont">رقم اخر:{data.mobile}</p>
+                     )}
+                  </div>
+                  <div className="imageHolder">
+                     <img src={data.pic} alt="profile" className="profileImage" />
+                  </div>
+                  <div className="editButtonHolder">
+                     <Button content="تحديث البيانات" secondary onClick={ChangeInfo} />
+                  </div>
+                  <div className="flipButtonHolder">
+                     <Button content="الأعمال" primary onClick={handleFlip} />
+                  </div>
+               </div>
 
-               <h3 className="profile-mobile">{data.mobile} :رقم الهاتف</h3>
-               <button className="change-settings" onClick={ChangeInfo}>
-                  {" "}
-                  تغير البيانات{" "}
-               </button>
-            </div>
+               <div className="BackCard">
+                  <div className="Works">
+                     <p>عمل1</p>
+                     <p>عمل2</p>
+                  </div>
+                  <Button content="المعلومات الشخصيه" primary onClick={handleFlip} />
+               </div>
+            </ReactCardFlip>
          </div>
-         <div className="custom-container-achievements col">
-            <div className="all-achievements">
-               <div className="single-achievement darker">
-                  <img src="/img/team/01.jpg" alt="Avatar" className="right" />
-                  <p className="reviews-text">{data.Reviews[1].review}</p>
-               </div>
-               <div className="single-achievement darker">
-                  <img src="/img/team/01.jpg" alt="Avatar" className="right" />
-                  <p className="reviews-text">{data.Reviews[2].review}</p>
-               </div>
-               <div className="single-achievement darker">
-                  <img src="/img/team/01.jpg" alt="Avatar" className="right" />
-                  <p className="reviews-text">{data.Reviews[3].review}</p>
-               </div>
-               <div className="single-achievement darker">
-                  <img src="/img/team/01.jpg" alt="Avatar" className="right" />
-                  <p className="reviews-text">{data.Reviews[4].review}</p>
-               </div>
-            </div>
-            <button className="paging next" onClick={getAllAchievments}>
-               {" "}
-               الكامل{" "}
-            </button>
-         </div>
-      </div>
+      </>
    ) : (
       //404 page
       <div></div>

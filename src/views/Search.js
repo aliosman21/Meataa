@@ -24,9 +24,14 @@ export default function Search() {
       });
    }, []);
 
+   useEffect(() => {
+      queryEvents();
+   }, [tag1]);
+
    const switchActivity = (e, id) => {
       e.preventDefault();
       setTag1((prevState) => prevState.map((item, idx) => (idx === id ? !item : item)));
+      //queryEvents();
    };
 
    const queryEvents = () => {
@@ -46,13 +51,14 @@ export default function Search() {
       const bodyParameters = {
          tags: usedTags,
       };
+      //console.log(usedTags);
       axios
          .post(serverURL + "/jobs/jobsbytags", bodyParameters, config)
          .then(function (response) {
             //alert("Success");
             setEvents(response.data.data);
             // console.log(response.data.data);
-            // console.log(events);
+            //console.log(events);
          })
          .catch(console.log);
       setUsedTags([]);
@@ -78,9 +84,6 @@ export default function Search() {
                      </Button>
                   ))}
                </div>
-               <button className="search-button" type="button" onClick={queryEvents}>
-                  بحث
-               </button>
             </div>
             <div className="eventsList">
                {events.map((event) => (
@@ -104,14 +107,6 @@ export default function Search() {
                      </div>
                   </div>
                ))}
-            </div>
-            <div className="nextPrevBtns">
-               <button className="search-button prev" type="button">
-                  الاخير
-               </button>
-               <button className="search-button next" type="button">
-                  التالي
-               </button>
             </div>
          </div>
          <Contact data={JsonData} />
