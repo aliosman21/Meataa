@@ -556,38 +556,32 @@ export default function MyEvents() {
          },
       ],
    });
-   const [myEvents, setMyEvents] = useState({ columns: [], rows: [] });
+   const [myEventsRows, setMyEventsRows] = useState([]);
+   const [myEventsColumns, setMyEventsColumns] = useState([
+      { label: "اسم الفعاليه", field: "eventName", width: 150 },
+      {
+         label: "تاريخ الانتهاء",
+         field: "endDate",
+         width: 150,
+      },
+      {
+         label: "عدد المتقدمين",
+         field: "count",
+         width: 150,
+      },
+      {
+         label: "عرض المزيد",
+         field: "moreInfo",
+         width: 150,
+      },
+   ]);
    useEffect(() => {
       queryMyEvents();
    }, []);
 
    const transformData = (data) => {
-      // column
-      /*           {
-            label: "Position",
-            field: "position",
-            width: 270,
-         }, */
-      const columns = [
-         { label: "اسم الفعايه", field: "eventName", width: 150 },
-         {
-            label: "تاريخ الانتهاء",
-            field: "endDate",
-            width: 150,
-         },
-         {
-            label: "عدد المتقدمين",
-            field: "count",
-            width: 150,
-         },
-         {
-            label: "عرض المزيد",
-            field: "moreInfo",
-            width: 150,
-         },
-      ];
-      //console.log(data);
-      const rows = [];
+      //console.log(myEvents);
+      // const rows = [];
       data.forEach((dataRow) => {
          let tempObject = {
             eventName: dataRow.name,
@@ -600,50 +594,25 @@ export default function MyEvents() {
                      size="sm"
                      className="My-events-font"
                      onClick={() => handler(dataRow)}>
-                     قبول
+                     المزيد
                   </MDBBtn>
                </>
             ),
          };
-         rows.push(tempObject);
+         setMyEventsRows((oldArray) => [...oldArray, tempObject]);
+
+         //rows.push(tempObject);
       });
+      //setMyEvents((prevArray) => [...prevArray, rows]);
 
       //console.log(rows);
-      rows.forEach((row) => {
-         myEvents.rows.push(row);
-      });
-      columns.forEach((col) => {
-         myEvents.columns.push(col);
-         //console.log(col);
-      });
-      console.log(datatable);
-      console.log("Hello there");
-      console.log(myEvents);
+      // myEvents.rows = rows;
+
+      //console.log(datatable);
+      //console.log("Hello there");
+      // console.log(myEvents);
    };
    const queryMyEvents = () => {
-      //row button
-      /*   {
-            name: "Tiger Nixon",
-            position: "System Architect",
-            office: "Edinburgh",
-            age: "61",
-            date: "2011/04/25",
-            salary: (
-               <>
-                  <MDBBtn
-                     color="purple"
-                     size="sm"
-                     className="My-events-font"
-                     onClick={() => handler()}>
-                     قبول
-                  </MDBBtn>
-                  <MDBBtn color="purple" size="sm" className="My-events-font">
-                     رفض
-                  </MDBBtn>
-               </>
-            ),
-         }, */
-
       const token = Cookies.getJSON("session").token;
       const config = {
          headers: { Authorization: `bearer ${token}` },
@@ -666,7 +635,7 @@ export default function MyEvents() {
             entriesOptions={[5, 10, 20, 25]}
             entries={10}
             pagesAmount={4}
-            data={datatable}
+            data={{ columns: myEventsColumns, rows: myEventsRows }}
             btn
             className="My-events-font"
             entriesLabel="المبادرات"
