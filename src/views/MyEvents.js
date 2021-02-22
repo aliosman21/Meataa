@@ -1,5 +1,5 @@
 import "../styles/MyEvents.css";
-/*
+
 import React, { useState, useEffect } from "react";
 import serverURL from "../Utils/global";
 import Contact from "../components/contact";
@@ -7,7 +7,8 @@ import Banner from "../components/banner";
 import JsonData from "../data/data.json";
 import axios from "axios";
 import Cookies from "js-cookie";
-
+import { MDBDataTableV5, MDBBtn, MDBRating } from "mdbreact";
+/*
 export default function MyEvent() {
    return (
       <div className="eventsHolder">
@@ -16,16 +17,14 @@ export default function MyEvent() {
    );
 }
  */
-import React, { useState } from "react";
-import { MDBDataTableV5, MDBBtn, MDBRating } from "mdbreact";
 
 export default function MyEvents() {
-   const handler = (name) => {
-      console.log("YO");
-      console.log(name);
+   const handler = (eventData) => {
+      //console.log("YO");
+      console.log(eventData);
    };
    const handleStars = (val) => {
-      console.log(val);
+      //console.log(val);
    };
    const [basic] = useState([
       {
@@ -44,7 +43,8 @@ export default function MyEvents() {
          tooltip: "Excellent",
       },
    ]);
-   const [datatable, setDatatable] = React.useState({
+
+   const [datatable, setDatatable] = useState({
       columns: [
          {
             label: "Name",
@@ -556,6 +556,108 @@ export default function MyEvents() {
          },
       ],
    });
+   const [myEvents, setMyEvents] = useState({ columns: [], rows: [] });
+   useEffect(() => {
+      queryMyEvents();
+   }, []);
+
+   const transformData = (data) => {
+      // column
+      /*           {
+            label: "Position",
+            field: "position",
+            width: 270,
+         }, */
+      const columns = [
+         { label: "اسم الفعايه", field: "eventName", width: 150 },
+         {
+            label: "تاريخ الانتهاء",
+            field: "endDate",
+            width: 150,
+         },
+         {
+            label: "عدد المتقدمين",
+            field: "count",
+            width: 150,
+         },
+         {
+            label: "عرض المزيد",
+            field: "moreInfo",
+            width: 150,
+         },
+      ];
+      //console.log(data);
+      const rows = [];
+      data.forEach((dataRow) => {
+         let tempObject = {
+            eventName: dataRow.name,
+            endDate: dataRow.end_date,
+            count: dataRow.volunteers_count,
+            moreInfo: (
+               <>
+                  <MDBBtn
+                     color="purple"
+                     size="sm"
+                     className="My-events-font"
+                     onClick={() => handler(dataRow)}>
+                     قبول
+                  </MDBBtn>
+               </>
+            ),
+         };
+         rows.push(tempObject);
+      });
+
+      //console.log(rows);
+      rows.forEach((row) => {
+         myEvents.rows.push(row);
+      });
+      columns.forEach((col) => {
+         myEvents.columns.push(col);
+         //console.log(col);
+      });
+      console.log(datatable);
+      console.log("Hello there");
+      console.log(myEvents);
+   };
+   const queryMyEvents = () => {
+      //row button
+      /*   {
+            name: "Tiger Nixon",
+            position: "System Architect",
+            office: "Edinburgh",
+            age: "61",
+            date: "2011/04/25",
+            salary: (
+               <>
+                  <MDBBtn
+                     color="purple"
+                     size="sm"
+                     className="My-events-font"
+                     onClick={() => handler()}>
+                     قبول
+                  </MDBBtn>
+                  <MDBBtn color="purple" size="sm" className="My-events-font">
+                     رفض
+                  </MDBBtn>
+               </>
+            ),
+         }, */
+
+      const token = Cookies.getJSON("session").token;
+      const config = {
+         headers: { Authorization: `bearer ${token}` },
+      };
+      axios
+         .get(serverURL + "/organization/alljobs", config)
+         .then(function (response) {
+            //alert("Success");
+            // console.log(response.data.data);
+            transformData(response.data.data);
+            //console.log(response.data.data);
+         })
+         .catch(console.log);
+   };
 
    return (
       <>
