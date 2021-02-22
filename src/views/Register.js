@@ -118,7 +118,7 @@ export default function Register() {
                   <MDBRow>
                      <MDBCol md="12" className="d-flex justify-content-center">
                         <form>
-                           <p className="text-center mb-4 headerText">انضم لنا</p>
+                           <p className="text-center mb-4 mt-4 headerText">انضم لنا</p>
                            <Button
                               size="mini"
                               toggle
@@ -223,11 +223,11 @@ export default function Register() {
                            </div>
                            <div className="text-center ">
                               <MDBBtn
-                                 color="primary"
+                                 color="green"
                                  className="registerBtn"
                                  type="submit"
                                  onClick={registerNewUser}>
-                                 انضم لنا
+                                 حفظ
                               </MDBBtn>
                            </div>
                         </form>

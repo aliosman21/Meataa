@@ -7,3 +7,16 @@
 .eventsTable {
    grid-area: eventsTable;
 }
+.My-events-font tbody tr td {
+   font-size: 20px;
+   font-family: CustomFont;
+}
+.My-events-font th {
+   font-size: 20px;
+   font-family: CustomFont;
+}
+
+.My-events-font {
+   font-size: 12px !important;
+   font-family: CustomFont;
+}

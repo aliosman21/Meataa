@@ -1,5 +1,10 @@
 .custom-contact {
-   background: #2d6187 !important;
+   background-image: url("../assets/footerBackGround.jpg") !important;
+   background-size: cover !important;
+   background-position: center !important;
    position: relative;
-   z-index: 1 !important;
+   /* z-index: 1 !important; */
+}
+.contact-info {
+   float: right;
 }

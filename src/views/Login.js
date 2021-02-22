@@ -67,7 +67,7 @@ export default class Login extends Component {
                      <MDBCol md="3"></MDBCol>
                      <MDBCol md="6" className="loginFormHolder">
                         <form>
-                           <p className="h5 text-center mb-4 headerText">سجل دخولك</p>
+                           <p className="h5 text-center mb-4 mt-4 headerText">سجل دخولك</p>
                            <div className="grey-text">
                               <MDBInput
                                  className="textDirection"
@@ -100,7 +100,8 @@ export default class Login extends Component {
                            </div>
                            <div className="text-center">
                               <MDBBtn
-                                 type="button"
+                                 color="green"
+                                 type="submit"
                                  className="loginBtn"
                                  onClick={(e) => this.loginHandler(e)}>
                                  سجل الدخول
@@ -110,48 +111,6 @@ export default class Login extends Component {
                      </MDBCol>
                   </MDBRow>
                </MDBContainer>
-
-               {/* <div className="custom-container-login">
-                  <form>
-                     <div className="form-container">
-                        <h2 className="text-center mb-4 login-header">تسجيل الدخول</h2>
-                        <div className="form-inputs">
-                           <div className="grey-text">
-                              <input
-                                 type="email"
-                                 name="email"
-                                 className="form-control"
-                                 onChange={(e) => {
-                                    this.handleFieldChange(e);
-                                 }}
-                                 required
-                              />
-                              <p className="text-right custom-login-p">البريد الالكتروني</p>
-                           </div>
-                           <div className="grey-text">
-                              <input
-                                 name="password"
-                                 type="password"
-                                 className="form-control"
-                                 onChange={(e) => {
-                                    this.handleFieldChange(e);
-                                 }}
-                                 required
-                              />
-                              <p className="text-right custom-login-p">كلمه السر</p>
-                           </div>
-                        </div>
-                        <div className="text-center custom-login-button">
-                           <button
-                              className="login-button"
-                              type="submit"
-                              onClick={(e) => this.loginHandler(e)}>
-                              تسجيل الدخول
-                           </button>
-                        </div>
-                     </div>
-                  </form>
-               </div> */}
             </div>
             <Contact data={JsonData} />
          </>
