@@ -1,167 +1,21 @@
 .custom-new-event-container {
+   background-color: #e0dad7;
    width: 100%;
-   height: 100%;
+   height: 120%;
    display: grid;
 
-   grid-template-rows: 15% 80% 5%;
+   grid-template-rows: 100%;
    grid-template-columns: 10% 80% 10%;
-   grid-template-areas:
-      ". . ."
-      ". newEvent ."
-      ". . .";
-}
-.end-date-input {
-   width: 50%;
-   height: 50%;
-   border-radius: 20px;
-   justify-self: center;
-   align-self: center;
-}
-.new-event-details {
-   grid-area: newEvent;
-   display: grid;
-   border-radius: 50px;
-   background-color: #6d1a16;
-   border: 2px solid;
-   box-shadow: 5px 5px 5px 5px rgb(0, 0, 0, 0.6);
-   grid-template-rows: 10% 10% 60% 20%;
-   grid-template-columns: 100%;
-   text-align: center;
-   grid-template-areas:
-      "."
-      "title"
-      "details"
-      "footer";
-}
-.new-event-title {
-   grid-area: title;
-   display: flex;
-   margin-left: 2%;
-   margin-top: 1%;
-   margin-right: 2%;
-   justify-content: space-between;
-}
-.custom-input-title {
-   width: 85%;
-}
-.custom-title-p {
-   color: #b573ac;
-}
-.event-description-fornew {
-   width: 98%;
-   height: 100%;
-   resize: none;
-   font-size: 20px;
-   text-align: right;
-   border: 0px;
-   outline: none;
-   border-radius: 10px;
-   box-shadow: 5px 5px 5px 5px rgb(0, 0, 0, 0.6);
-}
-.new-event-header {
-   color: #b573ac;
-   font-weight: 1000;
-}
-.new-event-details-body {
-   width: 100%;
-   height: 100%;
-   grid-area: details;
-}
-.new-event-details-footer {
-   width: 100%;
-   height: 100%;
-   grid-area: footer;
-   display: grid;
-   grid-template-columns: 40% 60%;
-   grid-template-rows: 50% 50%;
-   grid-template-areas:
-      ". imgAddBtn "
-      "subBtn tags";
-}
-.img-btns {
-   display: flex;
-   grid-area: imgAddBtn;
-   align-items: center;
-   justify-content: center;
-}
-.submit-event-button {
-   grid-area: subBtn;
 }
 
-.submit-event-button {
-   border-radius: 20px;
-   border-color: white;
-   transition: 0.5s;
+.form-Sizer {
    width: 50%;
-   height: 50%;
-   color: #b573ac;
-   font-weight: 1000;
-   font-size: 20px;
-   align-self: center;
-   justify-self: center;
-}
-.submit-event-button:hover {
-   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
-   background-color: #6d1a16;
-}
-.add-tags {
-   display: grid;
-   grid-area: tags;
-   grid-template-rows: 50% 50%;
-   grid-template-columns: 100%;
-   grid-template-areas:
-      "boxes"
-      "paras";
-}
-.checkBoxes {
-   grid-area: boxes;
+   font-family: CustomFont;
    display: flex;
-   justify-content: space-around;
-   flex-wrap: wrap;
-   width: 100%;
-   margin-left: 2%;
-   height: 50%;
+   flex-direction: column;
+   margin-left: 25%;
 }
-.checkBoxes-para {
-   grid-area: paras;
-   display: flex;
-   justify-content: space-around;
-   flex-wrap: wrap;
-   width: 100%;
-   height: 50%;
-}
-.newEvent-para {
-   font-size: 18;
-   margin-left: 20px;
-   color: #b573ac;
-}
-@media only screen and (min-width: 150px) and (max-width: 700px) {
-   .add-tags {
-      visibility: hidden;
-      display: none;
-   }
-   .new-event-details-footer {
-      grid-template-areas:
-         "imgAddBtn imgAddBtn "
-         "subBtn subBtn";
-   }
-   .submit-event-button {
-      width: 25%;
-      height: 80%;
-   }
-   .new-event-details {
-      grid-template-rows: 15% 15% 50% 5% 15%;
-      grid-template-columns: 100%;
-      text-align: center;
-      grid-template-areas:
-         "."
-         "title"
-         "details"
-         "."
-         "footer";
-   }
-   .end-date-input {
-      visibility: hidden;
-      display: none;
-   }
+.textformatter {
+   font-family: CustomFont;
+   font-size: 20px !important;
 }

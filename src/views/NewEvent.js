@@ -3,48 +3,81 @@ import Cookies from "js-cookie";
 import { getTags } from "../Utils/getTagsUtil";
 import axios from "axios";
 import serverURL from "../Utils/global";
+import { MDBJumbotron, MDBBtn, MDBContainer, MDBRow, MDBCol, MDBInput } from "mdbreact";
+import SemanticDatepicker from "react-semantic-ui-datepickers";
+import "react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css";
+import { Select } from "semantic-ui-react";
 import "../styles/newEvent.css";
 
 export default function Profile() {
    const [tags, setTags] = useState([]);
    const [img, setImg] = useState("");
-   const [usedTags] = useState([]);
-   let title = React.createRef();
-   let description = React.createRef();
-   let endDate = React.createRef();
+   const [usedTag, setUsedTag] = useState("");
+   const [title, setTitle] = useState("");
+   const [description, setDescription] = useState("");
+   const [endDate, setEndDate] = useState("");
+
+   const onChangeDescription = (event) => {
+      setDescription(event.target.value);
+   };
+   const onChangeTitle = (event) => {
+      setTitle(event.target.value);
+   };
+   const onChangeEndDate = (event, data) => {
+      let endingDate = new Date(data.value).toISOString().slice(0, 10);
+      // console.log(endingDate);
+      setEndDate(endingDate);
+   };
+   const onChangeTag = (e, data) => {
+      //console.log(data);
+      data.options.forEach((tag) => {
+         //console.log(tag);
+         if (data.value == tag.value) {
+            setUsedTag(tag.key);
+         }
+      });
+   };
    useEffect(() => {
       getTags().then((tagList) => {
          setTags(tagList);
       });
    }, []);
+   useEffect(() => {
+      //console.log(tags);
+      tags.forEach((element) => {
+         Object.defineProperty(element, "key", Object.getOwnPropertyDescriptor(element, "id"));
+         delete element["id"];
+         Object.defineProperty(element, "text", Object.getOwnPropertyDescriptor(element, "name"));
+         delete element["name"];
+         element.value = element["text"];
+      });
+      // console.log(tags);
+   }, [tags]);
 
    const handleNewEvent = () => {
-      if (usedTags.length !== 1) alert("too many tags");
-      else {
-         let tag = usedTags[0];
-         const token = Cookies.getJSON("session").token;
-         const config = {
-            headers: { Authorization: `bearer ${token}` },
-         };
+      const token = Cookies.getJSON("session").token;
+      const config = {
+         headers: { Authorization: `bearer ${token}` },
+      };
 
-         const bodyParameters = {
-            name: title.current.value,
-            description: description.current.value,
-            end_date: endDate.current.value,
-            img: img,
-            tag_id: tag,
-         };
-         axios
-            .post(serverURL + "/jobs/store", bodyParameters, config)
-            .then(function (response) {
-               alert("Success");
-               window.location.href = "/";
-               console.log(response);
-            })
-            .catch(console.log);
-         console.log(bodyParameters);
-         console.log(token);
-      }
+      const bodyParameters = {
+         name: title,
+         description: description,
+         end_date: endDate,
+         img: img,
+         tag_id: usedTag,
+      };
+      console.log(bodyParameters);
+      axios
+         .post(serverURL + "/jobs/store", bodyParameters, config)
+         .then(function (response) {
+            alert("Success");
+            window.location.href = "/";
+            console.log(response);
+         })
+         .catch(console.log);
+      console.log(bodyParameters);
+      console.log(token);
    };
 
    const getBase64 = async (e) => {
@@ -54,78 +87,86 @@ export default function Profile() {
       };
       reader.readAsDataURL(e.target.files[0]);
    };
-   const changeTags = (userTag) => {
-      if (usedTags.includes(userTag.target.id) && usedTags) {
-         const index = usedTags.indexOf(userTag.target.id);
 
-         usedTags.splice(index, 1);
-      } else {
-         usedTags.push(userTag.target.id);
-      }
-   };
    return Cookies.getJSON("session").type === "Organization" ? (
       <div className="custom-new-event-container">
-         <div className="new-event-details">
-            <h1 className="new-event-header">اشرح المحتوي</h1>
-            <div className="new-event-title">
-               <input
-                  type="text"
-                  ref={title}
-                  dir="rtl"
-                  className="form-control custom-input-title"
-                  required
-               />
-               <p className="text-center custom-title-p">أسم المحتوي</p>
-            </div>
-            <div className="new-event-details-body">
-               <textarea
-                  className="event-description-fornew"
-                  dir="rtl"
-                  ref={description}
-                  placeholder="اكتب شرح وافي للمحتوي"></textarea>
-            </div>
-            <div className="new-event-details-footer">
-               <input
-                  type="date"
-                  className="end-date-input"
-                  id="endDate"
-                  name="endDate"
-                  ref={endDate}
-               />
-               <button className="submit-event-button" onClick={handleNewEvent}>
-                  نشر
-               </button>
-               <div className="img-btns">
-                  <input
-                     type="file"
-                     id="img"
-                     name="img"
-                     accept="image/*"
-                     onChange={getBase64}
-                     className="image-button image-uploader"
-                     required
-                  />
-                  <p className="text-center custom-register-p">اضف صوره للنشاط</p>
-               </div>
-               <div className="add-tags">
-                  <div className="checkBoxes">
-                     {tags.map((tag) => (
-                        <input
-                           key={tag.id}
-                           id={tag.id}
-                           type="checkbox"
-                           onChange={changeTags}></input>
-                     ))}
-                  </div>
-                  <div className="checkBoxes-para">
-                     {tags.map((tag) => (
-                        <p className="newEvent-para" key={tag.id}>
-                           {tag.name}
-                        </p>
-                     ))}
-                  </div>
-               </div>
-            </div>
+         <div></div>
+         <div className="newEvent">
+            <MDBContainer className="mt-5 text-center">
+               <MDBRow>
+                  <MDBCol>
+                     <MDBJumbotron>
+                        <h2 className="h1 display-3">قم بأضافه فعاليه جديده</h2>
+                        <form className="form-Sizer">
+                           <MDBInput
+                              label="اسم العمل"
+                              className="textDirection"
+                              onChange={onChangeTitle}
+                              type="text"
+                              size="lg"
+                              validate
+                              error="wrong"
+                              success="right"
+                           />
+                           <MDBInput
+                              type="textarea"
+                              label="اشرح المحتوي"
+                              onChange={onChangeDescription}
+                              rows="8"
+                              size="lg"
+                              className="textDirection"
+                           />
+                           <div className="input-group mb-3">
+                              <div className="input-group-prepend">
+                                 <span className="input-group-text" id="inputGroupFileAddon01">
+                                    أرفع
+                                 </span>
+                              </div>
+                              <div className="custom-file">
+                                 <input
+                                    type="file"
+                                    className="custom-file-input"
+                                    id="inputGroupFile01"
+                                    onChange={getBase64}
+                                    aria-describedby="inputGroupFileAddon01"
+                                 />
+                                 <label className="custom-file-label" htmlFor="inputGroupFile01">
+                                    اختر صوره للفعاليه
+                                 </label>
+                              </div>
+                           </div>
+                           <div className="mb-4">
+                              <SemanticDatepicker
+                                 onChange={onChangeEndDate}
+                                 datePickerOnly
+                                 pointing="top left"
+                                 format="YYYY-MM-DD"
+                                 filterDate={(date) => {
+                                    const now = new Date();
+                                    return date >= now;
+                                 }}
+                              />
+                              <span> تاريخ الانتهاء</span>
+                           </div>
+                           <Select
+                              placeholder="حدد نوع الفعاليه"
+                              options={tags}
+                              onChange={onChangeTag}
+                           />
+
+                           <p className="lead mt-3">
+                              <MDBBtn
+                                 color="primary"
+                                 className="textformatter"
+                                 onClick={handleNewEvent}>
+                                 سجل العمل
+                              </MDBBtn>
+                           </p>
+                        </form>
+                     </MDBJumbotron>
+                  </MDBCol>
+               </MDBRow>
+            </MDBContainer>
          </div>
       </div>
    ) : (
