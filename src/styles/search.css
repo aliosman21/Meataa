@@ -1,92 +1,21 @@
 .custom-search-content {
    display: grid;
-   height: 300%;
+   height: 200%;
    width: 100%;
    grid-template-columns: 10% 80% 10%;
-   grid-template-rows: 5% 2% 90% 3%;
+   grid-template-rows: 8% 2% 90%;
    grid-template-areas:
       ". searchTags . "
       ". . ."
-      ". events . "
-      ". nextprev .";
+      ". events . ";
    background-color: #f2f2f0;
-}
-
-.nextPrevBtns {
-   grid-area: nextprev;
-   display: flex;
-}
-.prev,
-.next {
-   width: 10% !important;
-   height: 70% !important;
 }
 
 .eventsList {
    grid-area: events;
    display: flex;
-   flex-direction: column;
-}
-.single-event {
-   width: 100%;
-   height: 100%;
-   margin-bottom: 5%;
-}
-.eventDescription {
-   width: 100%;
-   height: 100%;
-   display: grid;
-   box-shadow: 5px 15px 5px 5px rgba(0, 0, 0, 0.2);
-   grid-template-columns: 65% 5% 30%;
-   grid-template-rows: 15% 15% 50% 20%;
-   grid-template-areas:
-      "eventName . eventImg"
-      "organdDate . eventImg"
-      "eventDesc . eventImg"
-      "moreDetailsButton . eventImg";
-}
-.orgAndDate {
-   grid-area: organdDate;
-   display: grid;
-   grid-template-columns: 50% 50%;
-   grid-template-rows: 100%;
-   grid-template-areas: "date orga";
-}
-.single-event-date {
-   grid-area: date;
-}
-.single-event-name {
-   grid-area: eventName;
-}
-.single-event-org {
-   grid-area: orga;
-}
-.single-event-img {
-   grid-area: eventImg;
-   width: 70%;
-   height: 70%;
-   align-self: center;
-   justify-self: center;
-}
-.single-event-p {
-   font-size: 20px;
-   font-weight: bold;
-   text-align: right;
-}
-.single-event-desc {
-   grid-area: eventDesc;
-}
-
-.details-button {
-   grid-area: moreDetailsButton;
-   border-radius: 20px;
-   text-align: center;
-   justify-self: start;
-   border-color: white;
-   transition: 0.5s;
-   color: #b573ac;
-   font-weight: 1000;
-   font-size: 20px;
+   flex-wrap: wrap;
+   overflow-y: hidden;
 }
 
 .searchTagsList {
@@ -100,7 +29,34 @@
 }
 
 .customSearchTagBtn {
-   height: 40%;
+   height: 50%;
+}
+.card-event {
+   border-radius: 20px;
+}
+.customButtonFont {
+   font-family: CustomFont !important;
+   font-size: 13px;
+   font-weight: bold !important;
+}
+.customImage {
+   width: 100%;
+   height: 20vw;
+   object-fit: contain !important;
+}
+.description-cut {
+   text-overflow: ellipsis;
+   overflow: hidden;
+   width: 160px;
+   direction: rtl;
+   font-size: 20px !important;
+   height: 15%;
+   white-space: nowrap;
+}
+.customCardFont {
+   font-family: CustomFont !important;
+   font-size: 20px;
+   font-weight: bold !important;
 }
 .tagLabel {
    font-size: 20px !important;
@@ -112,29 +68,4 @@
    display: flex;
    justify-content: center;
    align-items: center;
-}
-
-.search-button {
-   grid-area: tagButton;
-   border-radius: 20px;
-   width: 50%;
-   justify-self: center;
-   height: 100%;
-   border-color: white;
-   transition: 0.5s;
-   color: #b573ac;
-   font-weight: 1000;
-   font-size: 20px;
-}
-.search-button:hover {
-   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
-   background-color: #6d1a16;
-}
-
-@media only screen and (min-width: 150px) and (max-width: 800px) {
-   .prev,
-   .next {
-      width: 40% !important;
-      height: 70% !important;
-   }
 }

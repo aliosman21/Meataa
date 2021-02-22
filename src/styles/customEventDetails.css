@@ -4,3 +4,12 @@
    font-size: 24px;
    font-weight: bold;
 }
+.descriptionFonter {
+   text-align: right;
+   direction: rtl;
+   font-size: 13px;
+   font-weight: bold;
+}
+.descriptionHolder {
+   max-width: 70%;
+}

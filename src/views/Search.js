@@ -5,6 +5,16 @@ import Contact from "../components/contact";
 import { Button } from "semantic-ui-react";
 import Banner from "../components/banner";
 import JsonData from "../data/data.json";
+import {
+   MDBBtn,
+   MDBCard,
+   MDBCardBody,
+   MDBCardImage,
+   MDBCardTitle,
+   MDBCardText,
+   MDBCol,
+} from "mdbreact";
+
 import axios from "axios";
 import EventDetails from "../components/EventDetails";
 import Cookies from "js-cookie";
@@ -59,7 +69,7 @@ export default function Search() {
             //alert("Success");
             setEvents(response.data.data);
             // console.log(response.data.data);
-            //console.log(events);
+            console.log(events);
          })
          .catch(console.log);
       setUsedTags([]);
@@ -88,8 +98,25 @@ export default function Search() {
             </div>
             <div className="eventsList">
                {events.map((event) => (
-                  <AnimateOnChange>
-                     <div key={event.id} className="single-event">
+                  <MDBCol style={{ maxWidth: "22rem" }}>
+                     <MDBCard className="card-event">
+                        <MDBCardImage
+                           className="img-fluid customImage"
+                           src={serverURL + "/" + event.img}
+                           waves
+                        />
+                        <MDBCardBody>
+                           <MDBCardTitle className="customCardFont">{event.name}</MDBCardTitle>
+                           <MDBCardText className="customCardFont description-cut">
+                              {event.description}
+                           </MDBCardText>
+                           <div>
+                              <EventDetails props={{ event: event }} />
+                           </div>
+                        </MDBCardBody>
+                     </MDBCard>
+                  </MDBCol>
+                  /* <div key={event.id} className="single-event">
                         <div className="eventDescription">
                            <p className="single-event-p single-event-name">{event.name} </p>
                            <p className="single-event-p single-event-desc">
@@ -109,8 +136,7 @@ export default function Search() {
                               <EventDetails props={{ event: event }} />
                            </div>
                         </div>
-                     </div>
-                  </AnimateOnChange>
+                     </div> */
                ))}
             </div>
          </div>
