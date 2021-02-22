@@ -8,6 +8,7 @@ import JsonData from "../data/data.json";
 import axios from "axios";
 import EventDetails from "../components/EventDetails";
 import Cookies from "js-cookie";
+import { AnimateOnChange } from "react-animation";
 import { getTags } from "../Utils/getTagsUtil";
 import "../styles/search.css";
 
@@ -87,25 +88,29 @@ export default function Search() {
             </div>
             <div className="eventsList">
                {events.map((event) => (
-                  <div key={event.id} className="single-event">
-                     <div className="eventDescription">
-                        <p className="single-event-p single-event-name">{event.name} </p>
-                        <p className="single-event-p single-event-desc">
-                           description will go in here
-                        </p>
-                        <div className="orgAndDate">
-                           <p className="single-event-p single-event-org">{event.organization}</p>
-                           <p className="single-event-p single-event-date">2020-3-15</p>
-                        </div>
-                        <img
-                           src={serverURL + "/" + event.img}
-                           alt="event"
-                           className="single-event-img"></img>
-                        <div className="details-button">
-                           <EventDetails props={{ event: event }} />
+                  <AnimateOnChange>
+                     <div key={event.id} className="single-event">
+                        <div className="eventDescription">
+                           <p className="single-event-p single-event-name">{event.name} </p>
+                           <p className="single-event-p single-event-desc">
+                              description will go in here
+                           </p>
+                           <div className="orgAndDate">
+                              <p className="single-event-p single-event-org">
+                                 {event.organization}
+                              </p>
+                              <p className="single-event-p single-event-date">2020-3-15</p>
+                           </div>
+                           <img
+                              src={serverURL + "/" + event.img}
+                              alt="event"
+                              className="single-event-img"></img>
+                           <div className="details-button">
+                              <EventDetails props={{ event: event }} />
+                           </div>
                         </div>
                      </div>
-                  </div>
+                  </AnimateOnChange>
                ))}
             </div>
          </div>

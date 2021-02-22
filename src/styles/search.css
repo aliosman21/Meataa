@@ -11,6 +11,7 @@
       ". nextprev .";
    background-color: #f2f2f0;
 }
+
 .nextPrevBtns {
    grid-area: nextprev;
    display: flex;
@@ -28,7 +29,7 @@
 }
 .single-event {
    width: 100%;
-   height: 10%;
+   height: 100%;
    margin-bottom: 5%;
 }
 .eventDescription {
