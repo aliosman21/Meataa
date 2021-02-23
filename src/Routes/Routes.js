@@ -9,6 +9,7 @@ import Navigation from "../components/navigation";
 import Search from "../views/Search";
 import MyEvents from "../views/MyEvents";
 import AllJobs from "../views/allJobs";
+import addNewTag from "../views/addTags";
 import EventVolunteer from "../views/eventVolunteer";
 import ChangeInfo from "../views/InfoChange";
 import NewEvent from "../views/NewEvent";
@@ -28,6 +29,7 @@ function Routes() {
                <Route exact path="/Register" component={Register} />
                <Route exact path="/allJobs" component={AllJobs} />
                <Route exact path="/Search" component={Search} />
+               <Route exact path="/addNewTag" component={addNewTag} />
                <Route exact path="/MyEvents" component={MyEvents} />
                <Route exact path="/setInfo" component={ChangeInfo} />
                <Route exact path="/newEvent" component={NewEvent} />

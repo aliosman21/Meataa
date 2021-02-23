@@ -39,7 +39,7 @@
    grid-area: registerForm;
    display: grid;
    width: 50%;
-   height: 85%;
+   height: 90%;
    grid-template-rows: 100%;
    grid-template-columns: 100%;
    justify-self: center;

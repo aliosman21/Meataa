@@ -5,6 +5,7 @@ import serverURL from "../Utils/global";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { MDBDataTableV5, MDBBtn, MDBRating, MDBBadge, MDBNavItem, MDBNavLink } from "mdbreact";
+import { Rating } from "semantic-ui-react";
 import { data } from "jquery";
 
 export default function EventVolunteer(props) {
@@ -37,8 +38,9 @@ export default function EventVolunteer(props) {
       },
    ]);
 
-   const handleStars = (dataRow, val) => {
-      console.log(data);
+   const handleStars = (dataRow, event) => {
+      console.log(dataRow);
+      console.log(event.target.ariaPosInSet);
       //console.log(eventDetails);
       const token = Cookies.getJSON("session").token;
       const config = {
@@ -47,12 +49,13 @@ export default function EventVolunteer(props) {
       const bodyParameters = {
          job_id: eventDetails.id,
          volunteer_id: dataRow.id,
-         rating: val.value,
+         rating: event.target.ariaPosInSet,
       };
       //console.log(bodyParameters);
       axios
          .post(serverURL + "/organization/ratevolunteer", bodyParameters, config)
          .then(function (response) {
+            console.log(response);
             //window.location.href = "EventVolunteer";
          })
          .catch(console.log);
@@ -103,6 +106,7 @@ export default function EventVolunteer(props) {
       if (starRates.length === dataCallback.length) {
          let i = 0;
          dataCallback.forEach((dataRow) => {
+            console.log(dataRow);
             let tempObject = {
                userName: dataRow.name,
                userEmail: dataRow.email,
@@ -136,10 +140,16 @@ export default function EventVolunteer(props) {
                      {eventDetails.is_ended == "working" ? (
                         <MDBBadge color="success">قيد العمل</MDBBadge>
                      ) : (
-                        <MDBRating
+                        <Rating
+                           maxRating={5}
+                           size="huge"
+                           defaultRating={dataRow.rating}
+                           onRate={(event) => handleStars(dataRow, event)}
+                        />
+                        /*   <MDBRating
                            data={starRates[i]}
                            getValue={(val) => handleStars(dataRow, val)}
-                        />
+                        /> */
                      )}
                   </>
                ),

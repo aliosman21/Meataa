@@ -51,6 +51,7 @@ export default function InfoChange() {
       setMobile1(event.target.value);
    };
    const editUserData = async (e) => {
+      e.preventDefault();
       const token = Cookies.getJSON("session").token;
       const config = {
          headers: { Authorization: `bearer ${token}` },
@@ -111,7 +112,7 @@ export default function InfoChange() {
 
    return (
       <>
-         <Banner data={{ header: "تسجيل حساب جديد" }} />
+         <Banner data={{ header: "تعديل البيانات" }} />
          <div className="custom-content-register">
             <div className="custom-container-register">
                <MDBContainer>

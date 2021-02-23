@@ -29,6 +29,7 @@ export default function Search() {
    const [events, setEvents] = useState([]);
    const [usedTags, setUsedTags] = useState([]);
    const [cities, setCities] = useState([]);
+   const [usedCityName, setUsedCityName] = useState("");
    const [usedCity, setUsedCity] = useState("");
    useEffect(() => {
       getTags().then((tagList) => {
@@ -58,7 +59,7 @@ export default function Search() {
    }, [cities]);
 
    useEffect(() => {
-      console.log(tag1);
+      //console.log(tag1);
       console.log(usedCity);
       queryEvents();
    }, [tag1, usedCity]);
@@ -68,6 +69,7 @@ export default function Search() {
       data.options.forEach((city) => {
          if (data.value == city.value) {
             setUsedCity(city.key);
+            setUsedCityName(city.name);
          }
       });
    };
@@ -95,7 +97,7 @@ export default function Search() {
          tags: usedTags,
          city_id: usedCity,
       };
-      console.log(bodyParameters);
+      //console.log(bodyParameters);
       // console.log(usedCity);
       axios
          .post(serverURL + "/jobs/jobsbytags", bodyParameters, config)
@@ -124,7 +126,7 @@ export default function Search() {
                         key={cities.key}
                         options={cities}
                         className="mt-3"
-                        value={usedCity}
+                        value={usedCityName}
                         onChange={onChangeCity}
                      />
                   </span>
@@ -163,27 +165,6 @@ export default function Search() {
                         </MDBCardBody>
                      </MDBCard>
                   </MDBCol>
-                  /* <div key={event.id} className="single-event">
-                        <div className="eventDescription">
-                           <p className="single-event-p single-event-name">{event.name} </p>
-                           <p className="single-event-p single-event-desc">
-                              description will go in here
-                           </p>
-                           <div className="orgAndDate">
-                              <p className="single-event-p single-event-org">
-                                 {event.organization}
-                              </p>
-                              <p className="single-event-p single-event-date">2020-3-15</p>
-                           </div>
-                           <img
-                              src={serverURL + "/" + event.img}
-                              alt="event"
-                              className="single-event-img"></img>
-                           <div className="details-button">
-                              <EventDetails props={{ event: event }} />
-                           </div>
-                        </div>
-                     </div> */
                ))}
             </div>
          </div>

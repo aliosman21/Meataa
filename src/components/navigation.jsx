@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
 MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBContainer, MDBIcon } from "mdbreact";
 import Cookies from 'js-cookie';
+import "../styles/navigation.css"
 
 class NavbarPage extends Component {
    constructor(props) {
@@ -28,18 +29,23 @@ toggleCollapse = collapseID => () =>
 
 render() {
   return (
-      <MDBNavbar color="info-color" dark expand="md" style ={{marginBottom:"0"}} >
+      <MDBNavbar color="info-color" dark expand="md" style ={{marginBottom:"0"}} className="customNavibar">
         <MDBNavbarBrand href="/"> 
          <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt="" />
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse("navbarCollapse3")} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.collapseID} navbar>
+          
           <MDBNavbarNav right>
              {Cookies.getJSON('session')?
              
-             (<>
-
-               {Cookies.getJSON('session').type === "Organization"?(<>
+             ( 
+             <>
+                         <MDBNavItem style ={{fontSize:"18px"}}>
+              <MDBNavLink className="waves-effect waves-light" to="/addNewTag">
+                <MDBIcon icon="hands-helping" className="mr-1" />اضافه فئه</MDBNavLink>
+            </MDBNavItem>
+                            {Cookies.getJSON('session').type === "Organization"?(<>
               <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/newEvent">
                 <MDBIcon icon="plus" className="mr-1" />عمل جديد</MDBNavLink>
@@ -62,10 +68,6 @@ render() {
               <MDBNavLink className="waves-effect waves-light" to="/" onClick={this.logoutHandler}>
                 <MDBIcon icon="sign-out-alt" className="mr-1" />تسجيل الخروج</MDBNavLink>
             </MDBNavItem>
-
-
-
-             
              </>)
              
              :(<>

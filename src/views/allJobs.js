@@ -21,116 +21,37 @@ export default function AllJobs() {
          width: 150,
       },
       {
-         label: "التقييم",
-         field: "rating",
+         label: "المدينه",
+         field: "city",
          width: 150,
       },
    ]);
 
-   const handleStars = (dataRow, val) => {
-      console.log(data);
-      //console.log(eventDetails);
-      const token = Cookies.getJSON("session").token;
-      const config = {
-         headers: { Authorization: `bearer ${token}` },
-      };
-      const bodyParameters = {
-         job_id: eventDetails.id,
-         volunteer_id: dataRow.id,
-         rating: val.value,
-      };
-      //console.log(bodyParameters);
-      axios
-         .post(serverURL + "/organization/ratevolunteer", bodyParameters, config)
-         .then(function (response) {
-            //window.location.href = "EventVolunteer";
-         })
-         .catch(console.log);
-   };
-
-   useEffect(() => {
-      if (starRates.length === dataCallback.length) {
-         let i = 0;
-         dataCallback.forEach((dataRow) => {
-            let tempObject = {
-               eventInfo: dataRow.name,
-               orgInfo: dataRow.email,
-               rating: (
-                  <>
-                     {eventDetails.is_ended == "working" ? (
-                        <MDBBadge color="success">قيد العمل</MDBBadge>
-                     ) : (
-                        <MDBRating
-                           data={starRates[i]}
-                           getValue={(val) => handleStars(dataRow, val)}
-                        />
-                     )}
-                  </>
-               ),
-            };
-            i++;
-            setMyEventsRows((oldArray) => [...oldArray, tempObject]);
-         });
-         //console.log(starRates);
-      }
-   }, [starRates]);
-
    const transformData = (data) => {
+      console.log(data);
       data.forEach((dataRow) => {
-         let rates = [
-            {
-               tooltip: "Very Bad",
-            },
-            {
-               tooltip: "Poor",
-            },
-            {
-               tooltip: "Ok",
-            },
-            {
-               tooltip: "Good",
-            },
-            {
-               tooltip: "Excellent",
-            },
-         ];
-         if (dataRow.rating == -1) {
-            setStarRates((oldArray) => [...oldArray, rates]);
-         } else {
-            let i = 0;
-            rates.forEach((rate) => {
-               if (dataRow.rating - 1 == i) {
-                  rate["choosed"] = true;
-               }
-               i++;
-            });
-
-            setStarRates((oldArray) => [...oldArray, rates]);
-         }
+         let tempObject = {
+            eventInfo: dataRow.name,
+            orgInfo: dataRow.organization,
+            city: dataRow.city,
+         };
+         setMyEventsRows((oldArray) => [...oldArray, tempObject]);
       });
    };
-   useEffect(() => {
-      queryMyWork();
-   }, []);
 
-   const queryMyWork = () => {
+   useEffect(() => {
       const token = Cookies.getJSON("session").token;
       const config = {
          headers: { Authorization: `bearer ${token}` },
       };
-
-      //console.log(eventDetails);
-      /*       const bodyParameters = {
-         job_id: eventDetails.id,
-      };
       axios
-         .post(serverURL + "/jobs/volunteers", bodyParameters, config)
+         .get(serverURL + "/userdata", config)
          .then(function (response) {
-            setDataCallback(response.data);
-            transformData(response.data);
+            //console.log(response.data.data.jobs);
+            transformData(response.data.data.jobs);
          })
-         .catch(console.log); */
-   };
+         .catch(console.log);
+   }, []);
 
    return (
       <>
