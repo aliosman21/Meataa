@@ -111,7 +111,6 @@ export default function Register() {
    return (
       <>
          <Banner data={{ header: "تسجيل حساب جديد" }} />
-         <SVG />
          <div className="custom-content-register">
             <div className="custom-container-register">
                <MDBContainer>

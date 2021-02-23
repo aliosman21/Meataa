@@ -47,6 +47,9 @@ export default function Profile() {
    const history = useHistory();
    const ChangeInfo = () => history.push("/setInfo");
 
+   const allJobs = () => {
+      history.push("/allJobs");
+   };
    const [data] = useState(() => getDataFromCookie());
 
    return Cookies.getJSON("session") ? (
@@ -58,7 +61,7 @@ export default function Profile() {
             <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
                <div className="FrontCard">
                   <div className="information">
-                     <p className="profileFont">الاسم: {data.name}</p>
+                     <p className="profileFont"> {data.name} :الاسم</p>
                      <p className="profileFont">{data.email} :البريد الالكتروني</p>
                      <p className="profileFont">رقم الهاتف:{data.mobile}</p>
                      {Cookies.getJSON("session").type == "Volunteer" ? (
@@ -84,6 +87,7 @@ export default function Profile() {
                      <p>عمل2</p>
                   </div>
                   <Button content="المعلومات الشخصيه" primary onClick={handleFlip} />
+                  <Button content="عرض كل الأعمال" primary onClick={allJobs} />
                </div>
             </ReactCardFlip>
          </div>

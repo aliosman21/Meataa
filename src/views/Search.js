@@ -5,6 +5,7 @@ import Contact from "../components/contact";
 import { Button } from "semantic-ui-react";
 import Banner from "../components/banner";
 import JsonData from "../data/data.json";
+import { Select } from "semantic-ui-react";
 import {
    MDBBtn,
    MDBCard,
@@ -27,18 +28,47 @@ export default function Search() {
    const [tag1, setTag1] = useState([]);
    const [events, setEvents] = useState([]);
    const [usedTags, setUsedTags] = useState([]);
+   const [cities, setCities] = useState([]);
+   const [usedCity, setUsedCity] = useState("");
    useEffect(() => {
       getTags().then((tagList) => {
          tag1.length = tagList.length; // set array size
          tag1.fill(false);
          setTags(tagList);
       });
+      axios
+         .get(serverURL + "/cities/list")
+         .then(function (response) {
+            //console.log(response.data.message);
+            setCities(response.data.message);
+         })
+         .catch(console.log);
    }, []);
 
    useEffect(() => {
-      queryEvents();
-   }, [tag1]);
+      //console.log(tags);
+      cities.forEach((city) => {
+         Object.defineProperty(city, "key", Object.getOwnPropertyDescriptor(city, "id"));
+         delete city["id"];
+         Object.defineProperty(city, "text", Object.getOwnPropertyDescriptor(city, "name"));
+         delete city["name"];
+         city.value = city["text"];
+      });
+      // console.log(tags);
+   }, [cities]);
 
+   useEffect(() => {
+      queryEvents();
+   }, [tag1, usedCity]);
+
+   const onChangeCity = (e, data) => {
+      //console.log(data);
+      data.options.forEach((city) => {
+         if (data.value == city.value) {
+            setUsedCity(city.key);
+         }
+      });
+   };
    const switchActivity = (e, id) => {
       e.preventDefault();
       setTag1((prevState) => prevState.map((item, idx) => (idx === id ? !item : item)));
@@ -61,18 +91,21 @@ export default function Search() {
 
       const bodyParameters = {
          tags: usedTags,
+         city_id: usedCity,
       };
-      //console.log(usedTags);
+      console.log(usedTags);
+      console.log(usedCity);
       axios
          .post(serverURL + "/jobs/jobsbytags", bodyParameters, config)
          .then(function (response) {
             //alert("Success");
             setEvents(response.data.data);
             // console.log(response.data.data);
-            console.log(events);
+            //console.log(events);
          })
          .catch(console.log);
       setUsedTags([]);
+      setUsedCity("");
       //console.log(bodyParameters);
       //console.log(token);
    };
@@ -83,17 +116,28 @@ export default function Search() {
          <div className="custom-search-content">
             <div className="searchTagsList">
                <div className="tagsHolder">
-                  {tags.map((tag) => (
-                     <Button
-                        key={tag.id}
-                        className="customSearchTagBtn"
-                        size="mini"
-                        toggle
-                        active={tag1[tag.id - 1]}
-                        onClick={(e) => switchActivity(e, tag.id - 1)}>
-                        {tag.name}
-                     </Button>
-                  ))}
+                  <span className="mr-3">
+                     <Select
+                        placeholder="حدد مكان الفعاليه"
+                        key={cities.key}
+                        options={cities}
+                        className="mt-3"
+                        onChange={onChangeCity}
+                     />
+                  </span>
+                  <span>
+                     {tags.map((tag) => (
+                        <Button
+                           key={tag.id}
+                           className="customSearchTagBtn"
+                           size="mini"
+                           toggle
+                           active={tag1[tag.id - 1]}
+                           onClick={(e) => switchActivity(e, tag.id - 1)}>
+                           {tag.name}
+                        </Button>
+                     ))}
+                  </span>
                </div>
             </div>
             <div className="eventsList">

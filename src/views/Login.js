@@ -63,7 +63,6 @@ export default class Login extends Component {
       return (
          <>
             <Banner data={{ header: "تسجيل الدخول" }} />
-            <SVG />
             <div className="custom-content-login">
                <MDBContainer>
                   <MDBRow>
