@@ -58,6 +58,8 @@ export default function Search() {
    }, [cities]);
 
    useEffect(() => {
+      console.log(tag1);
+      console.log(usedCity);
       queryEvents();
    }, [tag1, usedCity]);
 
@@ -93,8 +95,8 @@ export default function Search() {
          tags: usedTags,
          city_id: usedCity,
       };
-      console.log(usedTags);
-      console.log(usedCity);
+      console.log(bodyParameters);
+      // console.log(usedCity);
       axios
          .post(serverURL + "/jobs/jobsbytags", bodyParameters, config)
          .then(function (response) {
@@ -105,7 +107,7 @@ export default function Search() {
          })
          .catch(console.log);
       setUsedTags([]);
-      setUsedCity("");
+      //setUsedCity("");
       //console.log(bodyParameters);
       //console.log(token);
    };
@@ -118,10 +120,11 @@ export default function Search() {
                <div className="tagsHolder">
                   <span className="mr-3">
                      <Select
-                        placeholder="حدد مكان الفعاليه"
+                        placeholder={usedCity}
                         key={cities.key}
                         options={cities}
                         className="mt-3"
+                        value={usedCity}
                         onChange={onChangeCity}
                      />
                   </span>

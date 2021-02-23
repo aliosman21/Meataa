@@ -193,6 +193,7 @@ export default function EventVolunteer(props) {
    }, []);
 
    const queryMyVolunteers = () => {
+      console.log(props);
       const token = Cookies.getJSON("session").token;
       const config = {
          headers: { Authorization: `bearer ${token}` },
@@ -213,6 +214,7 @@ export default function EventVolunteer(props) {
       axios
          .post(serverURL + "/jobs/volunteers", bodyParameters, config)
          .then(function (response) {
+            console.log(response);
             setDataCallback(response.data);
             transformData(response.data);
          })

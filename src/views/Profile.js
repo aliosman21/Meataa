@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/profile.css";
 import Banner from "../components/banner";
 import serverURL from "../Utils/global";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 import ReactCardFlip from "react-card-flip";
+import axios from "axios";
 import { Button } from "semantic-ui-react";
 import SVG from "../components/svg";
 export default function Profile() {
@@ -14,7 +15,7 @@ export default function Profile() {
       // will need to pass the cookie to the profile page when the backend is done
 
       let profileData = Cookies.getJSON("session");
-      console.log(profileData);
+      //console.log(profileData);
 
       let data = {
          name: profileData.name,
@@ -40,6 +41,20 @@ export default function Profile() {
       setIsFlipped(!isFlipped);
    };
 
+   useEffect(() => {
+      const token = Cookies.getJSON("session").token;
+      const config = {
+         headers: { Authorization: `bearer ${token}` },
+      };
+      if (!isFlipped) {
+         axios
+            .get(serverURL + "/userdata", config)
+            .then(function (response) {
+               console.log(response);
+            })
+            .catch(console.log);
+      }
+   }, [isFlipped]);
    const getAllAchievments = () => {
       console.log("Will go to achievements page");
    };
@@ -55,7 +70,6 @@ export default function Profile() {
    return Cookies.getJSON("session") ? (
       <>
          <Banner data={{ header: "الحساب الشخصي" }} />
-         <SVG />
          <div className="custom-content-profile">
             <div></div>
             <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
@@ -76,9 +90,13 @@ export default function Profile() {
                   <div className="editButtonHolder">
                      <Button content="تحديث البيانات" secondary onClick={ChangeInfo} />
                   </div>
-                  <div className="flipButtonHolder">
-                     <Button content="الأعمال" primary onClick={handleFlip} />
-                  </div>
+                  {Cookies.getJSON("session").type == "Volunteer" ? (
+                     <div className="flipButtonHolder">
+                        <Button content="الأعمال" primary onClick={handleFlip} />
+                     </div>
+                  ) : (
+                     <></>
+                  )}
                </div>
 
                <div className="BackCard">
