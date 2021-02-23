@@ -29,6 +29,11 @@
    font-size: 25px;
    font-family: CustomFont;
 }
+.register-label-button {
+   font-family: CustomFont !important;
+   font-weight: bold !important;
+   font-size: 13px !important;
+}
 .custom-container-register {
    z-index: 1;
    grid-area: registerForm;

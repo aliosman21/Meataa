@@ -11,8 +11,10 @@ import "../styles/newEvent.css";
 
 export default function Profile() {
    const [tags, setTags] = useState([]);
+   const [cities, setCities] = useState([]);
    const [img, setImg] = useState("");
    const [usedTag, setUsedTag] = useState("");
+   const [usedCity, setUsedCity] = useState("");
    const [title, setTitle] = useState("");
    const [description, setDescription] = useState("");
    const [endDate, setEndDate] = useState("");
@@ -28,6 +30,15 @@ export default function Profile() {
       // console.log(endingDate);
       setEndDate(endingDate);
    };
+   const onChangeCity = (e, data) => {
+      //console.log(data);
+      data.options.forEach((city) => {
+         if (data.value == city.value) {
+            setUsedCity(city.key);
+         }
+      });
+      console.log(usedCity);
+   };
    const onChangeTag = (e, data) => {
       //console.log(data);
       data.options.forEach((tag) => {
@@ -41,7 +52,25 @@ export default function Profile() {
       getTags().then((tagList) => {
          setTags(tagList);
       });
+      axios
+         .get(serverURL + "/cities/list")
+         .then(function (response) {
+            //console.log(response.data.message);
+            setCities(response.data.message);
+         })
+         .catch(console.log);
    }, []);
+   useEffect(() => {
+      //console.log(tags);
+      cities.forEach((city) => {
+         Object.defineProperty(city, "key", Object.getOwnPropertyDescriptor(city, "id"));
+         delete city["id"];
+         Object.defineProperty(city, "text", Object.getOwnPropertyDescriptor(city, "name"));
+         delete city["name"];
+         city.value = city["text"];
+      });
+      // console.log(tags);
+   }, [cities]);
    useEffect(() => {
       //console.log(tags);
       tags.forEach((element) => {
@@ -65,19 +94,20 @@ export default function Profile() {
          description: description,
          end_date: endDate,
          img: img,
+         city_id: usedCity,
          tag_id: usedTag,
       };
       console.log(bodyParameters);
       axios
          .post(serverURL + "/jobs/store", bodyParameters, config)
          .then(function (response) {
-            alert("Success");
+            alert("تم تسجيل العمل بنجاح");
             window.location.href = "/";
             console.log(response);
          })
          .catch(console.log);
-      console.log(bodyParameters);
-      console.log(token);
+      //console.log(bodyParameters);
+      //console.log(token);
    };
 
    const getBase64 = async (e) => {
@@ -150,10 +180,17 @@ export default function Profile() {
                            </div>
                            <Select
                               placeholder="حدد نوع الفعاليه"
+                              key={tags.key}
                               options={tags}
                               onChange={onChangeTag}
                            />
-
+                           <Select
+                              placeholder="حدد مكان الفعاليه"
+                              key={cities.key}
+                              options={cities}
+                              className="mt-3"
+                              onChange={onChangeCity}
+                           />
                            <p className="lead mt-3">
                               <MDBBtn
                                  color="primary"

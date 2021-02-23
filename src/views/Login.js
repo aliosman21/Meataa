@@ -33,27 +33,30 @@ export default class Login extends Component {
          password: this.state.password,
       };
 
-      axios.post(serverURL + "/login", loginData).then((res) => {
-         if (res.status === 200) {
-            Cookies.set("session", {
-               token: res.data[0].original.token,
-               email: res.data[1].email,
-               img: res.data[1].img,
-               NID: res.data[1].NID,
-               tags: res.data[1].tags,
-               name: res.data[1].name,
-               mobile2: res.data[1].mobile2,
-               mobile: res.data[1].mobile,
-               type: res.data[1].type,
-            });
-            console.log(res);
-            console.log("Cookie is");
-            console.log(Cookies.getJSON("session"));
-            window.location.href = "/";
-         } else {
-            alert("Something went wrong while logging in");
-         }
-      });
+      axios
+         .post(serverURL + "/login", loginData)
+         .then((res) => {
+            if (res.status === 200) {
+               Cookies.set("session", {
+                  token: res.data[0].original.token,
+                  email: res.data[1].email,
+                  img: res.data[1].img,
+                  NID: res.data[1].NID,
+                  tags: res.data[1].tags,
+                  name: res.data[1].name,
+                  mobile2: res.data[1].mobile2,
+                  mobile: res.data[1].mobile,
+                  type: res.data[1].type,
+               });
+               console.log(res);
+               console.log("Cookie is");
+               console.log(Cookies.getJSON("session"));
+               window.location.href = "/";
+            } else {
+               alert("حدث حطأ ما");
+            }
+         })
+         .catch(console.log);
    }
 
    render() {

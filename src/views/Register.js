@@ -69,7 +69,7 @@ export default function Register() {
          email: email,
          password: password,
          mobile: mobile,
-         mobile1: mobile1,
+         mobile2: mobile1,
          NID: NID,
          img: img,
          tags: usedTags,
@@ -79,16 +79,16 @@ export default function Register() {
       volunteer
          ? (requestURL = serverURL + "/volunteer/store")
          : (requestURL = serverURL + "/organization/store");
-      if (fullName && email && password && mobile && NID && img && usedTags) {
+      if (fullName && email && password && mobile && img && usedTags && (NID || mobile1)) {
          axios
             .post(requestURL, newEntity)
             .then(function (response) {
-               alert("registered Successfully");
+               alert("تم التسجيل بنجاح");
                window.location.href = "/";
                console.log(response);
             })
             .catch(function (error) {
-               alert("Failed");
+               alert("حدث خطأ ما");
                console.log(error);
             });
       } else {
@@ -124,8 +124,9 @@ export default function Register() {
                               toggle
                               type="button"
                               active={true}
+                              className="register-label-button"
                               onClick={switchVolunteer}>
-                              {volunteer ? "Volunteer" : "Organization"}
+                              {volunteer ? "متطوع" : "مبادره"}
                            </Button>
                            <div className="">
                               <MDBInput
