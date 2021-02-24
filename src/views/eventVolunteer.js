@@ -6,6 +6,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { MDBDataTableV5, MDBBtn, MDBRating, MDBBadge, MDBNavItem, MDBNavLink } from "mdbreact";
 import { Rating } from "semantic-ui-react";
+import EventDetails from "../components/VolunteerDetails";
 import { data } from "jquery";
 
 export default function EventVolunteer(props) {
@@ -56,7 +57,6 @@ export default function EventVolunteer(props) {
          .post(serverURL + "/organization/ratevolunteer", bodyParameters, config)
          .then(function (response) {
             console.log(response);
-            //window.location.href = "EventVolunteer";
          })
          .catch(console.log);
    };
@@ -104,11 +104,14 @@ export default function EventVolunteer(props) {
 
    useEffect(() => {
       if (starRates.length === dataCallback.length) {
-         let i = 0;
          dataCallback.forEach((dataRow) => {
             console.log(dataRow);
             let tempObject = {
-               userName: dataRow.name,
+               userName: (
+                  <div>
+                     <EventDetails props={{ vol: dataRow }} />
+                  </div>
+               ),
                userEmail: dataRow.email,
                userMobile: dataRow.mobile,
                active: (
@@ -154,7 +157,7 @@ export default function EventVolunteer(props) {
                   </>
                ),
             };
-            i++;
+
             setMyEventsRows((oldArray) => [...oldArray, tempObject]);
          });
          //console.log(starRates);

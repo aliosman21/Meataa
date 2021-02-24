@@ -8,46 +8,19 @@ import JsonData from "../data/data.json";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { MDBDataTableV5, MDBBtn, MDBRating, MDBBadge, MDBNavItem, MDBNavLink } from "mdbreact";
-/*
-export default function MyEvent() {
-   return (
-      <div className="eventsHolder">
-         <div className="eventsTable">table here</div>
-      </div>
-   );
-}
- */
 
 export default function MyEvents() {
-   /*
-   const handleStars = (val) => {
-      //console.log(val);
-   };
-   const [basic] = useState([
-      {
-         tooltip: "Very Bad",
-      },
-      {
-         tooltip: "Poor",
-      },
-      {
-         tooltip: "Ok",
-      },
-      {
-         tooltip: "Good",
-      },
-      {
-         tooltip: "Excellent",
-      },
-   ]);
- */
-
    const [myEventsRows, setMyEventsRows] = useState([]);
    const [myEventsColumns, setMyEventsColumns] = useState([
       { label: "اسم الفعاليه", field: "eventName", width: 150 },
       {
-         label: "تاريخ الانتهاء",
+         label: "تاريخ انتهاء الفعاليه",
          field: "endDate",
+         width: 150,
+      },
+      {
+         label: "تاريخ انتهاء التسجيل",
+         field: "endDateReg",
          width: 150,
       },
       {
@@ -86,6 +59,7 @@ export default function MyEvents() {
          let tempObject = {
             eventName: dataRow.name,
             endDate: dataRow.end_date,
+            endDateReg: "someval",
             active: (
                <>
                   {dataRow.is_ended == "working" ? (
@@ -143,12 +117,3 @@ export default function MyEvents() {
       </>
    );
 }
-/*          <MDBDataTable
-            className="My-events-font"
-            striped
-            borderless
-            entriesLabel="المبادرات"
-            searchLabel="بحث"
-            small
-            data={data}
-         />; */

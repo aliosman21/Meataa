@@ -63,7 +63,7 @@ const EventDetails = (props) => {
       </Modal.Content>
       <Modal.Actions>
         <Button onClick={() =>  setOpen(false)}>الغاء</Button>
-         {Cookies.getJSON('session').type !== "Organization"?( <Button onClick={() => {
+         {Cookies.getJSON('session').type == "Volunteer"?( <Button onClick={() => {
            registerToEvent();
           setOpen(false)}} positive>
           تسجيل

@@ -41,11 +41,15 @@ render() {
              
              ( 
              <>
-                         <MDBNavItem style ={{fontSize:"18px"}}>
+                         
+            {Cookies.getJSON('session').type === "admin"?(<>
+            
+            <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/addNewTag">
                 <MDBIcon icon="hands-helping" className="mr-1" />اضافه فئه</MDBNavLink>
             </MDBNavItem>
-                            {Cookies.getJSON('session').type === "Organization"?(<>
+            </>):(<></>)}
+            {Cookies.getJSON('session').type === "Organization"?(<>
               <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/newEvent">
                 <MDBIcon icon="plus" className="mr-1" />عمل جديد</MDBNavLink>
@@ -71,6 +75,10 @@ render() {
              </>)
              
              :(<>
+             <MDBNavItem style ={{fontSize:"18px"}}>
+              <MDBNavLink className="waves-effect waves-light" to="/search">
+                <MDBIcon icon="search" className="mr-1" />بحث</MDBNavLink>
+            </MDBNavItem>
                <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/login">
                 <MDBIcon icon="sign-in-alt" className="mr-1" />تسجيل الدخول</MDBNavLink>

@@ -18,6 +18,7 @@ export default function Profile() {
    const [title, setTitle] = useState("");
    const [description, setDescription] = useState("");
    const [endDate, setEndDate] = useState("");
+   const [endDateReg, setEndDateReg] = useState("");
 
    const onChangeDescription = (event) => {
       setDescription(event.target.value);
@@ -27,8 +28,12 @@ export default function Profile() {
    };
    const onChangeEndDate = (event, data) => {
       let endingDate = new Date(data.value).toISOString().slice(0, 10);
-      // console.log(endingDate);
       setEndDate(endingDate);
+   };
+   const onChangeEndDateReg = (event, data) => {
+      let endingDate = new Date(data.value).toISOString().slice(0, 10);
+      console.log(endingDate);
+      setEndDate(setEndDateReg);
    };
    const onChangeCity = (e, data) => {
       //console.log(data);
@@ -167,6 +172,19 @@ export default function Profile() {
                            </div>
                            <div className="mb-4">
                               <SemanticDatepicker
+                                 onChange={onChangeEndDateReg}
+                                 datePickerOnly
+                                 pointing="top left"
+                                 format="YYYY-MM-DD"
+                                 filterDate={(date) => {
+                                    const now = new Date();
+                                    return date >= now;
+                                 }}
+                              />
+                              <span>تاريخ انتهاء التسجيل</span>
+                           </div>
+                           <div className="mb-4">
+                              <SemanticDatepicker
                                  onChange={onChangeEndDate}
                                  datePickerOnly
                                  pointing="top left"
@@ -176,7 +194,7 @@ export default function Profile() {
                                     return date >= now;
                                  }}
                               />
-                              <span> تاريخ الانتهاء</span>
+                              <span>تاريخ انتهاء الفعاليه</span>
                            </div>
                            <Select
                               placeholder="حدد نوع الفعاليه"
