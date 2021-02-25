@@ -3,10 +3,8 @@ import axios from "axios";
 import serverURL from "../Utils/global";
 import Cookies from "js-cookie";
 import Banner from "../components/banner";
-import JsonData from "../data/data.json";
 import "../styles/login.css";
-import Contact from "../components/contact";
-import SVG from "../components/svg";
+import Footer from "../components/footer";
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
 export default class Login extends Component {
@@ -55,10 +53,10 @@ export default class Login extends Component {
                      expires: in1Hour,
                   }
                );
-               console.log(res);
+               console.log(res.data);
                console.log("Cookie is");
                console.log(Cookies.getJSON("session"));
-               window.location.href = "/";
+               // window.location.href = "/";
             } else {
                alert("حدث حطأ ما");
             }
@@ -121,7 +119,7 @@ export default class Login extends Component {
                   </MDBRow>
                </MDBContainer>
             </div>
-            <Contact data={JsonData} />
+            <Footer />
          </>
       );
    }

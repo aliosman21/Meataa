@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import serverURL from "../Utils/global";
-import Contact from "../components/contact";
+import Footer from "../components/footer";
 import { Button } from "semantic-ui-react";
 import Banner from "../components/banner";
 import JsonData from "../data/data.json";
@@ -114,7 +114,7 @@ export default function Search() {
       //console.log(token);
    };
 
-   return Cookies.getJSON("session") ? (
+   return (
       <>
          <Banner data={{ header: "الفعاليات الجديده" }} />
          <div className="custom-search-content">
@@ -168,10 +168,7 @@ export default function Search() {
                ))}
             </div>
          </div>
-         <Contact data={JsonData} />
+         <Footer />
       </>
-   ) : (
-      //404 page
-      <div></div>
    );
 }

@@ -4,12 +4,10 @@ import { MDBInput } from "mdbreact";
 import { Button } from "semantic-ui-react";
 import axios from "axios";
 import serverURL from "../Utils/global";
-import Contact from "../components/contact";
 import Banner from "../components/banner";
 import { MDBBtn, MDBIcon } from "mdbreact";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
-import JsonData from "../data/data.json";
-import SVG from "../components/svg";
+import Footer from "../components/footer";
 import "../styles/register.css";
 import { act } from "react-dom/test-utils";
 
@@ -236,7 +234,7 @@ export default function Register() {
                </MDBContainer>
             </div>
          </div>
-         <Contact data={JsonData} />
+         <Footer />
       </>
    );
 }

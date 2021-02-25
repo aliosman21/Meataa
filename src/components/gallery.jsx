@@ -6,9 +6,9 @@ export class Gallery extends Component {
       <div id="portfolio" className="text-center">
         <div className="container">
           <div className="section-title">
-            <h2>الأعمال</h2>
+            <h2>المجالات</h2>
             <p>
-              عرض بعض الأعمال
+              عرض بعض المجالات
             </p>
           </div>
           <div className="row">
@@ -18,12 +18,12 @@ export class Gallery extends Component {
                   <div className="hover-bg">
                     {" "}
                     <a
-                      href="img/portfolio/01-large.jpg"
+                      href="/Search"
                       title="Project Title"
                       data-lightbox-gallery="gallery1"
                     >
                       <div className="hover-text">
-                        <h4>Lorem Ipsum</h4>
+                        <h4>أنشطه ثقافيه</h4>
                       </div>
                       <img
                         src="img/portfolio/01-small.jpg"
@@ -39,12 +39,12 @@ export class Gallery extends Component {
                   <div className="hover-bg">
                     {" "}
                     <a
-                      href="img/portfolio/02-large.jpg"
+                      href="/Search"
                       title="Project Title"
                       data-lightbox-gallery="gallery1"
                     >
                       <div className="hover-text">
-                        <h4>Adipiscing Elit</h4>
+                        <h4>أنشطه ترفيهيه</h4>
                       </div>
                       <img
                         src="img/portfolio/02-small.jpg"
@@ -60,12 +60,12 @@ export class Gallery extends Component {
                   <div className="hover-bg">
                     {" "}
                     <a
-                      href="img/portfolio/03-large.jpg"
+                      href="/Search"
                       title="Project Title"
                       data-lightbox-gallery="gallery1"
                     >
                       <div className="hover-text">
-                        <h4>Lorem Ipsum</h4>
+                        <h4>تصميم جرافيك</h4>
                       </div>
                       <img
                         src="img/portfolio/03-small.jpg"
@@ -81,12 +81,12 @@ export class Gallery extends Component {
                   <div className="hover-bg">
                     {" "}
                     <a
-                      href="img/portfolio/04-large.jpg"
+                      href="/Search"
                       title="Project Title"
                       data-lightbox-gallery="gallery1"
                     >
                       <div className="hover-text">
-                        <h4>Lorem Ipsum</h4>
+                        <h4>تصوير فوتوجرافي</h4>
                       </div>
                       <img
                         src="img/portfolio/04-small.jpg"
@@ -102,12 +102,12 @@ export class Gallery extends Component {
                   <div className="hover-bg">
                     {" "}
                     <a
-                      href="img/portfolio/05-large.jpg"
+                      href="/Search"
                       title="Project Title"
                       data-lightbox-gallery="gallery1"
                     >
                       <div className="hover-text">
-                        <h4>Adipiscing Elit</h4>
+                        <h4>تنظيم فعاليات</h4>
                       </div>
                       <img
                         src="img/portfolio/05-small.jpg"
@@ -123,12 +123,12 @@ export class Gallery extends Component {
                   <div className="hover-bg">
                     {" "}
                     <a
-                      href="img/portfolio/06-large.jpg"
+                      href="/Search"
                       title="Project Title"
                       data-lightbox-gallery="gallery1"
                     >
                       <div className="hover-text">
-                        <h4>Dolor Sit</h4>
+                        <h4>توعية صحية</h4>
                       </div>
                       <img
                         src="img/portfolio/06-small.jpg"
@@ -144,12 +144,12 @@ export class Gallery extends Component {
                   <div className="hover-bg">
                     {" "}
                     <a
-                      href="img/portfolio/07-large.jpg"
+                      href="/Search"
                       title="Project Title"
                       data-lightbox-gallery="gallery1"
                     >
                       <div className="hover-text">
-                        <h4>Dolor Sit</h4>
+                        <h4>حماية البيئة</h4>
                       </div>
                       <img
                         src="img/portfolio/07-small.jpg"
@@ -165,12 +165,12 @@ export class Gallery extends Component {
                   <div className="hover-bg">
                     {" "}
                     <a
-                      href="img/portfolio/08-large.jpg"
+                      href="/Search"
                       title="Project Title"
                       data-lightbox-gallery="gallery1"
                     >
                       <div className="hover-text">
-                        <h4>Lorem Ipsum</h4>
+                        <h4>خدمة مجتمع</h4>
                       </div>
                       <img
                         src="img/portfolio/08-small.jpg"
@@ -186,12 +186,12 @@ export class Gallery extends Component {
                   <div className="hover-bg">
                     {" "}
                     <a
-                      href="img/portfolio/09-large.jpg"
+                      href="/Search"
                       title="Project Title"
                       data-lightbox-gallery="gallery1"
                     >
                       <div className="hover-text">
-                        <h4>Adipiscing Elit</h4>
+                        <h4>رعاية أيتام</h4>
                       </div>
                       <img
                         src="img/portfolio/09-small.jpg"

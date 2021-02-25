@@ -3,6 +3,7 @@ import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNav
 MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBContainer, MDBIcon } from "mdbreact";
 import Cookies from 'js-cookie';
 import "../styles/navigation.css"
+import image from "../styles/logo.png"
 
 class NavbarPage extends Component {
    constructor(props) {
@@ -14,10 +15,9 @@ class NavbarPage extends Component {
   }
 
  logoutHandler = async (e) =>{
-   // e.preventDefault();
-    //will call login Util
     console.log(e);
     Cookies.remove('session');
+    window.location.href="/"
 
 
   } 
@@ -30,11 +30,11 @@ toggleCollapse = collapseID => () =>
 render() {
   return (
       <MDBNavbar color="info-color" dark expand="md" style ={{marginBottom:"0"}} className="customNavibar">
-        <MDBNavbarBrand href="/"> 
-         <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt="" />
+        <MDBNavbarBrand href="/" className="logoCus" >  
+         <img src={image} height="110" width="125" alt="logo" className="imgLogo"/>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse("navbarCollapse3")} />
-        <MDBCollapse id="navbarCollapse3" isOpen={this.state.collapseID} navbar>
+        <MDBCollapse id="navbarCollapse3" isOpen={this.state.collapseID} navbar >
           
           <MDBNavbarNav right>
              {Cookies.getJSON('session')?

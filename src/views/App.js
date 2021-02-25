@@ -4,6 +4,7 @@ import Header from "../components/header";
 import Features from "../components/features";
 import About from "../components/about";
 import Gallery from "../components/gallery";
+import Footer from "../components/footer";
 import Team from "../components/Team";
 import Contact from "../components/contact";
 import JsonData from "../data/data.json";
@@ -25,7 +26,8 @@ class App extends Component {
             <Header data={this.state.landingPageData.Header} />
             <About data={this.state.landingPageData.About} />
             <Gallery />
-            <Contact data={this.state.landingPageData.Contact} />
+            {/* <Contact data={this.state.landingPageData.Contact} /> */}
+            <Footer />
          </div>
       );
    }

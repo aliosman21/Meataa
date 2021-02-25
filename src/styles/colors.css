@@ -1,0 +1,26 @@
+.cusColor {
+   background-color: #2d6187 !important;
+}
+
+.custom-teamtop {
+   visibility: hidden !important;
+}
+.cusFooterFont {
+   margin-bottom: 18px !important;
+}
+.custFooter {
+   background-image: url("../assets/footerBackGround.jpg") !important;
+   background-size: cover !important;
+   background-position: center !important;
+   position: relative;
+}
+
+@media only screen and (min-width: 150px) and (max-width: 800px) {
+   .custom-teamtop {
+      visibility: visible !important;
+   }
+   .custom-teambot {
+      visibility: hidden !important;
+      display: none;
+   }
+}

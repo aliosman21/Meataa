@@ -1,69 +1,60 @@
 {
-    "Header": {
-
-        "title": "مرحبا بكم",
-        "paragraph": "كلام"
-
-    },
-    "About": {
-        "paragraph": "شرح مميزات الموقع",
-        "Why": [
-            "كلام",
-            "كلام",
-            "كلام",
-            "كلام"
-        ],
-        "Why2": [
-            "كلام",
-            "كلام",
-            "كلام",
-            "كلام"
-        ]
-    },
-    "Team": [{
-            "img": "img/team/01.jpg",
-            "name": "علي",
-            "job": "اي حاجه"
-        },
-        {
-            "img": "img/team/02.jpg",
-            "name": "معتز",
-            "job": "معيد"
-        }, {
-            "img": "img/team/03.jpg",
-            "name": "منصور",
-            "job": "مش مفهوم"
-        },
-        {
-            "img": "img/team/04.jpg",
-            "name": "عبده",
-            "job": "حاجه كدا"
-        }
-    ],
-    "Contact": {
-        "address": "اكيد عنوان عربي",
-        "phone": "اكيد رقم عربي",
-        "email": "اكيد ايميل عربي"
-    },
-    "Features": [{
-            "icon": "fa fa-comments-o",
-            "title": "تطوع",
-            "text": "كلام"
-        },
-        {
-            "icon": "fa fa-bullhorn",
-            "title": "ساعد",
-            "text": "كلام"
-        },
-        {
-            "icon": "fa fa-group",
-            "title": "تطوع",
-            "text": "كلام"
-        },
-        {
-            "icon": "fa fa-magic",
-            "title": "تطوع",
-            "text": "كلام"
-        }
-    ]
+   "Header": {
+      "title": "مرحبا بكم",
+      "paragraph": "كلام"
+   },
+   "About": {
+      "paragraph": " إنشاء منصة توفر فرص تطوعية تخصصية ذات أثر اجتماعي واقتصادي تصل إلى كل متطوع يرغب بالمشاركة بها  بكل يسر وسهولة كما تمكنه من رصد وتوثيق الساعات التطوعية التي قام بها",
+      "Why": ["كلام", "كلام", "كلام", "كلام"],
+      "Why2": ["كلام", "كلام", "كلام", "كلام"]
+   },
+   "Team": [
+      {
+         "img": "img/team/01.jpg",
+         "name": "علي",
+         "job": "اي حاجه"
+      },
+      {
+         "img": "img/team/02.jpg",
+         "name": "معتز",
+         "job": "معيد"
+      },
+      {
+         "img": "img/team/03.jpg",
+         "name": "منصور",
+         "job": "مش مفهوم"
+      },
+      {
+         "img": "img/team/04.jpg",
+         "name": "عبده",
+         "job": "حاجه كدا"
+      }
+   ],
+   "Contact": {
+      "address": "اكيد عنوان عربي",
+      "phone": "اكيد رقم عربي",
+      "email": "اكيد ايميل عربي"
+   },
+   "Features": [
+      {
+         "icon": "fa fa-comments-o",
+         "title": "تطوع",
+         "text": "كلام"
+      },
+      {
+         "icon": "fa fa-bullhorn",
+         "title": "ساعد",
+         "text": "كلام"
+      },
+      {
+         "icon": "fa fa-group",
+         "title": "تطوع",
+         "text": "كلام"
+      },
+      {
+         "icon": "fa fa-magic",
+         "title": "تطوع",
+         "text": "كلام"
+      }
+   ]
 }

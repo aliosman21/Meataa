@@ -50,6 +50,7 @@ export default function MyEvents() {
          }, */
    useEffect(() => {
       queryMyEvents();
+      console.log(Cookies.getJSON("session").token);
    }, []);
 
    const transformData = (data) => {

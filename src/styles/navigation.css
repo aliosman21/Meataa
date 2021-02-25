@@ -1,3 +1,26 @@
 .customNavibar {
    height: 15% !important;
+   background-color: #eac837 !important;
+}
+.logoCus {
+   margin-left: 10%;
+   margin-bottom: 4%;
+}
+a {
+   font-size: 22px;
+}
+
+@media only screen and (min-width: 150px) and (max-width: 800px) {
+   .logoCus {
+      margin-left: 0;
+      margin-bottom: 1%;
+   }
+   .imgLogo {
+      width: 80px;
+      height: 50px;
+   }
+   a {
+      color: black !important;
+      z-index: 2;
+   }
 }
