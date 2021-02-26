@@ -24,8 +24,6 @@ export default class Login extends Component {
 
    loginHandler(e) {
       e.preventDefault();
-      console.log(this.state.email);
-      console.log(this.state.password);
       let loginData = {
          email: this.state.email,
          password: this.state.password,
@@ -53,15 +51,15 @@ export default class Login extends Component {
                      expires: in1Hour,
                   }
                );
-               console.log(res.data);
-               console.log("Cookie is");
-               console.log(Cookies.getJSON("session"));
-               // window.location.href = "/";
+
+               window.location.href = "/";
             } else {
-               alert("حدث حطأ ما");
+               console.log(res);
             }
          })
-         .catch(console.log);
+         .catch((err) => {
+            alert("خطأ في البيانات");
+         });
    }
 
    render() {

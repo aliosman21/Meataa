@@ -1,12 +1,9 @@
 //import "../styles/App.css";
 import React, { Component } from "react";
 import Header from "../components/header";
-import Features from "../components/features";
 import About from "../components/about";
 import Gallery from "../components/gallery";
 import Footer from "../components/footer";
-import Team from "../components/Team";
-import Contact from "../components/contact";
 import JsonData from "../data/data.json";
 
 class App extends Component {

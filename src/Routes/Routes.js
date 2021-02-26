@@ -17,6 +17,7 @@ import NewEvent from "../views/NewEvent";
 function Routes() {
    const [user, setUser] = useState(null);
    const providerUser = useMemo(() => ({ user, setUser }), [user, setUser]);
+   document.title = "معطاء";
    return (
       <>
          <Router>

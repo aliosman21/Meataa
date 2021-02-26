@@ -1,18 +1,15 @@
 import "../styles/MyEvents.css";
-
 import React, { useState, useEffect } from "react";
 import serverURL from "../Utils/global";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { MDBDataTableV5, MDBBtn, MDBRating, MDBBadge, MDBNavItem, MDBNavLink } from "mdbreact";
+import { MDBDataTableV5, MDBBtn, MDBBadge } from "mdbreact";
 import { Rating } from "semantic-ui-react";
-import EventDetails from "../components/VolunteerDetails";
-import { data } from "jquery";
+import VolDetails from "../components/VolunteerDetails";
 
 export default function EventVolunteer(props) {
    const [myEventsRows, setMyEventsRows] = useState([]);
    const [eventDetails, setMyEventDetails] = useState({});
-
    const [starRates, setStarRates] = useState([]);
    const [dataCallback, setDataCallback] = useState({});
    const [myEventsColumns, setMyEventsColumns] = useState([
@@ -25,6 +22,11 @@ export default function EventVolunteer(props) {
       {
          label: "رقم الهاتف",
          field: "userMobile",
+         width: 150,
+      },
+      {
+         label: "الرقم القومي",
+         field: "NID",
          width: 150,
       },
       {
@@ -109,11 +111,12 @@ export default function EventVolunteer(props) {
             let tempObject = {
                userName: (
                   <div>
-                     <EventDetails props={{ vol: dataRow }} />
+                     <VolDetails props={{ vol: dataRow }} />
                   </div>
                ),
                userEmail: dataRow.email,
                userMobile: dataRow.mobile,
+               NID: dataRow.NID,
                active: (
                   <>
                      {dataRow.status == "pending" && eventDetails.is_ended == "working" ? (
@@ -146,13 +149,10 @@ export default function EventVolunteer(props) {
                         <Rating
                            maxRating={5}
                            size="huge"
+                           icon="star"
                            defaultRating={dataRow.rating}
                            onRate={(event) => handleStars(dataRow, event)}
                         />
-                        /*   <MDBRating
-                           data={starRates[i]}
-                           getValue={(val) => handleStars(dataRow, val)}
-                        /> */
                      )}
                   </>
                ),
@@ -206,7 +206,6 @@ export default function EventVolunteer(props) {
    }, []);
 
    const queryMyVolunteers = () => {
-      console.log(props);
       const token = Cookies.getJSON("session").token;
       const config = {
          headers: { Authorization: `bearer ${token}` },
@@ -227,7 +226,7 @@ export default function EventVolunteer(props) {
       axios
          .post(serverURL + "/jobs/volunteers", bodyParameters, config)
          .then(function (response) {
-            console.log(response);
+            // console.log(response);
             setDataCallback(response.data);
             transformData(response.data);
          })

@@ -1,4 +1,5 @@
 .custom-contact {
+   margin-top: 0 !important;
    background-image: url("../assets/footerBackGround.jpg") !important;
    background-size: cover !important;
    background-position: center !important;

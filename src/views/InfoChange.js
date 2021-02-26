@@ -2,20 +2,19 @@ import React, { useState, useEffect } from "react";
 import { getTags } from "../Utils/getTagsUtil";
 import { MDBInput } from "mdbreact";
 import Cookies from "js-cookie";
-import { Button } from "semantic-ui-react";
 import axios from "axios";
 import serverURL from "../Utils/global";
 import Contact from "../components/contact";
+import { Dropdown } from "semantic-ui-react";
 import Banner from "../components/banner";
-import { MDBBtn, MDBIcon } from "mdbreact";
+import { MDBBtn } from "mdbreact";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import JsonData from "../data/data.json";
 import "../styles/register.css";
 
 export default function InfoChange() {
    const [tags, setTags] = useState([]);
-   const [tag1, setTag1] = useState([]);
-   const [usedTags] = useState([]);
+   const [usedTags, setUsedTags] = useState([]);
    const [img, setImg] = useState("");
    const [fullName, setFullName] = useState(Cookies.getJSON("session").name);
    const [NID, setNID] = useState(Cookies.getJSON("session").NID);
@@ -56,14 +55,7 @@ export default function InfoChange() {
       const config = {
          headers: { Authorization: `bearer ${token}` },
       };
-      let i = 0;
-      for (let tag in tag1) {
-         if (tag1[tag] === true) {
-            console.log(tag);
-            usedTags.push(tags[i]["id"]);
-         }
-         i++;
-      }
+
       const newEntity = {
          name: fullName,
          email: email,
@@ -74,9 +66,9 @@ export default function InfoChange() {
          img: img,
          tags: usedTags,
       };
-      console.log(newEntity);
+
       let requestURL;
-      Cookies.getJSON("session").type == "Volunteer"
+      Cookies.getJSON("session").type === "Volunteer"
          ? (requestURL = serverURL + "/volunteer/update")
          : (requestURL = serverURL + "/organization/update");
       if (fullName && email && password && mobile && usedTags && (NID || mobile1)) {
@@ -97,17 +89,22 @@ export default function InfoChange() {
       }
    };
 
-   const switchActivity = (e, id) => {
+   const switchActivity = (e, data) => {
       e.preventDefault();
-      setTag1((prevState) => prevState.map((item, idx) => (idx === id ? !item : item)));
+      setUsedTags([]);
+      for (let tagList in tags) {
+         for (let tag in data.value) {
+            if (tags[tagList].text === data.value[tag] && !usedTags.includes(tags[tagList].key)) {
+               usedTags.push(tags[tagList].key);
+            }
+         }
+      }
+      //console.log(usedTags);
    };
    useEffect(() => {
       getTags().then((tagList) => {
-         tag1.length = tagList.length; // set array size
-         tag1.fill(false);
          setTags(tagList);
       });
-      console.log(Cookies.getJSON("session"));
    }, []);
 
    return (
@@ -169,7 +166,7 @@ export default function InfoChange() {
                                  type="text"
                                  validate
                               />
-                              {Cookies.getJSON("session").type == "Volunteer" ? (
+                              {Cookies.getJSON("session").type === "Volunteer" ? (
                                  <MDBInput
                                     label="الرقم القومي"
                                     icon="address-card"
@@ -205,18 +202,17 @@ export default function InfoChange() {
                                  accept="image/*"
                                  className="image-button image-uploader"
                               />
-                              <div className="registerTagList mt-4 mb-4">
-                                 {tags.map((tag) => (
-                                    <Button
-                                       key={tag.id}
-                                       size="mini"
-                                       toggle
-                                       active={tag1[tag.id - 1]}
-                                       onClick={(e) => switchActivity(e, tag.id - 1)}>
-                                       {tag.name}
-                                    </Button>
-                                 ))}
-                              </div>
+                              <Dropdown
+                                 className="mt-3"
+                                 placeholder="الفعاليه"
+                                 options={tags}
+                                 search
+                                 selection
+                                 fluid
+                                 multiple
+                                 allowAdditions
+                                 onChange={(e, data) => switchActivity(e, data)}
+                              />
                            </div>
                            <div className="text-center ">
                               <MDBBtn

@@ -4,6 +4,7 @@
    width: 100%;
    grid-template-columns: 10% 80% 10%;
    grid-template-rows: 8% 2% 90%;
+
    grid-template-areas:
       ". searchTags . "
       ". . ."
@@ -33,6 +34,7 @@
 }
 .card-event {
    border-radius: 20px;
+   margin-bottom: 30px !important;
 }
 .customButtonFont {
    font-family: CustomFont !important;
@@ -68,4 +70,11 @@
    display: flex;
    justify-content: center;
    align-items: center;
+}
+
+@media only screen and (min-width: 150px) and (max-width: 800px) {
+   .eventsList {
+      display: block;
+      overflow: auto;
+   }
 }

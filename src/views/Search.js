@@ -1,31 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import serverURL from "../Utils/global";
 import Footer from "../components/footer";
-import { Button } from "semantic-ui-react";
 import Banner from "../components/banner";
-import JsonData from "../data/data.json";
-import { Select } from "semantic-ui-react";
-import {
-   MDBBtn,
-   MDBCard,
-   MDBCardBody,
-   MDBCardImage,
-   MDBCardTitle,
-   MDBCardText,
-   MDBCol,
-} from "mdbreact";
+import { Dropdown } from "semantic-ui-react";
 
+import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from "mdbreact";
 import axios from "axios";
 import EventDetails from "../components/EventDetails";
 import Cookies from "js-cookie";
-import { AnimateOnChange } from "react-animation";
 import { getTags } from "../Utils/getTagsUtil";
 import "../styles/search.css";
 
 export default function Search() {
    const [tags, setTags] = useState([]);
-   const [tag1, setTag1] = useState([]);
    const [events, setEvents] = useState([]);
    const [usedTags, setUsedTags] = useState([]);
    const [cities, setCities] = useState([]);
@@ -33,8 +20,6 @@ export default function Search() {
    const [usedCity, setUsedCity] = useState("");
    useEffect(() => {
       getTags().then((tagList) => {
-         tag1.length = tagList.length; // set array size
-         tag1.fill(false);
          setTags(tagList);
       });
       axios
@@ -55,44 +40,30 @@ export default function Search() {
          delete city["name"];
          city.value = city["text"];
       });
-      // console.log(tags);
    }, [cities]);
 
    useEffect(() => {
-      //console.log(tag1);
-      console.log(usedCity);
       queryEvents();
-   }, [tag1, usedCity]);
+   }, [usedCity]);
 
-   const onChangeCity = (e, data) => {
-      //console.log(data);
-      data.options.forEach((city) => {
-         if (data.value == city.value) {
-            setUsedCity(city.key);
-            setUsedCityName(city.name);
+   const switchActivity = (e, data) => {
+      for (let tagList in tags) {
+         for (let tag in data.value) {
+            if (tags[tagList].text === data.value[tag]) {
+               usedTags.push(tags[tagList].key);
+            }
          }
-      });
-   };
-   const switchActivity = (e, id) => {
-      e.preventDefault();
-      setTag1((prevState) => prevState.map((item, idx) => (idx === id ? !item : item)));
-      //queryEvents();
+      }
+      queryEvents();
    };
 
    const queryEvents = () => {
       //console.log(usedTags);
-      const token = Cookies.getJSON("session").token;
+      /*       const token = Cookies.getJSON("session").token;
       const config = {
          headers: { Authorization: `bearer ${token}` },
       };
-      let i = 0;
-      for (let tag in tag1) {
-         if (tag1[tag] === true && !usedTags.includes(tags[i]["id"])) {
-            usedTags.push(tags[i]["id"]);
-         }
-         i++;
-      }
-
+ */
       const bodyParameters = {
          tags: usedTags,
          city_id: usedCity,
@@ -100,18 +71,23 @@ export default function Search() {
       //console.log(bodyParameters);
       // console.log(usedCity);
       axios
-         .post(serverURL + "/jobs/jobsbytags", bodyParameters, config)
+         .post(serverURL + "/jobs/jobsbytags", bodyParameters)
          .then(function (response) {
-            //alert("Success");
             setEvents(response.data.data);
-            // console.log(response.data.data);
-            //console.log(events);
          })
          .catch(console.log);
       setUsedTags([]);
-      //setUsedCity("");
-      //console.log(bodyParameters);
-      //console.log(token);
+   };
+   const onChangeCity = (e, data) => {
+      if (data.value === "") setUsedCity("");
+      else {
+         data.options.forEach((city) => {
+            if (data.value === city.value) {
+               setUsedCity(city.key);
+               setUsedCityName(city.name);
+            }
+         });
+      }
    };
 
    return (
@@ -121,33 +97,35 @@ export default function Search() {
             <div className="searchTagsList">
                <div className="tagsHolder">
                   <span className="mr-3">
-                     <Select
-                        placeholder={usedCity}
-                        key={cities.key}
-                        options={cities}
+                     <Dropdown
                         className="mt-3"
-                        value={usedCityName}
+                        placeholder="المدينه"
+                        fluid
+                        selection
+                        clearable
+                        selection
+                        options={cities}
                         onChange={onChangeCity}
                      />
                   </span>
                   <span>
-                     {tags.map((tag) => (
-                        <Button
-                           key={tag.id}
-                           className="customSearchTagBtn"
-                           size="mini"
-                           toggle
-                           active={tag1[tag.id - 1]}
-                           onClick={(e) => switchActivity(e, tag.id - 1)}>
-                           {tag.name}
-                        </Button>
-                     ))}
+                     <Dropdown
+                        className="mt-3"
+                        placeholder="الفعاليه"
+                        options={tags}
+                        search
+                        selection
+                        fluid
+                        multiple
+                        allowAdditions
+                        onChange={(e, data) => switchActivity(e, data)}
+                     />
                   </span>
                </div>
             </div>
             <div className="eventsList">
                {events.map((event) => (
-                  <MDBCol style={{ maxWidth: "22rem" }}>
+                  <MDBCol key={event.id}>
                      <MDBCard className="card-event">
                         <MDBCardImage
                            className="img-fluid customImage"

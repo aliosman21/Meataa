@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Icon, Image, Modal } from 'semantic-ui-react'
+import { Button, Image, Modal } from 'semantic-ui-react'
 import "../styles/customEventDetails.css"
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -12,7 +12,7 @@ import {
 
 const EventDetails = (props) => {
   const [open, setOpen] = React.useState(false)
-
+//console.log(props.props.event)
   const registerToEvent = () =>{
   const token = Cookies.getJSON("session").token;
   const config = {
@@ -20,12 +20,12 @@ const EventDetails = (props) => {
       };
 
       //console.log("Ya hady")
-      //console.log(props.props.event)
+      
 
      const bodyParameters = {
          job_id: props.props.event.id
       }; 
-      console.log(bodyParameters);
+
       axios
          .post(serverURL + "/volunteer/request", bodyParameters, config)
          .then(function (response) {
@@ -52,7 +52,8 @@ const EventDetails = (props) => {
           <p className="textRight">
             {props.props.event.organization}
           </p>
-            <p className="textRight">تاريخ الانتهاء: {props.props.event.end_date}</p>
+          <p className="textRight">تاريخ انتهاء التسجيل: {props.props.event.registration_date}</p>
+            <p className="textRight">تاريخ انتهاء الفعاليه: {props.props.event.end_date}</p>
             <p className="textRight">المحتوي</p>
             <p className="descriptionFonter">{props.props.event.description}</p>
          <Image
@@ -63,7 +64,7 @@ const EventDetails = (props) => {
       </Modal.Content>
       <Modal.Actions>
         <Button onClick={() =>  setOpen(false)}>الغاء</Button>
-         {Cookies.getJSON('session').type == "Volunteer"?( <Button onClick={() => {
+         {Cookies.getJSON('session') && Cookies.getJSON('session').type === "Volunteer"?( <Button onClick={() => {
            registerToEvent();
           setOpen(false)}} positive>
           تسجيل

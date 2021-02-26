@@ -4,7 +4,7 @@ import Banner from "../components/banner";
 import serverURL from "../Utils/global";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
-import { MDBDataTableV5, MDBBtn, MDBRating, MDBBadge, MDBNavItem, MDBNavLink } from "mdbreact";
+import { MDBNavLink } from "mdbreact";
 import ReactCardFlip from "react-card-flip";
 import axios from "axios";
 import { Button } from "semantic-ui-react";
@@ -55,10 +55,10 @@ export default function Profile() {
             <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
                <div className="FrontCard">
                   <div className="information">
-                     <p className="profileFont"> {data.name} :الاسم</p>
+                     <p className="profileFont"> الاسم: {data.name} </p>
                      <p className="profileFont">{data.email} :البريد الالكتروني</p>
-                     <p className="profileFont">رقم الهاتف:{data.mobile}</p>
-                     {Cookies.getJSON("session").type == "Volunteer" ? (
+                     <p className="profileFont">رقم الهاتف: {data.mobile}</p>
+                     {Cookies.getJSON("session").type === "Volunteer" ? (
                         <p className="profileFont">الرقم القومي:{data.ssn}</p>
                      ) : (
                         <p className="profileFont">رقم اخر:{data.mobile}</p>
@@ -70,7 +70,7 @@ export default function Profile() {
                   <div className="editButtonHolder">
                      <Button content="تحديث البيانات" secondary onClick={ChangeInfo} />
                   </div>
-                  {Cookies.getJSON("session").type == "Volunteer" ? (
+                  {Cookies.getJSON("session").type === "Volunteer" ? (
                      <div className="flipButtonHolder">
                         <Button content="الأعمال" primary onClick={handleFlip} />
                      </div>

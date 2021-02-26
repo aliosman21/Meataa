@@ -1,28 +1,25 @@
 import "../styles/MyEvents.css";
-
 import React, { useState, useEffect } from "react";
 import serverURL from "../Utils/global";
-import Contact from "../components/contact";
-import Banner from "../components/banner";
-import JsonData from "../data/data.json";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { MDBDataTableV5, MDBBtn, MDBRating, MDBBadge, MDBNavItem, MDBNavLink } from "mdbreact";
+import { MDBDataTableV5, MDBBtn, MDBBadge, MDBNavLink } from "mdbreact";
 
 export default function MyEvents() {
    const [myEventsRows, setMyEventsRows] = useState([]);
-   const [myEventsColumns, setMyEventsColumns] = useState([
+   const [myEventsColumns] = useState([
       { label: "اسم الفعاليه", field: "eventName", width: 150 },
-      {
-         label: "تاريخ انتهاء الفعاليه",
-         field: "endDate",
-         width: 150,
-      },
       {
          label: "تاريخ انتهاء التسجيل",
          field: "endDateReg",
          width: 150,
       },
+      {
+         label: "تاريخ انتهاء الفعاليه",
+         field: "endDate",
+         width: 150,
+      },
+
       {
          label: "عدد المتقدمين",
          field: "count",
@@ -39,15 +36,6 @@ export default function MyEvents() {
          width: 150,
       },
    ]);
-
-   /*    {
-            name: "Garrett Winters",
-            position: "Accountant",
-            office: "Tokyo",
-            age: "63",
-            date: "2011/07/25",
-            salary: <MDBRating data={basic} getValue={handleStars} />,
-         }, */
    useEffect(() => {
       queryMyEvents();
       console.log(Cookies.getJSON("session").token);
@@ -60,11 +48,13 @@ export default function MyEvents() {
          let tempObject = {
             eventName: dataRow.name,
             endDate: dataRow.end_date,
-            endDateReg: "someval",
+            endDateReg: dataRow.registration_date,
             active: (
                <>
-                  {dataRow.is_ended == "working" ? (
-                     <MDBBadge color="success">يعمل</MDBBadge>
+                  {dataRow.can_register === "working" ? (
+                     <MDBBadge color="warning">التسجيل مفتوح</MDBBadge>
+                  ) : dataRow.is_ended === "working" ? (
+                     <MDBBadge color="success">قيد العمل</MDBBadge>
                   ) : (
                      <MDBBadge color="danger">انتهي</MDBBadge>
                   )}
@@ -94,10 +84,8 @@ export default function MyEvents() {
       axios
          .get(serverURL + "/organization/alljobs", config)
          .then(function (response) {
-            //alert("Success");
-            //console.log(response.data.data);
+            console.log(response.data.data);
             transformData(response.data.data);
-            //console.log(response.data.data);
          })
          .catch(console.log);
    };
@@ -106,6 +94,7 @@ export default function MyEvents() {
       <>
          <MDBDataTableV5
             hover
+            scrollX
             entriesOptions={[5, 10, 20, 25]}
             entries={10}
             pagesAmount={4}

@@ -5,17 +5,16 @@ import { Button } from "semantic-ui-react";
 import axios from "axios";
 import serverURL from "../Utils/global";
 import Banner from "../components/banner";
-import { MDBBtn, MDBIcon } from "mdbreact";
+import { MDBBtn } from "mdbreact";
+import { Dropdown } from "semantic-ui-react";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import Footer from "../components/footer";
 import "../styles/register.css";
-import { act } from "react-dom/test-utils";
 
 export default function Register() {
    const [volunteer, setVolunteer] = useState(true);
    const [tags, setTags] = useState([]);
-   const [tag1, setTag1] = useState([]);
-   const [usedTags] = useState([]);
+   const [usedTags, setUsedTags] = useState([]);
    const [img, setImg] = useState("");
    const [fullName, setFullName] = useState("");
    const [NID, setNID] = useState("");
@@ -54,14 +53,10 @@ export default function Register() {
       setMobile1(event.target.value);
    };
    const registerNewUser = async (e) => {
-      let i = 0;
-      for (let tag in tag1) {
-         if (tag1[tag] === true) {
-            console.log(tag);
-            usedTags.push(tags[i]["id"]);
-         }
-         i++;
-      }
+      e.preventDefault();
+      console.log("Tags should be here");
+      console.log(usedTags);
+
       const newEntity = {
          name: fullName,
          email: email,
@@ -72,7 +67,7 @@ export default function Register() {
          img: img,
          tags: usedTags,
       };
-      console.log(newEntity);
+      //console.log(newEntity);
       let requestURL;
       volunteer
          ? (requestURL = serverURL + "/volunteer/store")
@@ -83,7 +78,6 @@ export default function Register() {
             .then(function (response) {
                alert("تم التسجيل بنجاح");
                window.location.href = "/";
-               console.log(response);
             })
             .catch(function (error) {
                alert("حدث خطأ ما");
@@ -94,14 +88,24 @@ export default function Register() {
       }
    };
 
-   const switchActivity = (e, id) => {
+   const switchActivity = (e, data) => {
       e.preventDefault();
-      setTag1((prevState) => prevState.map((item, idx) => (idx === id ? !item : item)));
+      setUsedTags([]);
+      //console.log(data);
+      let taggies = [];
+      for (let tagList in data.options) {
+         for (let tag in data.value) {
+            if (data.options[tagList].text === data.value[tag]) {
+               taggies.push(tags[tagList].key);
+            }
+         }
+      }
+      setUsedTags(taggies);
+      //console.log(usedTags);
    };
+
    useEffect(() => {
       getTags().then((tagList) => {
-         tag1.length = tagList.length; // set array size
-         tag1.fill(false);
          setTags(tagList);
       });
    }, []);
@@ -117,7 +121,6 @@ export default function Register() {
                         <form>
                            <p className="text-center mb-4 mt-4 headerText">انضم لنا</p>
                            <Button
-                              size="mini"
                               toggle
                               type="button"
                               active={true}
@@ -130,7 +133,6 @@ export default function Register() {
                                  label="الاسم بالكامل"
                                  className="textDirection"
                                  icon="user"
-                                 iconSize
                                  group
                                  onChange={onChangeFullname}
                                  type="text"
@@ -206,18 +208,17 @@ export default function Register() {
                                  className="image-button image-uploader"
                                  required
                               />
-                              <div className="registerTagList mt-4 mb-4">
-                                 {tags.map((tag) => (
-                                    <Button
-                                       key={tag.id}
-                                       size="mini"
-                                       toggle
-                                       active={tag1[tag.id - 1]}
-                                       onClick={(e) => switchActivity(e, tag.id - 1)}>
-                                       {tag.name}
-                                    </Button>
-                                 ))}
-                              </div>
+                              <Dropdown
+                                 className="mt-3"
+                                 placeholder="الاهتمامات"
+                                 options={tags}
+                                 search
+                                 selection
+                                 fluid
+                                 multiple
+                                 allowAdditions
+                                 onChange={(e, data) => switchActivity(e, data)}
+                              />
                            </div>
                            <div className="text-center ">
                               <MDBBtn

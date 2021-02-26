@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { getTags } from "../Utils/getTagsUtil";
 import axios from "axios";
+import { Dropdown } from "semantic-ui-react";
 import serverURL from "../Utils/global";
 import { MDBJumbotron, MDBBtn, MDBContainer, MDBRow, MDBCol, MDBInput } from "mdbreact";
 import SemanticDatepicker from "react-semantic-ui-datepickers";
@@ -32,26 +33,16 @@ export default function Profile() {
    };
    const onChangeEndDateReg = (event, data) => {
       let endingDate = new Date(data.value).toISOString().slice(0, 10);
-      console.log(endingDate);
-      setEndDate(setEndDateReg);
+      setEndDateReg(endingDate);
    };
    const onChangeCity = (e, data) => {
       //console.log(data);
       data.options.forEach((city) => {
-         if (data.value == city.value) {
+         if (data.value === city.value) {
             setUsedCity(city.key);
          }
       });
       console.log(usedCity);
-   };
-   const onChangeTag = (e, data) => {
-      //console.log(data);
-      data.options.forEach((tag) => {
-         //console.log(tag);
-         if (data.value == tag.value) {
-            setUsedTag(tag.key);
-         }
-      });
    };
    useEffect(() => {
       getTags().then((tagList) => {
@@ -76,17 +67,6 @@ export default function Profile() {
       });
       // console.log(tags);
    }, [cities]);
-   useEffect(() => {
-      //console.log(tags);
-      tags.forEach((element) => {
-         Object.defineProperty(element, "key", Object.getOwnPropertyDescriptor(element, "id"));
-         delete element["id"];
-         Object.defineProperty(element, "text", Object.getOwnPropertyDescriptor(element, "name"));
-         delete element["name"];
-         element.value = element["text"];
-      });
-      // console.log(tags);
-   }, [tags]);
 
    const handleNewEvent = () => {
       const token = Cookies.getJSON("session").token;
@@ -101,6 +81,7 @@ export default function Profile() {
          img: img,
          city_id: usedCity,
          tag_id: usedTag,
+         registration_date: endDateReg,
       };
       console.log(bodyParameters);
       axios
@@ -108,11 +89,15 @@ export default function Profile() {
          .then(function (response) {
             alert("تم تسجيل العمل بنجاح");
             window.location.href = "/";
-            console.log(response);
          })
-         .catch(console.log);
+         .catch((err) => {
+            alert("حدث خطأ ما");
+         });
       //console.log(bodyParameters);
       //console.log(token);
+   };
+   const switchActivity = (e, data) => {
+      setUsedTag(data.value);
    };
 
    const getBase64 = async (e) => {
@@ -196,11 +181,14 @@ export default function Profile() {
                               />
                               <span>تاريخ انتهاء الفعاليه</span>
                            </div>
-                           <Select
-                              placeholder="حدد نوع الفعاليه"
-                              key={tags.key}
+                           <Dropdown
+                              className="mt-3"
+                              placeholder="الفعاليه"
                               options={tags}
-                              onChange={onChangeTag}
+                              search
+                              selection
+                              fluid
+                              onChange={(e, data) => switchActivity(e, data)}
                            />
                            <Select
                               placeholder="حدد مكان الفعاليه"
