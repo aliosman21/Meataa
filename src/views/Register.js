@@ -9,9 +9,11 @@ import { MDBBtn } from "mdbreact";
 import { Dropdown } from "semantic-ui-react";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import Footer from "../components/footer";
+import { useAlert } from "react-alert";
 import "../styles/register.css";
 
 export default function Register() {
+   const alert = useAlert();
    const [volunteer, setVolunteer] = useState(true);
    const [tags, setTags] = useState([]);
    const [usedTags, setUsedTags] = useState([]);
@@ -76,15 +78,15 @@ export default function Register() {
          axios
             .post(requestURL, newEntity)
             .then(function (response) {
-               alert("تم التسجيل بنجاح");
+               alert.show("تم التسجيل بنجاح");
                window.location.href = "/";
             })
             .catch(function (error) {
-               alert("حدث خطأ ما");
+               alert.shoerrorw("حدث خطأ ما");
                console.log(error);
             });
       } else {
-         alert("ادخل بيانات صحيحه");
+         alert.error("ادخل بيانات صحيحه");
       }
    };
 

@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import serverURL from "../Utils/global";
+import { useAlert } from "react-alert";
 import { MDBJumbotron, MDBBtn, MDBContainer, MDBRow, MDBCol, MDBInput } from "mdbreact";
 import "react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css";
 
 export default function AddTag() {
+   const alert = useAlert();
    const [newTag, setNewTag] = useState("");
    const onChangeTag = (event) => {
       console.log(event.target.value);
@@ -20,18 +22,22 @@ export default function AddTag() {
       const bodyParameters = {
          name: newTag,
       };
-      // console.log(bodyParameters);
-      axios
-         .post(serverURL + "/tags/store", bodyParameters, config)
-         .then(function (response) {
-            if (response.status == 200) {
-               console.log(response);
-               alert("تم تسجيل الفئه بنجاح");
-            } else {
-               alert("لا يمكنك اضافه فئه");
-            }
-         })
-         .catch(console.log);
+      if (newTag) {
+         // console.log(bodyParameters);
+         axios
+            .post(serverURL + "/tags/store", bodyParameters, config)
+            .then(function (response) {
+               if (response.status == 200) {
+                  console.log(response);
+                  alert.show("تم تسجيل الفئه بنجاح");
+               } else {
+                  alert.error("لا يمكنك اضافه فئه");
+               }
+            })
+            .catch(console.log);
+      } else {
+         alert.error("يجب ادخال فئه");
+      }
       //console.log(bodyParameters);
       //console.log(token);
    };

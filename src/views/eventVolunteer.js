@@ -5,9 +5,11 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { MDBDataTableV5, MDBBtn, MDBBadge } from "mdbreact";
 import { Rating } from "semantic-ui-react";
+import { useAlert } from "react-alert";
 import VolDetails from "../components/VolunteerDetails";
 
 export default function EventVolunteer(props) {
+   const alert = useAlert();
    const [myEventsRows, setMyEventsRows] = useState([]);
    const [eventDetails, setMyEventDetails] = useState({});
    const [starRates, setStarRates] = useState([]);
@@ -216,7 +218,7 @@ export default function EventVolunteer(props) {
          //console.log("retrievedObject: ", JSON.parse(retrievedObject));
          Object.assign(eventDetails, JSON.parse(retrievedObject));
       } else {
-         alert("حدث خطأ ما");
+         alert.error("حدث خطأ ما");
          window.location.href("/MyEvents");
       }
       //console.log(eventDetails);

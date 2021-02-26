@@ -8,11 +8,13 @@ import Contact from "../components/contact";
 import { Dropdown } from "semantic-ui-react";
 import Banner from "../components/banner";
 import { MDBBtn } from "mdbreact";
+import { useAlert } from "react-alert";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import JsonData from "../data/data.json";
 import "../styles/register.css";
 
 export default function InfoChange() {
+   const alert = useAlert();
    const [tags, setTags] = useState([]);
    const [usedTags, setUsedTags] = useState([]);
    const [img, setImg] = useState("");
@@ -75,17 +77,17 @@ export default function InfoChange() {
          axios
             .post(requestURL, newEntity, config)
             .then(function (response) {
-               alert("تم التعديل بنجاح برجاء تسجيل الدخول مره اخري");
+               alert.show("تم التعديل بنجاح برجاء تسجيل الدخول مره اخري");
                Cookies.remove("session");
                window.location.href = "/";
                console.log(response);
             })
             .catch(function (error) {
-               alert("حدث خطأ ما");
+               alert.error("حدث خطأ ما");
                console.log(error);
             });
       } else {
-         alert("ادخل بيانات صحيحه");
+         alert.error("ادخل بيانات صحيحه");
       }
    };
 

@@ -1,40 +1,51 @@
 /* import React from 'react'
-import { Button, Icon, Image, Modal } from 'semantic-ui-react'
-import "../styles/customEventDetails.css"
-import Cookies from "js-cookie";
-import axios from "axios";
-import serverURL from "../Utils/global";
+import { Button, Icon, Modal } from 'semantic-ui-react'
 
-import {
-   MDBBtn
-} from "mdbreact";
-
-
-const EventDetails = (props) => {
-  const [open, setOpen] = React.useState(false)
+console.log("HERE")
+function exampleReducer(state, action) {
+  switch (action.type) {
+    case 'close':
+      return { open: false }
+      case 'open':
+        return { open: true, size: action.size }
+        default:
+          throw new Error('Unsupported action...')
+        }
+      }
+      
+  const ModalExampleSize = () => {
+  const [state, dispatch] = React.useReducer(exampleReducer, {
+    open: false,
+    size: undefined,
+  })
+  const { open, size } = state
 
   return (
-    <Modal
+    <>
+      <Button onClick={() => dispatch({ type: 'open', size: 'tiny' })}>
+        Tiny
+      </Button>
 
-      open={open}
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      trigger={  <MDBBtn className="customButtonFont">سجل العمل</MDBBtn>}
-    >
-      <Modal.Header className="textRight">تأكيد التسجيل </Modal.Header>
-      <Modal.Content>
-        <Modal.Description className="descriptionHolder">
-          <p className="textRight">
-            تم التسجيل بنجاح
-          </p>
-        </Modal.Description>
-      </Modal.Content>
-      <Modal.Actions>
-        <Button onClick={() =>  setOpen(false)}>موافق</Button>       
-      </Modal.Actions>
-    </Modal>
+      <Modal
+        size={size}
+        open={open}
+        onClose={() => dispatch({ type: 'close' })}
+      >
+        <Modal.Header>Delete Your Account</Modal.Header>
+        <Modal.Content>
+          <p>Are you sure you want to delete your account</p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button negative onClick={() => dispatch({ type: 'close' })}>
+            No
+          </Button>
+          <Button positive onClick={() => dispatch({ type: 'close' })}>
+            Yes
+          </Button>
+        </Modal.Actions>
+      </Modal>
+    </>
   )
 }
 
-export default EventDetails
- */
+export default ModalExampleSize */

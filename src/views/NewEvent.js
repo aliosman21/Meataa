@@ -4,6 +4,7 @@ import { getTags } from "../Utils/getTagsUtil";
 import axios from "axios";
 import { Dropdown } from "semantic-ui-react";
 import serverURL from "../Utils/global";
+import { useAlert } from "react-alert";
 import { MDBJumbotron, MDBBtn, MDBContainer, MDBRow, MDBCol, MDBInput } from "mdbreact";
 import SemanticDatepicker from "react-semantic-ui-datepickers";
 import "react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css";
@@ -11,6 +12,7 @@ import { Select } from "semantic-ui-react";
 import "../styles/newEvent.css";
 
 export default function Profile() {
+   const alert = useAlert();
    const [tags, setTags] = useState([]);
    const [cities, setCities] = useState([]);
    const [img, setImg] = useState("");
@@ -87,11 +89,11 @@ export default function Profile() {
       axios
          .post(serverURL + "/jobs/store", bodyParameters, config)
          .then(function (response) {
-            alert("تم تسجيل العمل بنجاح");
+            alert.show("تم تسجيل العمل بنجاح");
             window.location.href = "/";
          })
          .catch((err) => {
-            alert("حدث خطأ ما");
+            alert.error("حدث خطأ ما");
          });
       //console.log(bodyParameters);
       //console.log(token);

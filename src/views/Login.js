@@ -5,9 +5,10 @@ import Cookies from "js-cookie";
 import Banner from "../components/banner";
 import "../styles/login.css";
 import Footer from "../components/footer";
+import { withAlert } from "react-alert";
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
-export default class Login extends Component {
+class Login extends Component {
    constructor(props) {
       super(props);
       this.state = {
@@ -58,7 +59,7 @@ export default class Login extends Component {
             }
          })
          .catch((err) => {
-            alert("خطأ في البيانات");
+            this.props.alert.error("حدث خطأ ما");
          });
    }
 
@@ -122,3 +123,4 @@ export default class Login extends Component {
       );
    }
 }
+export default withAlert()(Login);

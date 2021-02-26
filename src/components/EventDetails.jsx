@@ -4,6 +4,7 @@ import "../styles/customEventDetails.css"
 import Cookies from "js-cookie";
 import axios from "axios";
 import serverURL from "../Utils/global";
+import { useAlert } from 'react-alert'
 
 import {
    MDBBtn
@@ -11,6 +12,7 @@ import {
 
 
 const EventDetails = (props) => {
+  const alert = useAlert()
   const [open, setOpen] = React.useState(false)
 //console.log(props.props.event)
   const registerToEvent = () =>{
@@ -29,7 +31,7 @@ const EventDetails = (props) => {
       axios
          .post(serverURL + "/volunteer/request", bodyParameters, config)
          .then(function (response) {
-            alert("تم التسجيل بنجاح");
+            alert.show("تم التسجيل بنجاح");
             //console.log(response);
          })
          .catch(console.log);

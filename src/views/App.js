@@ -23,7 +23,6 @@ class App extends Component {
             <Header data={this.state.landingPageData.Header} />
             <About data={this.state.landingPageData.About} />
             <Gallery />
-            {/* <Contact data={this.state.landingPageData.Contact} /> */}
             <Footer />
          </div>
       );
