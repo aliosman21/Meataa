@@ -34,7 +34,7 @@ const EventDetails = (props) => {
             alert.show("تم التسجيل بنجاح");
             //console.log(response);
          })
-         .catch(console.log);
+         .catch(alert.error("حدث خطأ ما"));
       //console.log(bodyParameters);
       //console.log(token);  
    };
@@ -56,6 +56,8 @@ const EventDetails = (props) => {
           </p>
           <p className="textRight">تاريخ انتهاء التسجيل: {props.props.event.registration_date}</p>
             <p className="textRight">تاريخ انتهاء الفعاليه: {props.props.event.end_date}</p>
+            <p className="textRight">المدينة: {props.props.event.city}</p>
+            <p className="textRight">الفئه: {props.props.event.tag}</p>
             <p className="textRight">المحتوي</p>
             <p className="descriptionFonter">{props.props.event.description}</p>
          <Image

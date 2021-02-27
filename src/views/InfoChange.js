@@ -23,7 +23,7 @@ export default function InfoChange() {
    const [email, setEmail] = useState(Cookies.getJSON("session").email);
    const [password, setPassword] = useState("");
    const [mobile, setMobile] = useState(Cookies.getJSON("session").mobile);
-   const [mobile1, setMobile1] = useState(Cookies.getJSON("session").mobile1);
+   const [mobile1, setMobile1] = useState(Cookies.getJSON("session").mobile2);
 
    const getBase64 = async (e) => {
       const reader = new FileReader();
