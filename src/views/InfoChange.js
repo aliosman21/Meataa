@@ -78,6 +78,9 @@ export default function InfoChange() {
             .post(requestURL, newEntity, config)
             .then(function (response) {
                alert.show("تم التعديل بنجاح برجاء تسجيل الدخول مره اخري");
+               setTimeout(() => {
+                  console.log("");
+               }, 1000);
                Cookies.remove("session");
                window.location.href = "/";
                console.log(response);

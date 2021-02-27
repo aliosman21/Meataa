@@ -84,7 +84,7 @@ export default function MyEvents() {
       axios
          .get(serverURL + "/organization/alljobs", config)
          .then(function (response) {
-            console.log(response.data.data);
+            //console.log(response.data.data);
             transformData(response.data.data);
          })
          .catch(console.log);

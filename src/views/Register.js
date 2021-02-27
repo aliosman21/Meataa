@@ -79,6 +79,9 @@ export default function Register() {
             .post(requestURL, newEntity)
             .then(function (response) {
                alert.show("تم التسجيل بنجاح");
+               setTimeout(() => {
+                  console.log("");
+               }, 1000);
                window.location.href = "/";
             })
             .catch(function (error) {
