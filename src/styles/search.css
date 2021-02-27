@@ -16,7 +16,7 @@
    grid-area: events;
    display: flex;
    flex-wrap: wrap;
-   overflow-y: hidden;
+   overflow: auto;
 }
 
 .searchTagsList {
@@ -35,6 +35,7 @@
 .card-event {
    border-radius: 20px;
    margin-bottom: 30px !important;
+   min-width: 25%;
 }
 .customButtonFont {
    font-family: CustomFont !important;

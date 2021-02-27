@@ -125,7 +125,7 @@ export default function Search() {
             </div>
             <div className="eventsList">
                {events.map((event) => (
-                  <MDBCol key={event.id}>
+                  <MDBCol md="3" key={event.id}>
                      <MDBCard className="card-event">
                         <MDBCardImage
                            className="img-fluid customImage"

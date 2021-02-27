@@ -242,6 +242,7 @@ export default function EventVolunteer(props) {
             entriesOptions={[5, 10, 20, 25]}
             entries={10}
             pagesAmount={4}
+            scrollX
             data={{ columns: myEventsColumns, rows: myEventsRows }}
             btn
             className="My-events-font"

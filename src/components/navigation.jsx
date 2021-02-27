@@ -29,7 +29,7 @@ toggleCollapse = collapseID => () =>
 
 render() {
   return (
-      <MDBNavbar color="info-color" dark expand="md" style ={{marginBottom:"0"}} className="customNavibar">
+      <MDBNavbar color="indigo" dark expand="md" style ={{marginBottom:"0"}} className="customNavibar">
         <MDBNavbarBrand href="/" className="logoCus" >  
          <img src={image} height="100" width="110" alt="logo" className="imgLogo"/>
         </MDBNavbarBrand>

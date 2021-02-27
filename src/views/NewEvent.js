@@ -85,11 +85,14 @@ export default function Profile() {
          tag_id: usedTag,
          registration_date: endDateReg,
       };
-      console.log(bodyParameters);
+      //console.log(bodyParameters);
       axios
          .post(serverURL + "/jobs/store", bodyParameters, config)
          .then(function (response) {
             alert.show("تم تسجيل العمل بنجاح");
+            setTimeout(() => {
+               console.log("waiting");
+            }, 1000);
             window.location.href = "/";
          })
          .catch((err) => {
@@ -99,7 +102,11 @@ export default function Profile() {
       //console.log(token);
    };
    const switchActivity = (e, data) => {
-      setUsedTag(data.value);
+      data.options.forEach((opt) => {
+         if (data.value === opt.text) {
+            setUsedTag(opt.key);
+         }
+      });
    };
 
    const getBase64 = async (e) => {
