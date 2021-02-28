@@ -91,9 +91,8 @@ export default function Profile() {
          .then(function (response) {
             alert.show("تم تسجيل العمل بنجاح");
             setTimeout(() => {
-               console.log("waiting");
+               window.location.href = "/";
             }, 1000);
-            window.location.href = "/";
          })
          .catch((err) => {
             alert.error("حدث خطأ ما");

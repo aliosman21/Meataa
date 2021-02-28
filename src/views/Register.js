@@ -81,8 +81,8 @@ export default function Register() {
                alert.show("تم التسجيل بنجاح");
                setTimeout(() => {
                   console.log("");
+                  window.location.href = "/";
                }, 1000);
-               window.location.href = "/";
             })
             .catch(function (error) {
                alert.shoerrorw("حدث خطأ ما");

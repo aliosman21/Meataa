@@ -32,9 +32,8 @@ const EventDetails = (props) => {
          .post(serverURL + "/volunteer/request", bodyParameters, config)
          .then(function (response) {
             alert.show("تم التسجيل بنجاح");
-            //console.log(response);
+            console.log(response);
          })
-         .catch(alert.error("حدث خطأ ما"));
       //console.log(bodyParameters);
       //console.log(token);  
    };
