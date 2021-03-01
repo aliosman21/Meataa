@@ -92,7 +92,7 @@ export default function Profile() {
             alert.show("تم تسجيل العمل بنجاح");
             setTimeout(() => {
                window.location.href = "/";
-            }, 1000);
+            }, 2000);
          })
          .catch((err) => {
             alert.error("حدث خطأ ما");

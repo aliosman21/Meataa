@@ -82,7 +82,7 @@ export default function Register() {
                setTimeout(() => {
                   console.log("");
                   window.location.href = "/";
-               }, 1000);
+               }, 2000);
             })
             .catch(function (error) {
                alert.shoerrorw("حدث خطأ ما");

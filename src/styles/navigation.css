@@ -1,5 +1,6 @@
 #navbarCollapse3 {
    background-color: #eac837 !important;
+   z-index: 100;
 }
 
 .customNavibar {

@@ -7,24 +7,14 @@ import { MDBDataTableV5, MDBBadge } from "mdbreact";
 import { Rating } from "semantic-ui-react";
 import serverURL from "../Utils/global";
 
-const VolDetails = (props) => {
+const OrgDetails = (props) => {
   const [open, setOpen] = React.useState(false)
    const [myEventsRows, setMyEventsRows] = useState([]);
    const [myEventsColumns] = useState([
-      {
-         label: "اسم المبادره",
-         field: "orgInfo",
-         width: 100,
-      },
       { label: "اسم العمل", field: "eventInfo", width: 100 },
       {
          label: "المدينه",
          field: "city",
-         width: 100,
-      },
-      {
-         label: "الحاله",
-         field: "status",
          width: 100,
       },
       {
@@ -38,8 +28,8 @@ const VolDetails = (props) => {
          width: 100,
       },
       {
-         label: "التقيم",
-         field: "rate",
+         label: "الحاله",
+         field: "status",
          width: 100,
       },
    ]);
@@ -53,37 +43,25 @@ const VolDetails = (props) => {
             city: dataRow.city,
             startDate: dataRow.registration_date,
             endDate: dataRow.end_date,
-            status: (
+                       status: (
                <>
-                  {dataRow.status === "pending" ? (
+                  {dataRow.can_register === "working" ? (
                      <MDBBadge color="warning" key={dataRow.id}>
-                        لم يتم التأكيد
+                        التسجيل مفتوح
                      </MDBBadge>
                   ) : (
-                     <MDBBadge color="success" key={dataRow.id}>
-                        مشترك
+                    dataRow.is_ended === "working" ? (
+                    <MDBBadge color="success" key={dataRow.id}>
+                        يعمل
                      </MDBBadge>
+                    ):
+                    (<MDBBadge color="danger" key={dataRow.id}>
+                        انتهي
+                     </MDBBadge>)
                   )}
                </>
             ),
-            rate: (
-               <>
-                  {dataRow.is_ended === "working" ? (
-                     <MDBBadge color="warning" key={dataRow.id}>
-                        لم يقيم
-                     </MDBBadge>
-                  ) : (
-                     <Rating
-                        key={dataRow.id}
-                        maxRating={5}
-                        size="huge"
-                        icon="star"
-                        disabled
-                        defaultRating={dataRow.stars}
-                     />
-                  )}
-               </>
-            ),
+ 
          };
          setMyEventsRows((oldArray) => [...oldArray, tempObject]);
       });
@@ -97,10 +75,10 @@ useEffect(()=>{
       };
 
         axios
-         .get(serverURL + "/volunteer/show/"+props.props.vol.id, config)
+         .get(serverURL + "/organization/show/"+props.props.org.id, config)
          .then(function (response) {
           // console.log("THIS IS RESPONSE")
-           // console.log(response.data.message.jobs);
+            //console.log(response.data.message.jobs);
             transformData(response.data.message.jobs)
          })
          .catch(console.log);
@@ -113,7 +91,7 @@ useEffect(()=>{
       open={open}
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
-      trigger={  <a href="#" className="text-decoration-none blue-text">{props.props.vol.name}</a>}
+      trigger={  <a href="#" className="text-decoration-none blue-text">{props.props.org.name}</a>}
     >
       <Modal.Content scrolling >
         <Modal.Description className="descriptionHolder">
@@ -137,4 +115,4 @@ useEffect(()=>{
   )
 }
 
-export default VolDetails
+export default OrgDetails

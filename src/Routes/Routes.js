@@ -9,8 +9,10 @@ import Navigation from "../components/navigation";
 import Search from "../views/Search";
 import MyEvents from "../views/MyEvents";
 import AllJobs from "../views/allJobs";
+import AllOrgs from "../views/AllOrganizations";
 import addNewTag from "../views/addTags";
 import EventVolunteer from "../views/eventVolunteer";
+import AllVolunteers from "../views/AllVolunteers";
 import ChangeInfo from "../views/InfoChange";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
@@ -37,9 +39,11 @@ function Routes() {
                   <Route exact path="/" component={App} />
                   <Route exact path="/profile" component={Profile} />
                   <Route exact path="/login" component={Login} />
+                  <Route exact path="/AllVolunteers" component={AllVolunteers} />
                   <Route exact path="/EventVolunteer" component={EventVolunteer} />
                   <Route exact path="/Register" component={Register} />
                   <Route exact path="/allJobs" component={AllJobs} />
+                  <Route exact path="/AllOrganizations" component={AllOrgs} />
                   <Route exact path="/Search" component={Search} />
                   <Route exact path="/addNewTag" component={addNewTag} />
                   <Route exact path="/MyEvents" component={MyEvents} />
