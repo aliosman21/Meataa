@@ -8,53 +8,166 @@
       "Why": ["كلام", "كلام", "كلام", "كلام"],
       "Why2": ["كلام", "كلام", "كلام", "كلام"]
    },
-   "Team": [
-      {
-         "img": "img/team/01.jpg",
-         "name": "علي",
-         "job": "اي حاجه"
-      },
-      {
-         "img": "img/team/02.jpg",
-         "name": "معتز",
-         "job": "معيد"
-      },
-      {
-         "img": "img/team/03.jpg",
-         "name": "منصور",
-         "job": "مش مفهوم"
-      },
-      {
-         "img": "img/team/04.jpg",
-         "name": "عبده",
-         "job": "حاجه كدا"
-      }
-   ],
-   "Contact": {
-      "address": "اكيد عنوان عربي",
-      "phone": "اكيد رقم عربي",
-      "email": "اكيد ايميل عربي"
+   "Navigation": {
+      "Search": "بحث",
+      "Logout": "تسجيل الخروج",
+      "MyEvents": "مبادراتي",
+      "NewEvent": "عمل جديد",
+      "AllOrganizations": "عرض المبادرات",
+      "AllVolunteers": "عرض المتطوعين",
+      "AddTags": "اضافه فئه",
+      "Login": "تسجيل الدخول",
+      "Register": "انضم لنا"
    },
-   "Features": [
-      {
-         "icon": "fa fa-comments-o",
-         "title": "تطوع",
-         "text": "كلام"
-      },
-      {
-         "icon": "fa fa-bullhorn",
-         "title": "ساعد",
-         "text": "كلام"
-      },
-      {
-         "icon": "fa fa-group",
-         "title": "تطوع",
-         "text": "كلام"
-      },
-      {
-         "icon": "fa fa-magic",
-         "title": "تطوع",
-         "text": "كلام"
-      }
-   ]
+   "AddTag": {
+      "addTagSuccess": "تم تسجيل الفئه بنجاح",
+      "addTagFail": "لا يمكنك اضافه فئه",
+      "addTagError": "يجب ادخال فئه",
+      "addTagHeader": "قم بأضافه فئه جديده",
+      "addTagLabel": "اسم الفئه",
+      "addTagButton": "اضف فئه"
+   },
+   "AllJobs": {
+      "orgName": "اسم المبادره",
+      "eventName": "اسم العمل",
+      "orgEmail": "بريد المبادره الالكتروني",
+      "orgPrimaryPhoneNumber": "رقم المبادره",
+      "orgSecondaryPhoneNumber": "رقم اخر",
+      "city": "المدينه",
+      "status": "الحاله",
+      "startDate": "تاريخ البدايه",
+      "endDate": "تاريخ الانتهاء",
+      "rating": "التقيم",
+      "pending": "لم يتم التأكيد",
+      "rejected": "مرفوض",
+      "accepted": "مشترك",
+      "unrated": "غير قابل للتقيم",
+      "notRatedYet": "لم يقيم"
+   },
+   "AllOrganizations": {
+      "orgName": "اسم المبادره",
+      "orgEmail": "بريد المبادره الالكتروني",
+      "orgPrimaryPhoneNumber": "رقم المبادره",
+      "orgSecondaryPhoneNumber": "رقم اخر"
+   },
+   "AllVolunteers": {
+      "volName": "اسم المتطوع",
+      "volEmail": "ايميل المتطوع",
+      "volPhone": "رقم الهاتف",
+      "volNID": "الرقم القومي",
+      "volTags": "الاهتمامات"
+   },
+   "eventVol": {
+      "volName": "اسم المتطوع",
+      "volEmail": "ايميل المتطوع",
+      "volPhone": "رقم الهاتف",
+      "volNID": "الرقم القومي",
+      "volStatus": "الحاله",
+      "volRate": "التقييم",
+      "volAcceptBtn": "قبول",
+      "volRejectBtn": "رفض",
+      "volAccepted": "مقبول",
+      "volWorking": "قيد العمل",
+      "volAlertError": "حدث خطأ ما"
+   },
+   "infoChange": {
+      "name": "الاسم بالكامل",
+      "email": "البريد الالكتروني",
+      "password": "كلمه السر",
+      "phoneNumber": "رقم الهاتف",
+      "NID": "الرقم القومي",
+      "phoneNumber2": "رقم هاتف اخر",
+      "tags": "الاهتمامات",
+      "change": "تعديل"
+   },
+   "Login": {
+      "header": "سجل دخولك",
+      "email": "البريد الالكتروني",
+      "password": "كلمه السر",
+      "loginBtn": "سجل الدخول",
+      "loginAlertError": "حدث خطأ ما"
+   },
+   "MyEvents": {
+      "eventName": "اسم الفعاليه",
+      "registerEndDate": "تاريخ انتهاء التسجيل",
+      "eventEndDate": "تاريخ انتهاء الفعاليه",
+      "eventCount": "عدد المتقدمين",
+      "eventStatus": "حاله الفعاليه",
+      "moreInfo": "عرض المزيد",
+      "eventRegOpen": "التسجيل مفتوح",
+      "eventInWork": "قيد العمل",
+      "eventEnded": "انتهي",
+      "eventMoreBtn": "المزيد",
+      "eventCancelBtn": "الغاء",
+      "city": "المدينه"
+   },
+   "NewEvent": {
+      "successAlert": "تم تسجيل العمل بنجاح",
+      "failAlert": "حدث خطأ ما",
+      "header": "قم بأضافه فعاليه جديده",
+      "eventName": "اسم العمل",
+      "eventDescription": "اشرح المحتوي",
+      "upload": "أرفع",
+      "eventPhoto": "اختر صوره للفعاليه",
+      "eventRegEndDate": "تاريخ انتهاء التسجيل",
+      "eventEndDate": "تاريخ انتهاء الفعاليه",
+      "tag": "الفعاليه",
+      "city": "حدد مكان الفعاليه",
+      "addEventBtn": "سجل العمل"
+   },
+   "Profile": {
+      "name": "الاسم: ",
+      "email": "البريد الالكتروني:",
+      "phone": "رقم الهاتف:",
+      "NID": "الرقم القومي: ",
+      "phone2": "رقم اخر: ",
+      "changeInfo": "تحديث البيانات",
+      "jobs": "الأعمال",
+      "profileData": "المعلومات الشخصيه",
+      "allJobs": "عرض كل الأعمال"
+   },
+   "Register": {
+      "successAlert": "تم التسجيل بنجاح",
+      "failAlert": "حدث خطأ ما",
+      "correctInfoAlert": "ادخل بيانات صحيحه",
+      "header": "انضم لنا",
+      "vol": "متطوع",
+      "org": "مبادره",
+      "fullName": "الاسم بالكامل",
+      "email": "البريد الالكتروني",
+      "password": "كلمه السر",
+      "phone": "رقم الهاتف",
+      "NID": "الرقم القومي",
+      "phone2": "رقم هاتف اخر",
+      "tags": "الاهتمامات",
+      "regBtn": "حفظ"
+   },
+   "Search": {
+      "city": "المدينه",
+      "tags": "الفعاليه"
+   },
+   "EventDetails": {
+      "successAlert": "تم التسجيل بنجاح",
+      "moreInfo": "عرض المزيد",
+      "regEndDate": "تاريخ انتهاء التسجيل: ",
+      "eventEndDate": "تاريخ انتهاء الفعاليه: ",
+      "city": "المدينه: ",
+      "tag": "الفئه: ",
+      "description": "المحتوي: ",
+      "cancelBtn": "الغاء",
+      "regBtn": "تسجيل"
+   },
+   "volDetails": {
+      "orgName": "اسم المبادره",
+      "eventName": "اسم العمل",
+      "city": "المدينه",
+      "startDate": "تاريخ البدايه",
+      "endDate": "تاريخ الانتهاء",
+      "status": "الحاله",
+      "volRate": "التقييم",
+      "volPending": "لم يتم التأكيد",
+      "volNotRated": "لم يقيم",
+      "volAccepted": "مشترك",
+      "cancelBtn": "الغاء"
+   }
 }

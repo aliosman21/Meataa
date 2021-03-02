@@ -10,6 +10,7 @@ import { Dropdown } from "semantic-ui-react";
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import Footer from "../components/footer";
 import { useAlert } from "react-alert";
+import JsonData from "../data/data.json";
 import "../styles/register.css";
 
 export default function Register() {
@@ -78,18 +79,18 @@ export default function Register() {
          axios
             .post(requestURL, newEntity)
             .then(function (response) {
-               alert.show("تم التسجيل بنجاح");
+               alert.show(JsonData.Register.successAlert);
                setTimeout(() => {
                   console.log("");
                   window.location.href = "/";
                }, 2000);
             })
             .catch(function (error) {
-               alert.shoerrorw("حدث خطأ ما");
+               alert.error(JsonData.Register.failAlert);
                console.log(error);
             });
       } else {
-         alert.error("ادخل بيانات صحيحه");
+         alert.error(JsonData.Register.correctInfoAlert);
       }
    };
 
@@ -124,18 +125,20 @@ export default function Register() {
                   <MDBRow>
                      <MDBCol md="12" className="d-flex justify-content-center">
                         <form>
-                           <p className="text-center mb-4 mt-4 headerText">انضم لنا</p>
+                           <p className="text-center mb-4 mt-4 headerText">
+                              {JsonData.Register.header}
+                           </p>
                            <Button
                               toggle
                               type="button"
                               active={true}
                               className="register-label-button"
                               onClick={switchVolunteer}>
-                              {volunteer ? "متطوع" : "مبادره"}
+                              {volunteer ? JsonData.Register.vol : JsonData.Register.org}
                            </Button>
                            <div className="">
                               <MDBInput
-                                 label="الاسم بالكامل"
+                                 label={JsonData.Register.fullName}
                                  className="textDirection"
                                  icon="user"
                                  group
@@ -147,7 +150,7 @@ export default function Register() {
                                  success="right"
                               />
                               <MDBInput
-                                 label="البريد الالكتروني"
+                                 label={JsonData.Register.email}
                                  className="textDirection"
                                  icon="envelope"
                                  group
@@ -159,7 +162,7 @@ export default function Register() {
                                  success="right"
                               />
                               <MDBInput
-                                 label="كلمه السر"
+                                 label={JsonData.Register.password}
                                  icon="lock"
                                  className="textDirection"
                                  onChange={onChangePassword}
@@ -169,7 +172,7 @@ export default function Register() {
                                  validate
                               />
                               <MDBInput
-                                 label="رفم الهاتف"
+                                 label={JsonData.Register.phone}
                                  className="textDirection"
                                  icon="mobile-alt"
                                  onChange={onChangeMobile}
@@ -180,7 +183,7 @@ export default function Register() {
                               />
                               {volunteer ? (
                                  <MDBInput
-                                    label="الرقم القومي"
+                                    label={JsonData.Register.NID}
                                     icon="address-card"
                                     className="textDirection"
                                     group
@@ -193,7 +196,7 @@ export default function Register() {
                                  />
                               ) : (
                                  <MDBInput
-                                    label="رفم هاتف اخر"
+                                    label={JsonData.Register.phone2}
                                     className="textDirection"
                                     icon="mobile-alt"
                                     onChange={onChangeMobile1}
@@ -215,7 +218,7 @@ export default function Register() {
                               />
                               <Dropdown
                                  className="mt-3"
-                                 placeholder="الاهتمامات"
+                                 placeholder={JsonData.Register.tags}
                                  options={tags}
                                  search
                                  selection
@@ -231,7 +234,7 @@ export default function Register() {
                                  className="registerBtn"
                                  type="submit"
                                  onClick={registerNewUser}>
-                                 حفظ
+                                 {JsonData.Register.regBtn}
                               </MDBBtn>
                            </div>
                         </form>

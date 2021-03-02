@@ -4,33 +4,31 @@ import serverURL from "../Utils/global";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { MDBDataTableV5, MDBBtn, MDBBadge } from "mdbreact";
-import { Rating } from "semantic-ui-react";
-import { useAlert } from "react-alert";
 import VolDetails from "../components/VolunteerDetails";
+import JsonData from "../data/data.json";
 
 export default function AllVolunteers() {
-   const alert = useAlert();
    const [volRows, setVolRows] = useState([]);
    const [dataCallback, setDataCallback] = useState({});
    const [volColumns, setVolColumns] = useState([
-      { label: "اسم المتطوع", field: "userName", width: 150 },
+      { label: JsonData.AllVolunteers.volName, field: "userName", width: 150 },
       {
-         label: "ايميل المتطوع",
+         label: JsonData.AllVolunteers.volEmail,
          field: "userEmail",
          width: 150,
       },
       {
-         label: "رقم الهاتف",
+         label: JsonData.AllVolunteers.volPhone,
          field: "userMobile",
          width: 150,
       },
       {
-         label: "الرقم القومي",
+         label: JsonData.AllVolunteers.volNID,
          field: "NID",
          width: 150,
       },
       {
-         label: "الاهتمامات",
+         label: JsonData.AllVolunteers.volTags,
          field: "tags",
          width: 150,
       },

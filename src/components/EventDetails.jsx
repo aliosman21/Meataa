@@ -3,6 +3,7 @@ import { Button, Image, Modal } from 'semantic-ui-react'
 import "../styles/customEventDetails.css"
 import Cookies from "js-cookie";
 import axios from "axios";
+import JsonData from "../data/data.json";
 import serverURL from "../Utils/global";
 import { useAlert } from 'react-alert'
 
@@ -31,7 +32,7 @@ const EventDetails = (props) => {
       axios
          .post(serverURL + "/volunteer/request", bodyParameters, config)
          .then(function (response) {
-            alert.show("تم التسجيل بنجاح");
+            alert.show(JsonData.EventDetails.successAlert);
             console.log(response);
          })
       //console.log(bodyParameters);
@@ -44,7 +45,7 @@ const EventDetails = (props) => {
       open={open}
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
-      trigger={  <MDBBtn className="customButtonFont">عرض المزيد</MDBBtn>}
+      trigger={  <MDBBtn className="customButtonFont">{JsonData.EventDetails.moreInfo}</MDBBtn>}
     >
       <Modal.Header className="textRight">{props.props.event.name}</Modal.Header>
       <Modal.Content image scrolling >
@@ -53,24 +54,21 @@ const EventDetails = (props) => {
           <p className="textRight">
             {props.props.event.organization}
           </p>
-          <p className="textRight">تاريخ انتهاء التسجيل: {props.props.event.registration_date}</p>
-            <p className="textRight">تاريخ انتهاء الفعاليه: {props.props.event.end_date}</p>
-            <p className="textRight">المدينة: {props.props.event.city}</p>
-            <p className="textRight">الفئه: {props.props.event.tag}</p>
-            <p className="textRight">المحتوي</p>
+          <p className="textRight">{JsonData.EventDetails.regEndDate} {props.props.event.registration_date}</p>
+            <p className="textRight">{JsonData.EventDetails.eventEndDate} {props.props.event.end_date}</p>
+            <p className="textRight">{JsonData.EventDetails.city} {props.props.event.city}</p>
+            <p className="textRight">{JsonData.EventDetails.tag} {props.props.event.tag}</p>
+            <p className="textRight">{JsonData.EventDetails.description}</p>
             <p className="descriptionFonter">{props.props.event.description}</p>
-         <Image
-            src='https://react.semantic-ui.com/images/wireframe/paragraph.png'
-            style={{ marginBottom: 10 }}
-          />
+
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        <Button onClick={() =>  setOpen(false)}>الغاء</Button>
+        <Button onClick={() =>  setOpen(false)}>{JsonData.EventDetails.cancelBtn}</Button>
          {Cookies.getJSON('session') && Cookies.getJSON('session').type === "Volunteer"?( <Button onClick={() => {
            registerToEvent();
           setOpen(false)}} positive>
-          تسجيل
+          {JsonData.EventDetails.regBtn}
         </Button>):(<></>)}
        
       </Modal.Actions>

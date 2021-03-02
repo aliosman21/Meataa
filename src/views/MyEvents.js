@@ -3,35 +3,36 @@ import React, { useState, useEffect } from "react";
 import serverURL from "../Utils/global";
 import axios from "axios";
 import Cookies from "js-cookie";
+import JsonData from "../data/data.json";
 import { MDBDataTableV5, MDBBtn, MDBBadge, MDBNavLink } from "mdbreact";
 
 export default function MyEvents() {
    const [myEventsRows, setMyEventsRows] = useState([]);
    const [myEventsColumns] = useState([
-      { label: "اسم الفعاليه", field: "eventName", width: 150 },
+      { label: JsonData.MyEvents.eventName, field: "eventName", width: 150 },
       {
-         label: "تاريخ انتهاء التسجيل",
+         label: JsonData.MyEvents.registerEndDate,
          field: "endDateReg",
          width: 150,
       },
       {
-         label: "تاريخ انتهاء الفعاليه",
+         label: JsonData.MyEvents.eventEndDate,
          field: "endDate",
          width: 150,
       },
 
       {
-         label: "عدد المتقدمين",
+         label: JsonData.MyEvents.eventCount,
          field: "count",
          width: 150,
       },
       {
-         label: "حاله الفعاليه",
+         label: JsonData.MyEvents.eventStatus,
          field: "active",
          width: 150,
       },
       {
-         label: "عرض المزيد",
+         label: JsonData.MyEvents.moreInfo,
          field: "moreInfo",
          width: 150,
       },
@@ -52,11 +53,11 @@ export default function MyEvents() {
             active: (
                <>
                   {dataRow.can_register === "working" ? (
-                     <MDBBadge color="warning">التسجيل مفتوح</MDBBadge>
+                     <MDBBadge color="warning">{JsonData.MyEvents.eventRegOpen}</MDBBadge>
                   ) : dataRow.is_ended === "working" ? (
-                     <MDBBadge color="success">قيد العمل</MDBBadge>
+                     <MDBBadge color="success">{JsonData.MyEvents.eventInWork}</MDBBadge>
                   ) : (
-                     <MDBBadge color="danger">انتهي</MDBBadge>
+                     <MDBBadge color="danger">{JsonData.MyEvents.eventEnded}</MDBBadge>
                   )}
                </>
             ),
@@ -67,7 +68,7 @@ export default function MyEvents() {
                      className="waves-effect waves-light"
                      to={{ pathname: `/EventVolunteer`, params: { dataRow } }}>
                      <MDBBtn color="success" size="sm" className="My-events-font">
-                        المزيد
+                        {JsonData.MyEvents.eventMoreBtn}
                      </MDBBtn>
                   </MDBNavLink>
                </>

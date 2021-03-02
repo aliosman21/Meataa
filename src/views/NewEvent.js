@@ -9,6 +9,7 @@ import { MDBJumbotron, MDBBtn, MDBContainer, MDBRow, MDBCol, MDBInput } from "md
 import SemanticDatepicker from "react-semantic-ui-datepickers";
 import "react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css";
 import { Select } from "semantic-ui-react";
+import JsonData from "../data/data.json";
 import "../styles/newEvent.css";
 
 export default function Profile() {
@@ -89,13 +90,13 @@ export default function Profile() {
       axios
          .post(serverURL + "/jobs/store", bodyParameters, config)
          .then(function (response) {
-            alert.show("تم تسجيل العمل بنجاح");
+            alert.show(JsonData.NewEvent.successAlert);
             setTimeout(() => {
                window.location.href = "/";
             }, 2000);
          })
          .catch((err) => {
-            alert.error("حدث خطأ ما");
+            alert.error(JsonData.NewEvent.failAlert);
          });
       //console.log(bodyParameters);
       //console.log(token);
@@ -124,10 +125,10 @@ export default function Profile() {
                <MDBRow>
                   <MDBCol>
                      <MDBJumbotron>
-                        <h2 className="h1 display-3">قم بأضافه فعاليه جديده</h2>
+                        <h2 className="h1 display-3">{JsonData.NewEvent.header}</h2>
                         <form className="form-Sizer">
                            <MDBInput
-                              label="اسم العمل"
+                              label={JsonData.NewEvent.eventName}
                               className="textDirection"
                               onChange={onChangeTitle}
                               type="text"
@@ -138,7 +139,7 @@ export default function Profile() {
                            />
                            <MDBInput
                               type="textarea"
-                              label="اشرح المحتوي"
+                              label={JsonData.NewEvent.eventDescription}
                               onChange={onChangeDescription}
                               rows="8"
                               size="lg"
@@ -147,7 +148,7 @@ export default function Profile() {
                            <div className="input-group mb-3">
                               <div className="input-group-prepend">
                                  <span className="input-group-text" id="inputGroupFileAddon01">
-                                    أرفع
+                                    {JsonData.NewEvent.upload}
                                  </span>
                               </div>
                               <div className="custom-file">
@@ -159,7 +160,7 @@ export default function Profile() {
                                     aria-describedby="inputGroupFileAddon01"
                                  />
                                  <label className="custom-file-label" htmlFor="inputGroupFile01">
-                                    اختر صوره للفعاليه
+                                    {JsonData.NewEvent.eventPhoto}
                                  </label>
                               </div>
                            </div>
@@ -174,7 +175,7 @@ export default function Profile() {
                                     return date >= now;
                                  }}
                               />
-                              <span>تاريخ انتهاء التسجيل</span>
+                              <span>{JsonData.NewEvent.eventRegEndDate}</span>
                            </div>
                            <div className="mb-4">
                               <SemanticDatepicker
@@ -187,11 +188,11 @@ export default function Profile() {
                                     return date >= now;
                                  }}
                               />
-                              <span>تاريخ انتهاء الفعاليه</span>
+                              <span>{JsonData.NewEvent.eventEndDate}</span>
                            </div>
                            <Dropdown
                               className="mt-3"
-                              placeholder="الفعاليه"
+                              placeholder={JsonData.NewEvent.tag}
                               options={tags}
                               search
                               selection
@@ -199,7 +200,7 @@ export default function Profile() {
                               onChange={(e, data) => switchActivity(e, data)}
                            />
                            <Select
-                              placeholder="حدد مكان الفعاليه"
+                              placeholder={JsonData.NewEvent.city}
                               key={cities.key}
                               options={cities}
                               className="mt-3"
@@ -210,7 +211,7 @@ export default function Profile() {
                                  color="primary"
                                  className="textformatter"
                                  onClick={handleNewEvent}>
-                                 سجل العمل
+                                 {JsonData.NewEvent.addEventBtn}
                               </MDBBtn>
                            </p>
                         </form>

@@ -6,6 +6,7 @@ import Banner from "../components/banner";
 import "../styles/login.css";
 import Footer from "../components/footer";
 import { withAlert } from "react-alert";
+import JsonData from "../data/data.json";
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 
 class Login extends Component {
@@ -59,7 +60,7 @@ class Login extends Component {
             }
          })
          .catch((err) => {
-            this.props.alert.error("حدث خطأ ما");
+            this.props.alert.error(JsonData.Login.loginAlertError);
          });
    }
 
@@ -73,11 +74,13 @@ class Login extends Component {
                      <MDBCol md="3"></MDBCol>
                      <MDBCol md="6" className="loginFormHolder">
                         <form>
-                           <p className="h5 text-center mb-4 mt-4 headerText">سجل دخولك</p>
+                           <p className="h5 text-center mb-4 mt-4 headerText">
+                              {JsonData.Login.header}
+                           </p>
                            <div className="grey-text">
                               <MDBInput
                                  className="textDirection"
-                                 label="البريد الالكتروني"
+                                 label={JsonData.Login.email}
                                  icon="envelope"
                                  name="email"
                                  size="lg"
@@ -91,7 +94,7 @@ class Login extends Component {
                                  success="right"
                               />
                               <MDBInput
-                                 label="كلمه السر"
+                                 label={JsonData.Login.password}
                                  icon="lock"
                                  group
                                  name="password"
@@ -110,7 +113,7 @@ class Login extends Component {
                                  type="submit"
                                  className="loginBtn"
                                  onClick={(e) => this.loginHandler(e)}>
-                                 سجل الدخول
+                                 {JsonData.Login.loginBtn}
                               </MDBBtn>
                            </div>
                         </form>

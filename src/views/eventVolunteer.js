@@ -7,6 +7,7 @@ import { MDBDataTableV5, MDBBtn, MDBBadge } from "mdbreact";
 import { Rating } from "semantic-ui-react";
 import { useAlert } from "react-alert";
 import VolDetails from "../components/VolunteerDetails";
+import JsonData from "../data/data.json";
 
 export default function EventVolunteer(props) {
    const alert = useAlert();
@@ -15,29 +16,29 @@ export default function EventVolunteer(props) {
    const [starRates, setStarRates] = useState([]);
    const [dataCallback, setDataCallback] = useState({});
    const [myEventsColumns, setMyEventsColumns] = useState([
-      { label: "اسم المتطوع", field: "userName", width: 150 },
+      { label: JsonData.eventVol.volName, field: "userName", width: 150 },
       {
-         label: "ايميل المتطوع",
+         label: JsonData.eventVol.volEmail,
          field: "userEmail",
          width: 150,
       },
       {
-         label: "رقم الهاتف",
+         label: JsonData.eventVol.volPhone,
          field: "userMobile",
          width: 150,
       },
       {
-         label: "الرقم القومي",
+         label: JsonData.eventVol.volNID,
          field: "NID",
          width: 150,
       },
       {
-         label: "الحاله",
+         label: JsonData.eventVol.volStatus,
          field: "active",
          width: 150,
       },
       {
-         label: "التقييم",
+         label: JsonData.eventVol.volRate,
          field: "rating",
          width: 150,
       },
@@ -128,25 +129,25 @@ export default function EventVolunteer(props) {
                               size="sm"
                               className="My-events-font"
                               onClick={() => handleAccept(dataRow)}>
-                              قبول
+                              {JsonData.eventVol.volAcceptBtn}
                            </MDBBtn>
                            <MDBBtn
                               color="danger"
                               size="sm"
                               className="My-events-font"
                               onClick={() => handleReject(dataRow)}>
-                              رفض
+                              {JsonData.eventVol.volRejectBtn}
                            </MDBBtn>
                         </>
                      ) : (
-                        <MDBBadge color="success">مقبول</MDBBadge>
+                        <MDBBadge color="success">{JsonData.eventVol.volAccepted}</MDBBadge>
                      )}
                   </>
                ),
                rating: (
                   <>
                      {eventDetails.is_ended == "working" ? (
-                        <MDBBadge color="success">قيد العمل</MDBBadge>
+                        <MDBBadge color="success">{JsonData.eventVol.volWorking}</MDBBadge>
                      ) : (
                         <Rating
                            maxRating={5}
@@ -218,7 +219,7 @@ export default function EventVolunteer(props) {
          //console.log("retrievedObject: ", JSON.parse(retrievedObject));
          Object.assign(eventDetails, JSON.parse(retrievedObject));
       } else {
-         alert.error("حدث خطأ ما");
+         alert.error(JsonData.eventVol.volAlertError);
          window.location.href("/MyEvents");
       }
       //console.log(eventDetails);

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import serverURL from "../Utils/global";
 import axios from "axios";
 import { Rating } from "semantic-ui-react";
+import JsonData from "../data/data.json";
 import Cookies from "js-cookie";
 import { MDBDataTableV5, MDBBadge } from "mdbreact";
 
@@ -10,49 +11,49 @@ export default function AllJobs() {
    const [myEventsRows, setMyEventsRows] = useState([]);
    const [myEventsColumns, setMyEventsColumns] = useState([
       {
-         label: "اسم المبادره",
+         label: JsonData.AllJobs.orgName,
          field: "orgInfo",
          width: 150,
       },
-      { label: "اسم العمل", field: "eventInfo", width: 150 },
+      { label: JsonData.AllJobs.eventName, field: "eventInfo", width: 150 },
 
       {
-         label: "بريد المبادره الالكتروني",
+         label: JsonData.AllJobs.orgEmail,
          field: "orgEmail",
          width: 150,
       },
       {
-         label: "رقم المبادره",
+         label: JsonData.AllJobs.orgPrimaryPhoneNumber,
          field: "orgMobile",
          width: 150,
       },
       {
-         label: "رقم اخر",
+         label: JsonData.AllJobs.orgSecondaryPhoneNumber,
          field: "orgMobile1",
          width: 150,
       },
       {
-         label: "المدينه",
+         label: JsonData.AllJobs.city,
          field: "city",
          width: 150,
       },
       {
-         label: "الحاله",
+         label: JsonData.AllJobs.status,
          field: "status",
          width: 150,
       },
       {
-         label: "تاريخ البدايه",
+         label: JsonData.AllJobs.startDate,
          field: "startDate",
          width: 150,
       },
       {
-         label: "تاريخ الانتهاء",
+         label: JsonData.AllJobs.endDate,
          field: "endDate",
          width: 150,
       },
       {
-         label: "التقيم",
+         label: JsonData.AllJobs.rating,
          field: "rate",
          width: 150,
       },
@@ -74,15 +75,15 @@ export default function AllJobs() {
                <>
                   {dataRow.status == "pending" ? (
                      <MDBBadge color="warning" key={dataRow.id}>
-                        لم يتم التأكيد
+                        {JsonData.AllJobs.pending}
                      </MDBBadge>
                   ) : dataRow.status == "rejected" ? (
                      <MDBBadge color="danger" key={dataRow.id}>
-                        مرفوض
+                        {JsonData.AllJobs.rejected}
                      </MDBBadge>
                   ) : (
                      <MDBBadge color="success" key={dataRow.id}>
-                        مشترك
+                        {JsonData.AllJobs.accepted}
                      </MDBBadge>
                   )}
                </>
@@ -91,11 +92,11 @@ export default function AllJobs() {
                <>
                   {dataRow.status == "rejected" ? (
                      <MDBBadge color="danger" key={dataRow.id}>
-                        غير قابل للتقيم
+                        {JsonData.AllJobs.unrated}
                      </MDBBadge>
                   ) : dataRow.is_ended == "working" ? (
                      <MDBBadge color="warning" key={dataRow.id}>
-                        لم يقيم
+                        {JsonData.AllJobs.notRatedYet}
                      </MDBBadge>
                   ) : (
                      <Rating

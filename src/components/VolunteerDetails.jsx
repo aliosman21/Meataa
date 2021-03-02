@@ -6,39 +6,40 @@ import axios from "axios";
 import { MDBDataTableV5, MDBBadge } from "mdbreact";
 import { Rating } from "semantic-ui-react";
 import serverURL from "../Utils/global";
+import JsonData from "../data/data.json";
 
 const VolDetails = (props) => {
   const [open, setOpen] = React.useState(false)
    const [myEventsRows, setMyEventsRows] = useState([]);
    const [myEventsColumns] = useState([
       {
-         label: "اسم المبادره",
+         label: JsonData.volDetails.orgName,
          field: "orgInfo",
          width: 100,
       },
-      { label: "اسم العمل", field: "eventInfo", width: 100 },
+      { label: JsonData.volDetails.eventName, field: "eventInfo", width: 100 },
       {
-         label: "المدينه",
+         label: JsonData.volDetails.city,
          field: "city",
          width: 100,
       },
       {
-         label: "الحاله",
+         label: JsonData.volDetails.status,
          field: "status",
          width: 100,
       },
       {
-         label: "تاريخ البدايه",
+         label: JsonData.volDetails.startDate,
          field: "startDate",
          width: 100,
       },
       {
-         label: "تاريخ الانتهاء",
+         label: JsonData.volDetails.endDate,
          field: "endDate",
          width: 100,
       },
       {
-         label: "التقيم",
+         label: JsonData.volDetails.volRate,
          field: "rate",
          width: 100,
       },
@@ -57,11 +58,11 @@ const VolDetails = (props) => {
                <>
                   {dataRow.status === "pending" ? (
                      <MDBBadge color="warning" key={dataRow.id}>
-                        لم يتم التأكيد
+                        {JsonData.volDetails.volPending}
                      </MDBBadge>
                   ) : (
                      <MDBBadge color="success" key={dataRow.id}>
-                        مشترك
+                        {JsonData.volDetails.volAccepted}
                      </MDBBadge>
                   )}
                </>
@@ -70,7 +71,7 @@ const VolDetails = (props) => {
                <>
                   {dataRow.is_ended === "working" ? (
                      <MDBBadge color="warning" key={dataRow.id}>
-                        لم يقيم
+                        {JsonData.volDetails.volNotRated}
                      </MDBBadge>
                   ) : (
                      <Rating
@@ -125,13 +126,13 @@ useEffect(()=>{
             data={{ columns: myEventsColumns, rows: myEventsRows }} 
             btn
             className="My-events-font"
-            entriesLabel="المبادرات"
+            entriesLabel="المتطوعين"
             searchLabel="بحث"
          />
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        <Button onClick={() =>  setOpen(false)}>الغاء</Button>       
+        <Button onClick={() =>  setOpen(false)}>{JsonData.volDetails.cancelBtn}</Button>       
       </Modal.Actions>
     </Modal>
   )

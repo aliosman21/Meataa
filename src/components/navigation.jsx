@@ -3,6 +3,7 @@ import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNav
  MDBIcon } from "mdbreact";
 import Cookies from 'js-cookie';
 import "../styles/navigation.css"
+import JsonData from "../data/data.json";
 import image from "../styles/logo.png"
 
 class NavbarPage extends Component {
@@ -46,31 +47,31 @@ render() {
             
             <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/addNewTag">
-                <MDBIcon icon="hands-helping" className="mr-1" />اضافه فئه</MDBNavLink>
+                <MDBIcon icon="hands-helping" className="mr-1" />{JsonData.Navigation.AddTags}</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/AllVolunteers">
-                <MDBIcon icon="hands-helping" className="mr-1" />عرض المتطوعين</MDBNavLink>
+                <MDBIcon icon="hands-helping" className="mr-1" />{JsonData.Navigation.AllVolunteers}</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/AllOrganizations">
-                <MDBIcon icon="hands-helping" className="mr-1" />عرض المبادرات</MDBNavLink>
+                <MDBIcon icon="hands-helping" className="mr-1" />{JsonData.Navigation.AllOrganizations}</MDBNavLink>
             </MDBNavItem>
             </>):(<></>)}
             {Cookies.getJSON('session').type === "Organization"?(<>
               <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/newEvent">
-                <MDBIcon icon="plus" className="mr-1" />عمل جديد</MDBNavLink>
+                <MDBIcon icon="plus" className="mr-1" />{JsonData.Navigation.NewEvent}</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/MyEvents">
-                <MDBIcon icon="hands-helping" className="mr-1" />مبادراتي</MDBNavLink>
+                <MDBIcon icon="hands-helping" className="mr-1" />{JsonData.Navigation.MyEvents}</MDBNavLink>
             </MDBNavItem>
             </>
               ):(<></>)}
               <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/search">
-                <MDBIcon icon="search" className="mr-1" />بحث</MDBNavLink>
+                <MDBIcon icon="search" className="mr-1" />{JsonData.Navigation.Search}</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/profile">
@@ -78,22 +79,22 @@ render() {
             </MDBNavItem>
             <MDBNavItem style ={{fontSize:"18px"}}>  
               <MDBNavLink className="waves-effect waves-light" to="/" onClick={this.logoutHandler}>
-                <MDBIcon icon="sign-out-alt" className="mr-1" />تسجيل الخروج</MDBNavLink>
+                <MDBIcon icon="sign-out-alt" className="mr-1" />{JsonData.Navigation.Logout}</MDBNavLink>
             </MDBNavItem>
              </>)
              
              :(<>
              <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/search">
-                <MDBIcon icon="search" className="mr-1" />بحث</MDBNavLink>
+                <MDBIcon icon="search" className="mr-1" />{JsonData.Navigation.Search}</MDBNavLink>
             </MDBNavItem>
                <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/login">
-                <MDBIcon icon="sign-in-alt" className="mr-1" />تسجيل الدخول</MDBNavLink>
+                <MDBIcon icon="sign-in-alt" className="mr-1" />{JsonData.Navigation.Login}</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem style ={{fontSize:"18px"}}>  
               <MDBNavLink className="waves-effect waves-light" to="/register">
-                <MDBIcon icon="user-plus" className="mr-1" />انضم لنا</MDBNavLink>
+                <MDBIcon icon="user-plus" className="mr-1" />{JsonData.Navigation.Register}</MDBNavLink>
             </MDBNavItem>
              
              </>)}

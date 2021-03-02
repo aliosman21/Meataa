@@ -5,32 +5,33 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { MDBDataTableV5, MDBBadge } from "mdbreact";
 import { Rating } from "semantic-ui-react";
+import JsonData from "../data/data.json";
 import serverURL from "../Utils/global";
 
 const OrgDetails = (props) => {
   const [open, setOpen] = React.useState(false)
    const [myEventsRows, setMyEventsRows] = useState([]);
    const [myEventsColumns] = useState([
-      { label: "اسم العمل", field: "eventInfo", width: 100 },
+      { label: JsonData.MyEvents.eventName, field: "eventInfo", width: 150 },
       {
-         label: "المدينه",
+         label: JsonData.MyEvents.city,
          field: "city",
-         width: 100,
+         width: 150,
       },
       {
-         label: "تاريخ البدايه",
+         label: JsonData.MyEvents.registerEndDate,
          field: "startDate",
-         width: 100,
+         width: 150,
       },
       {
-         label: "تاريخ الانتهاء",
+         label: JsonData.MyEvents.eventEndDate,
          field: "endDate",
-         width: 100,
+         width: 150,
       },
       {
-         label: "الحاله",
+         label: JsonData.MyEvents.eventStatus,
          field: "status",
-         width: 100,
+         width: 150,
       },
    ]);
 
@@ -47,16 +48,16 @@ const OrgDetails = (props) => {
                <>
                   {dataRow.can_register === "working" ? (
                      <MDBBadge color="warning" key={dataRow.id}>
-                        التسجيل مفتوح
+                        {JsonData.MyEvents.eventRegOpen}
                      </MDBBadge>
                   ) : (
                     dataRow.is_ended === "working" ? (
                     <MDBBadge color="success" key={dataRow.id}>
-                        يعمل
+                        {JsonData.MyEvents.eventInWork}
                      </MDBBadge>
                     ):
                     (<MDBBadge color="danger" key={dataRow.id}>
-                        انتهي
+                        {JsonData.MyEvents.eventEnded}
                      </MDBBadge>)
                   )}
                </>
@@ -109,7 +110,7 @@ useEffect(()=>{
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        <Button onClick={() =>  setOpen(false)}>الغاء</Button>       
+        <Button onClick={() =>  setOpen(false)}>{JsonData.MyEvents.eventCancelBtn}</Button>       
       </Modal.Actions>
     </Modal>
   )

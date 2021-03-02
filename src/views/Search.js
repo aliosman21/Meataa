@@ -3,7 +3,7 @@ import serverURL from "../Utils/global";
 import Footer from "../components/footer";
 import Banner from "../components/banner";
 import { Dropdown } from "semantic-ui-react";
-
+import JsonData from "../data/data.json";
 import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from "mdbreact";
 import axios from "axios";
 import EventDetails from "../components/EventDetails";
@@ -58,18 +58,10 @@ export default function Search() {
    };
 
    const queryEvents = () => {
-      //console.log(usedTags);
-      /*       const token = Cookies.getJSON("session").token;
-      const config = {
-         headers: { Authorization: `bearer ${token}` },
-      };
- */
       const bodyParameters = {
          tags: usedTags,
          city_id: usedCity,
       };
-      //console.log(bodyParameters);
-      // console.log(usedCity);
       axios
          .post(serverURL + "/jobs/jobsbytags", bodyParameters)
          .then(function (response) {
@@ -99,7 +91,7 @@ export default function Search() {
                   <span className="mr-3">
                      <Dropdown
                         className="mt-3"
-                        placeholder="المدينه"
+                        placeholder={JsonData.Search.city}
                         fluid
                         selection
                         clearable
@@ -111,7 +103,7 @@ export default function Search() {
                   <span>
                      <Dropdown
                         className="mt-3"
-                        placeholder="الفعاليه"
+                        placeholder={JsonData.Search.tags}
                         options={tags}
                         search
                         selection

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
+import JsonData from "../data/data.json";
 import axios from "axios";
 import serverURL from "../Utils/global";
 import { useAlert } from "react-alert";
@@ -29,14 +30,14 @@ export default function AddTag() {
             .then(function (response) {
                if (response.status == 200) {
                   console.log(response);
-                  alert.show("تم تسجيل الفئه بنجاح");
+                  alert.show(JsonData.AddTag.addTagSuccess);
                } else {
-                  alert.error("لا يمكنك اضافه فئه");
+                  alert.error(JsonData.AddTag.AddTagFail);
                }
             })
             .catch(console.log);
       } else {
-         alert.error("يجب ادخال فئه");
+         alert.error(JsonData.AddTag.addTagError);
       }
       //console.log(bodyParameters);
       //console.log(token);
@@ -50,10 +51,10 @@ export default function AddTag() {
                <MDBRow>
                   <MDBCol>
                      <MDBJumbotron>
-                        <h2 className="h1 display-3">قم بأضافه فئه جديده</h2>
+                        <h2 className="h1 display-3">{JsonData.AddTag.addTagHeader}</h2>
                         <form className="form-Sizer">
                            <MDBInput
-                              label="اسم الفئه"
+                              label={JsonData.AddTag.addTagLabel}
                               className="textDirection"
                               onChange={onChangeTag}
                               type="text"
@@ -68,7 +69,7 @@ export default function AddTag() {
                                  color="primary"
                                  className="textformatter"
                                  onClick={handleNewTag}>
-                                 اضف فئه
+                                 {JsonData.AddTag.addTagButton}
                               </MDBBtn>
                            </p>
                         </form>

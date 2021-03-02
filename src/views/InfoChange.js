@@ -124,7 +124,7 @@ export default function InfoChange() {
                            <p className="text-center mb-4 mt-4 headerText">انضم لنا</p>
                            <div className="">
                               <MDBInput
-                                 label="الاسم بالكامل"
+                                 label={JsonData.infoChange.name}
                                  className="textDirection"
                                  icon="user"
                                  iconSize
@@ -138,7 +138,7 @@ export default function InfoChange() {
                                  success="right"
                               />
                               <MDBInput
-                                 label="البريد الالكتروني"
+                                 label={JsonData.infoChange.email}
                                  className="textDirection"
                                  icon="envelope"
                                  group
@@ -151,7 +151,7 @@ export default function InfoChange() {
                                  success="right"
                               />
                               <MDBInput
-                                 label="كلمه السر"
+                                 label={JsonData.infoChange.password}
                                  icon="lock"
                                  className="textDirection"
                                  onChange={onChangePassword}
@@ -161,7 +161,7 @@ export default function InfoChange() {
                                  validate
                               />
                               <MDBInput
-                                 label="رفم الهاتف"
+                                 label={JsonData.infoChange.phoneNumber}
                                  className="textDirection"
                                  icon="mobile-alt"
                                  onChange={onChangeMobile}
@@ -173,7 +173,7 @@ export default function InfoChange() {
                               />
                               {Cookies.getJSON("session").type === "Volunteer" ? (
                                  <MDBInput
-                                    label="الرقم القومي"
+                                    label={JsonData.infoChange.NID}
                                     icon="address-card"
                                     className="textDirection"
                                     group
@@ -187,7 +187,7 @@ export default function InfoChange() {
                                  />
                               ) : (
                                  <MDBInput
-                                    label="رفم هاتف اخر"
+                                    label={JsonData.infoChange.phoneNumber2}
                                     className="textDirection"
                                     icon="mobile-alt"
                                     onChange={onChangeMobile1}
@@ -209,7 +209,7 @@ export default function InfoChange() {
                               />
                               <Dropdown
                                  className="mt-3"
-                                 placeholder="الفعاليه"
+                                 placeholder={JsonData.infoChange.tags}
                                  options={tags}
                                  search
                                  selection
@@ -225,7 +225,7 @@ export default function InfoChange() {
                                  className="registerBtn"
                                  type="submit"
                                  onClick={editUserData}>
-                                 تعديل
+                                 {JsonData.infoChange.change}
                               </MDBBtn>
                            </div>
                         </form>

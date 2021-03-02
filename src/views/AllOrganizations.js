@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import { MDBDataTableV5, MDBBtn, MDBBadge } from "mdbreact";
 import { Rating } from "semantic-ui-react";
 import { useAlert } from "react-alert";
+import JsonData from "../data/data.json";
 import OrgDetails from "../components/OrgDetails";
 
 export default function AllOrganizations() {
@@ -13,19 +14,19 @@ export default function AllOrganizations() {
    const [volRows, setVolRows] = useState([]);
    const [dataCallback, setDataCallback] = useState({});
    const [volColumns, setVolColumns] = useState([
-      { label: "اسم المبادره", field: "userName", width: 150 },
+      { label: JsonData.AllOrganizations.orgName, field: "userName", width: 150 },
       {
-         label: "ايميل المبادره",
+         label: JsonData.AllOrganizations.orgEmail,
          field: "userEmail",
          width: 150,
       },
       {
-         label: "رقم الهاتف",
+         label: JsonData.AllOrganizations.orgPrimaryPhoneNumber,
          field: "userMobile",
          width: 150,
       },
       {
-         label: "رقم هاتف اخر",
+         label: JsonData.AllOrganizations.orgSecondaryPhoneNumber,
          field: "userMobile1",
          width: 150,
       },
