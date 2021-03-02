@@ -51,11 +51,11 @@ render() {
             </MDBNavItem>
             <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/AllVolunteers">
-                <MDBIcon icon="hands-helping" className="mr-1" />{JsonData.Navigation.AllVolunteers}</MDBNavLink>
+                <MDBIcon icon="user-tie" className="mr-1" />{JsonData.Navigation.AllVolunteers}</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem style ={{fontSize:"18px"}}>
               <MDBNavLink className="waves-effect waves-light" to="/AllOrganizations">
-                <MDBIcon icon="hands-helping" className="mr-1" />{JsonData.Navigation.AllOrganizations}</MDBNavLink>
+                <MDBIcon icon="users" className="mr-1" />{JsonData.Navigation.AllOrganizations}</MDBNavLink>
             </MDBNavItem>
             </>):(<></>)}
             {Cookies.getJSON('session').type === "Organization"?(<>
