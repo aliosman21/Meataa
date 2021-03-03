@@ -48,14 +48,26 @@
       "orgName": "اسم المبادره",
       "orgEmail": "بريد المبادره الالكتروني",
       "orgPrimaryPhoneNumber": "رقم المبادره",
-      "orgSecondaryPhoneNumber": "رقم اخر"
+      "orgSecondaryPhoneNumber": "رقم اخر",
+      "status": "الحاله",
+      "action": "القرار",
+      "orgWorking": "فعال",
+      "orgStopped": "غير فعال",
+      "stopAccBtn": "ايقاف الحساب",
+      "startAccBtn": "تفعيل الحساب"
    },
    "AllVolunteers": {
       "volName": "اسم المتطوع",
       "volEmail": "ايميل المتطوع",
       "volPhone": "رقم الهاتف",
       "volNID": "الرقم القومي",
-      "volTags": "الاهتمامات"
+      "volTags": "الاهتمامات",
+      "status": "الحاله",
+      "action": "القرار",
+      "volWorking": "فعال",
+      "volStopped": "غير فعال",
+      "stopAccBtn": "ايقاف الحساب",
+      "startAccBtn": "تفعيل الحساب"
    },
    "eventVol": {
       "volName": "اسم المتطوع",

@@ -32,7 +32,37 @@ export default function AllVolunteers() {
          field: "tags",
          width: 150,
       },
+      {
+         label: JsonData.AllVolunteers.status,
+         field: "status",
+         width: 150,
+      },
+      {
+         label: JsonData.AllVolunteers.action,
+         field: "action",
+         width: 150,
+      },
    ]);
+
+   const handleAction = (data) => {
+      //console.log(data);
+      //console.log(eventDetails);
+      const token = Cookies.getJSON("session").token;
+      const config = {
+         headers: { Authorization: `bearer ${token}` },
+      };
+      const bodyParameters = {
+         id: data.id,
+         status: data.status == "working" ? "stopped" : "working",
+      };
+      console.log(bodyParameters);
+      axios
+         .post(serverURL + "/admin/volunteerstatus", bodyParameters, config)
+         .then(function (response) {
+            window.location.href = "AllVolunteers";
+         })
+         .catch(console.log);
+   };
 
    useEffect(() => {
       transformData();
@@ -41,7 +71,7 @@ export default function AllVolunteers() {
    const transformData = () => {
       if (Object.keys(dataCallback).length) {
          dataCallback.forEach((dataRow) => {
-            //console.log(dataRow);
+            console.log(dataRow);
             let tempObject = {
                userName: (
                   <div>
@@ -52,6 +82,42 @@ export default function AllVolunteers() {
                userMobile: dataRow.mobile,
                NID: dataRow.NID,
                tags: setTagsAsString(dataRow.tags),
+               status: (
+                  <>
+                     {dataRow.status === "working" ? (
+                        <MDBBadge color="success" key={dataRow.id}>
+                           {JsonData.AllVolunteers.volWorking}
+                        </MDBBadge>
+                     ) : (
+                        <MDBBadge color="warning" key={dataRow.id}>
+                           {JsonData.AllVolunteers.volStopped}
+                        </MDBBadge>
+                     )}
+                  </>
+               ),
+               action: (
+                  <>
+                     {dataRow.status == "working" ? (
+                        <>
+                           <MDBBtn
+                              color="danger"
+                              size="sm"
+                              className="My-events-font"
+                              onClick={() => handleAction(dataRow)}>
+                              {JsonData.AllVolunteers.stopAccBtn}
+                           </MDBBtn>
+                        </>
+                     ) : (
+                        <MDBBtn
+                           color="success"
+                           size="sm"
+                           className="My-events-font"
+                           onClick={() => handleAction(dataRow)}>
+                           {JsonData.AllVolunteers.startAccBtn}
+                        </MDBBtn>
+                     )}
+                  </>
+               ),
             };
 
             setVolRows((oldArray) => [...oldArray, tempObject]);
@@ -59,7 +125,7 @@ export default function AllVolunteers() {
       } //console.log(starRates);
    };
    const setTagsAsString = (tags) => {
-      console.log(tags);
+      //console.log(tags);
       let allTags = "";
       tags.forEach((tag) => {
          allTags += tag.text;
@@ -80,7 +146,7 @@ export default function AllVolunteers() {
       axios
          .get(serverURL + "/volunteer/list", config)
          .then(function (response) {
-            //console.log(response.data.message);
+            console.log(response.data.message);
             setDataCallback(response.data.message);
          })
          .catch(console.log);
