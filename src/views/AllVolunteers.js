@@ -15,7 +15,7 @@ export default function AllVolunteers() {
       {
          label: JsonData.AllVolunteers.volEmail,
          field: "userEmail",
-         width: 150,
+         width: 300,
       },
       {
          label: JsonData.AllVolunteers.volPhone,

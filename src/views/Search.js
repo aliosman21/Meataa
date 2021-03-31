@@ -125,7 +125,9 @@ export default function Search() {
                            waves
                         />
                         <MDBCardBody>
-                           <MDBCardTitle className="customCardFont">{event.name}</MDBCardTitle>
+                           <MDBCardTitle className="customCardFont description-cut">
+                              {event.name}
+                           </MDBCardTitle>
                            <MDBCardText className="customCardFont description-cut">
                               {event.description}
                            </MDBCardText>

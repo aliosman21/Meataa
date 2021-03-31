@@ -1,10 +1,11 @@
 .custom-content-register {
    display: grid;
-   height: 100%;
+   height: auto;
    width: 100%;
    min-width: 100%;
    grid-template-columns: 10% 80% 10%;
    grid-template-rows: 100%;
+
    grid-template-areas: ". registerForm .";
    align-items: center;
    background-color: #f2f2f0;
@@ -39,7 +40,7 @@
    grid-area: registerForm;
    display: grid;
    width: 50%;
-   height: 90%;
+   height: auto;
    grid-template-rows: 100%;
    grid-template-columns: 100%;
    justify-self: center;
